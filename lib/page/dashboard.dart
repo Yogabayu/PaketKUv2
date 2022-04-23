@@ -175,6 +175,19 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ],
                 )),
+            SizedBox(
+              height: height * 0.03,
+            ),
+            Container(
+              margin: EdgeInsets.only(left: width * 0.1),
+              child: Text(
+                "Tracking History",
+                style: TextStyle(
+                  fontSize: width * 0.05,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ],
         ),
       ),
