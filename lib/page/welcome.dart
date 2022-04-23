@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tracking/controller/theme_controller.dart';
 import 'package:tracking/constants/theme.dart';
+import 'package:tracking/page/dashboard.dart';
 
 //theme
 final themeController = Get.find<ThemeController>();
@@ -25,11 +26,13 @@ class _WelcomeState extends State<Welcome> {
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
+            end: Alignment.topRight,
+            begin: Alignment.bottomLeft,
             colors: [
-              Color.fromARGB(156, 245, 196, 20),
-              Color.fromRGBO(255, 237, 34, 100),
+              // Color.fromARGB(156, 245, 196, 20),
+              // Color.fromRGBO(255, 237, 34, 100),
+              Color.fromARGB(251, 226, 192, 0),
+              Color.fromARGB(156, 255, 249, 183),
             ],
           )),
           child: ListView(
@@ -114,7 +117,8 @@ class _WelcomeState extends State<Welcome> {
                       ],
                     ))),
                 onTap: () => {
-                  print("object"),
+                  // print("object"),
+                  Get.to(() => Dashboard()),
                 },
               ),
               SizedBox(
