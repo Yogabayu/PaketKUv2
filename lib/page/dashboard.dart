@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tracking/controller/theme_controller.dart';
 import 'package:tracking/constants/theme.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class _DashboardState extends State<Dashboard> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Color.fromARGB(226, 255, 255, 255),
       body: Container(
         child: ListView(
           children: [
@@ -79,7 +81,7 @@ class _DashboardState extends State<Dashboard> {
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50),
                   ),
-                  color: Color.fromARGB(255, 240, 208, 48),
+                  color: Color.fromARGB(255, 245, 220, 94),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,15 +160,20 @@ class _DashboardState extends State<Dashboard> {
                               color: Colors.black),
                           child: Center(
                               child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                'Track Now ->',
+                                'Track Now ',
                                 style: TextStyle(
                                     fontSize: height * 0.02,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
                               ),
+                              Icon(
+                                CupertinoIcons.arrow_right,
+                                size: 20,
+                                color: Colors.white,
+                              )
                             ],
                           ))),
                       onTap: () => {

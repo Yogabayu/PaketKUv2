@@ -103,7 +103,24 @@ class _WelcomeState extends State<Welcome> {
               child: SizedBox(
                 child: Center(
                   child: Text(
-                    "Track Your Package and make sure \n              it arrives to destination",
+                    "Track Your Package and make sure",
+                    style: GoogleFonts.lato(
+                      color: Colors.black.withOpacity(0.5),
+                      fontSize: height * 0.02,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Center(
+            child: FadeInUp(
+              delay: const Duration(milliseconds: 1600),
+              child: SizedBox(
+                child: Center(
+                  child: Text(
+                    "it arrives to destination",
                     style: GoogleFonts.lato(
                       color: Colors.black.withOpacity(0.5),
                       fontSize: height * 0.02,
@@ -157,7 +174,9 @@ class _WelcomeState extends State<Welcome> {
                         ))),
                     onTap: () => {
                       // print("object"),
-                      Get.to(() => Dashboard()),
+                      // Get.to(() => Dashboard()),
+                      Get.offAll(() => Dashboard(),
+                          transition: Transition.cupertino),
                     },
                   ),
                 ),
