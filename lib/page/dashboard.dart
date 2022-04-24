@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tracking/controller/theme_controller.dart';
 import 'package:tracking/constants/theme.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
@@ -14,6 +15,18 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+// Initial Selected Value
+  String dropdownvalue = 'JNE';
+
+  // List of items in our dropdown menu
+  var items = [
+    'JNE',
+    'JNT',
+    'Ninja',
+    'SiCepat Halu',
+    'POS',
+  ];
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -146,6 +159,44 @@ class _DashboardState extends State<Dashboard> {
                         print("object"),
                       },
                     ),
+                    Container(
+                      width: width * 0.52,
+                      height: height / 18,
+                      margin: EdgeInsets.only(
+                        // top: width * 0.2,
+                        left: width * 0.13,
+                        right: width * 0.1,
+                      ),
+                      child: Center(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          DropdownButton(
+                            // Initial Value
+                            value: dropdownvalue,
+
+                            // Down Arrow Icon
+                            icon: const Icon(Icons.keyboard_arrow_down),
+
+                            // Array list of items
+                            items: items.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            // After selecting the desired option,it will
+                            // change button value to selected value
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue = newValue!;
+                                print(dropdownvalue);
+                              });
+                            },
+                          ),
+                        ],
+                      )),
+                    ),
                     InkWell(
                       child: Container(
                           width: width * 2,
@@ -195,6 +246,349 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
+            // Container(
+            //   margin: EdgeInsets.only(
+            //       left: width * 0.1, right: width * 0.1, top: height * 0.02),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       GestureDetector(
+            //         onTap: () => {
+            //           print("user"),
+            //         },
+            //         child: CircleAvatar(
+            //           backgroundImage: AssetImage('assets/image/user.jpg'),
+            //           radius: 25, //Text
+            //         ),
+            //       ),
+            //       GestureDetector(
+            //         onTap: () => {
+            //           print("user"),
+            //         },
+            //         child: Container(
+            //           child: Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             mainAxisAlignment: MainAxisAlignment.start,
+            //             children: [
+            //               Text(
+            //                 "SPC98647836",
+            //                 style: GoogleFonts.lato(
+            //                     fontSize: height * 0.02,
+            //                     fontWeight: FontWeight.bold),
+            //               ),
+            //               SizedBox(
+            //                 height: height * 0.009,
+            //               ),
+            //               Text(
+            //                 "SPC98647836",
+            //                 style: GoogleFonts.lato(
+            //                   fontSize: height * 0.017,
+            //                   fontWeight: FontWeight.bold,
+            //                   color: Colors.black.withOpacity(0.4),
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       GestureDetector(
+            //           onTap: () => {
+            //                 print("notif clicked"),
+            //               },
+            //           child: Icon(
+            //             CupertinoIcons.arrow_right,
+            //             size: 20,
+            //           )),
+            //     ],
+            //   ),
+            // ),
+            Container(
+                height: height * 0.22,
+                margin: EdgeInsets.only(
+                    left: width * 0.1, right: width * 0.1, top: height * 0.02),
+                child: ListView(
+                  children: [
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () => {
+                              print("user"),
+                            },
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/image/user.jpg'),
+                              radius: 25, //Text
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => {
+                              print("user"),
+                            },
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "SPC98647836",
+                                    style: GoogleFonts.lato(
+                                        fontSize: height * 0.02,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.009,
+                                  ),
+                                  Text(
+                                    "SPC98647836",
+                                    style: GoogleFonts.lato(
+                                      fontSize: height * 0.017,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black.withOpacity(0.4),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () => {
+                                    print("notif clicked"),
+                                  },
+                              child: Icon(
+                                CupertinoIcons.arrow_right,
+                                size: 20,
+                              )),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: width * 0.03),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () => {
+                              print("user"),
+                            },
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/image/user.jpg'),
+                              radius: 25, //Text
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => {
+                              print("user"),
+                            },
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "SPC98647836",
+                                    style: GoogleFonts.lato(
+                                        fontSize: height * 0.02,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.009,
+                                  ),
+                                  Text(
+                                    "SPC98647836",
+                                    style: GoogleFonts.lato(
+                                      fontSize: height * 0.017,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black.withOpacity(0.4),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () => {
+                                    print("notif clicked"),
+                                  },
+                              child: Icon(
+                                CupertinoIcons.arrow_right,
+                                size: 20,
+                              )),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () => {
+                              print("user"),
+                            },
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/image/user.jpg'),
+                              radius: 25, //Text
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => {
+                              print("user"),
+                            },
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "SPC98647836",
+                                    style: GoogleFonts.lato(
+                                        fontSize: height * 0.02,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.009,
+                                  ),
+                                  Text(
+                                    "SPC98647836",
+                                    style: GoogleFonts.lato(
+                                      fontSize: height * 0.017,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black.withOpacity(0.4),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () => {
+                                    print("notif clicked"),
+                                  },
+                              child: Icon(
+                                CupertinoIcons.arrow_right,
+                                size: 20,
+                              )),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () => {
+                              print("user"),
+                            },
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/image/user.jpg'),
+                              radius: 25, //Text
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => {
+                              print("user"),
+                            },
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "SPC98647836",
+                                    style: GoogleFonts.lato(
+                                        fontSize: height * 0.02,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.009,
+                                  ),
+                                  Text(
+                                    "SPC98647836",
+                                    style: GoogleFonts.lato(
+                                      fontSize: height * 0.017,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black.withOpacity(0.4),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () => {
+                                    print("notif clicked"),
+                                  },
+                              child: Icon(
+                                CupertinoIcons.arrow_right,
+                                size: 20,
+                              )),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () => {
+                              print("user"),
+                            },
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/image/user.jpg'),
+                              radius: 25, //Text
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => {
+                              print("user"),
+                            },
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "SPC98647836",
+                                    style: GoogleFonts.lato(
+                                        fontSize: height * 0.02,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.009,
+                                  ),
+                                  Text(
+                                    "SPC98647836",
+                                    style: GoogleFonts.lato(
+                                      fontSize: height * 0.017,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black.withOpacity(0.4),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () => {
+                                    print("notif clicked"),
+                                  },
+                              child: Icon(
+                                CupertinoIcons.arrow_right,
+                                size: 20,
+                              )),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
