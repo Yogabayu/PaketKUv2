@@ -17,6 +17,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
 // Initial Selected Value
   String dropdownvalue = 'JNE';
+  TextEditingController receipt = TextEditingController();
 
   // List of items in our dropdown menu
   var items = [
@@ -34,6 +35,18 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       // backgroundColor: Color.fromARGB(226, 255, 255, 255),
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            end: Alignment.topRight,
+            begin: Alignment.bottomLeft,
+            colors: [
+              // Color.fromARGB(156, 245, 196, 20),
+              // Color.fromRGBO(255, 237, 34, 100),
+              Color.fromARGB(251, 226, 192, 0),
+              Color.fromARGB(156, 255, 249, 183),
+            ],
+          ),
+        ),
         child: ListView(
           children: [
             Container(
@@ -56,7 +69,8 @@ class _DashboardState extends State<Dashboard> {
                       print("notif clicked"),
                     },
                     child: CircleAvatar(
-                      backgroundColor: Color.fromARGB(225, 181, 180, 180),
+                      // backgroundColor: Color.fromARGB(225, 181, 180, 180),
+                      backgroundColor: Colors.transparent,
                       backgroundImage:
                           AssetImage('assets/image/notification.png'),
                       radius: 15, //Text
@@ -94,7 +108,7 @@ class _DashboardState extends State<Dashboard> {
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50),
                   ),
-                  color: Color.fromARGB(255, 245, 220, 94),
+                  color: Color.fromARGB(255, 247, 211, 30),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,73 +143,65 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ),
                     ),
-                    InkWell(
-                      child: Container(
-                          width: width * 2,
-                          height: height / 18,
-                          margin: EdgeInsets.only(
-                            top: width * 0.09,
-                            left: width * 0.1,
-                            right: width * 0.1,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.black),
-                          ),
-                          child: Center(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Text(
-                                'Enter Receipt Number',
-                                style: TextStyle(
-                                    fontSize: height * 0.02,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white.withOpacity(0.8)),
+                    Container(
+                      width: width * 2,
+                      height: height / 18,
+                      margin: EdgeInsets.only(
+                        top: width * 0.09,
+                        left: width * 0.1,
+                        right: width * 0.1,
+                      ),
+                      child: Center(
+                        child: TextField(
+                          controller: receipt,
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 3, color: Colors.blue),
+                                borderRadius: BorderRadius.circular(15),
                               ),
-                            ],
-                          ))),
-                      onTap: () => {
-                        print("object"),
-                      },
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    // width: 3,
+                                    color: Color.fromARGB(255, 0, 0, 0)),
+                                borderRadius: BorderRadius.circular(15),
+                              )),
+                        ),
+                      ),
                     ),
                     Container(
                       width: width * 0.52,
                       height: height / 18,
                       margin: EdgeInsets.only(
                         // top: width * 0.2,
-                        left: width * 0.13,
-                        right: width * 0.1,
+                        left: width * 0.2,
+                        right: width * 0.2,
                       ),
                       child: Center(
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          DropdownButton(
-                            // Initial Value
-                            value: dropdownvalue,
+                        child: DropdownButton(
+                          // Initial Value
+                          value: dropdownvalue,
 
-                            // Down Arrow Icon
-                            icon: const Icon(Icons.keyboard_arrow_down),
+                          // Down Arrow Icon
+                          icon: const Icon(Icons.keyboard_arrow_down),
 
-                            // Array list of items
-                            items: items.map((String items) {
-                              return DropdownMenuItem(
-                                value: items,
-                                child: Text(items),
-                              );
-                            }).toList(),
-                            // After selecting the desired option,it will
-                            // change button value to selected value
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                dropdownvalue = newValue!;
-                                print(dropdownvalue);
-                              });
-                            },
-                          ),
-                        ],
-                      )),
+                          // Array list of items
+                          items: items.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(items),
+                            );
+                          }).toList(),
+                          // After selecting the desired option,it will
+                          // change button value to selected value
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownvalue = newValue!;
+                            });
+                          },
+                        ),
+                      ),
                     ),
                     InkWell(
                       child: Container(
@@ -228,7 +234,8 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ))),
                       onTap: () => {
-                        print("object"),
+                        print(receipt.text),
+                        print(dropdownvalue),
                       },
                     ),
                   ],
@@ -246,62 +253,6 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
-            // Container(
-            //   margin: EdgeInsets.only(
-            //       left: width * 0.1, right: width * 0.1, top: height * 0.02),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       GestureDetector(
-            //         onTap: () => {
-            //           print("user"),
-            //         },
-            //         child: CircleAvatar(
-            //           backgroundImage: AssetImage('assets/image/user.jpg'),
-            //           radius: 25, //Text
-            //         ),
-            //       ),
-            //       GestureDetector(
-            //         onTap: () => {
-            //           print("user"),
-            //         },
-            //         child: Container(
-            //           child: Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             mainAxisAlignment: MainAxisAlignment.start,
-            //             children: [
-            //               Text(
-            //                 "SPC98647836",
-            //                 style: GoogleFonts.lato(
-            //                     fontSize: height * 0.02,
-            //                     fontWeight: FontWeight.bold),
-            //               ),
-            //               SizedBox(
-            //                 height: height * 0.009,
-            //               ),
-            //               Text(
-            //                 "SPC98647836",
-            //                 style: GoogleFonts.lato(
-            //                   fontSize: height * 0.017,
-            //                   fontWeight: FontWeight.bold,
-            //                   color: Colors.black.withOpacity(0.4),
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       ),
-            //       GestureDetector(
-            //           onTap: () => {
-            //                 print("notif clicked"),
-            //               },
-            //           child: Icon(
-            //             CupertinoIcons.arrow_right,
-            //             size: 20,
-            //           )),
-            //     ],
-            //   ),
-            // ),
             Container(
                 height: height * 0.22,
                 margin: EdgeInsets.only(

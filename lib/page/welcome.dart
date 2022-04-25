@@ -29,16 +29,17 @@ class _WelcomeState extends State<Welcome> {
         // backgroundColor: Color.fromARGB(255, 214, 206, 137),
         body: Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-        end: Alignment.topRight,
-        begin: Alignment.bottomLeft,
-        colors: [
-          // Color.fromARGB(156, 245, 196, 20),
-          // Color.fromRGBO(255, 237, 34, 100),
-          Color.fromARGB(251, 226, 192, 0),
-          Color.fromARGB(156, 255, 249, 183),
-        ],
-      )),
+        gradient: LinearGradient(
+          end: Alignment.topRight,
+          begin: Alignment.bottomLeft,
+          colors: [
+            // Color.fromARGB(156, 245, 196, 20),
+            // Color.fromRGBO(255, 237, 34, 100),
+            Color.fromARGB(251, 226, 192, 0),
+            Color.fromARGB(156, 255, 249, 183),
+          ],
+        ),
+      ),
       child: ListView(
         children: [
           SizedBox(
