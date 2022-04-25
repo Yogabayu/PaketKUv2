@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tracking/page/tracking%20_detail.dart';
 // import 'package:tracking/controller/theme_controller.dart';
 // import 'package:tracking/constants/theme.dart';
 // import 'package:cupertino_icons/cupertino_icons.dart';
@@ -27,6 +29,10 @@ class _DashboardState extends State<Dashboard> {
     'SiCepat Halu',
     'POS',
   ];
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,9 +162,10 @@ class _DashboardState extends State<Dashboard> {
                           controller: receipt,
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
+                              hintText: "input here",
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
-                                    width: 3, color: Colors.blue),
+                                    color: Color.fromARGB(255, 0, 1, 2)),
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -236,6 +243,8 @@ class _DashboardState extends State<Dashboard> {
                       onTap: () => {
                         print(receipt.text),
                         print(dropdownvalue),
+                        Get.to(() => TrackingDetail(),
+                            transition: Transition.cupertino),
                       },
                     ),
                   ],

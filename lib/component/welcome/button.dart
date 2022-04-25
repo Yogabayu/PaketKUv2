@@ -63,9 +63,9 @@ class Button1 extends StatelessWidget {
                       ],
                     ))),
                 onTap: () => {
-                  Get.snackbar("button", "button google clicked"),
-                  // Get.offAll(() => Dashboard(),
-                  //     transition: Transition.cupertino),
+                  // Get.snackbar("button", "button google clicked"),
+                  Get.offAll(() => Dashboard(),
+                      transition: Transition.cupertino),
                 },
               ),
             ),
