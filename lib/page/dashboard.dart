@@ -243,7 +243,11 @@ class _DashboardState extends State<Dashboard> {
                       onTap: () => {
                         print(receipt.text),
                         print(dropdownvalue),
-                        Get.to(() => TrackingDetail(),
+                        Get.to(
+                            () => TrackingDetail(
+                                  receipt: receipt.text,
+                                  jk: dropdownvalue,
+                                ),
                             transition: Transition.cupertino),
                       },
                     ),
