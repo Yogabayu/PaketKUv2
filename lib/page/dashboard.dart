@@ -241,14 +241,22 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ))),
                       onTap: () => {
-                        print(receipt.text),
-                        print(dropdownvalue),
-                        Get.to(
-                            () => TrackingDetail(
-                                  receipt: receipt.text,
-                                  jk: dropdownvalue,
-                                ),
-                            transition: Transition.cupertino),
+                        // print(receipt.text),
+                        // print(dropdownvalue),
+                        if (receipt.text.isEmpty)
+                          {
+                            Get.snackbar(
+                                "Sorry", "Silahkan Isi receipt numbernya"),
+                          }
+                        else
+                          {
+                            Get.to(
+                                () => TrackingDetail(
+                                      receipt: receipt.text,
+                                      jk: dropdownvalue,
+                                    ),
+                                transition: Transition.cupertino),
+                          }
                       },
                     ),
                   ],

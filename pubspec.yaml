@@ -37,6 +37,7 @@ dependencies:
   get_storage: ^2.0.3
   animate_do: ^2.1.0
   google_fonts: ^2.3.1
+  timeline_tile: ^2.0.0
 
 dev_dependencies:
   flutter_test:

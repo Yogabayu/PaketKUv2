@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 class TrackingDetail extends StatefulWidget {
   const TrackingDetail({
@@ -79,6 +79,72 @@ class _TrackingDetailState extends State<TrackingDetail> {
                   ],
                 ),
               ),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                top: width * 0.03,
+              ),
+              height: height,
+              width: width,
+              child: ListView.builder(
+                  itemCount: 7,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index % 2 == 0) {
+                      return TimelineTile(
+                        alignment: TimelineAlign.manual,
+                        lineXY: 0.3,
+                        endChild: Container(
+                          margin: EdgeInsets.all(20),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
+                          constraints: const BoxConstraints(
+                            minHeight: 120,
+                          ),
+                          // color: Colors.amber,
+                          child: ListTile(
+                            title: Text("data"),
+                            subtitle: Text("data"),
+                          ),
+                          // color: Colors.lightGreenAccent,
+                        ),
+                        startChild: Container(
+                          // color: Colors.amberAccent,
+                          child: Icon(
+                            CupertinoIcons.cart_badge_plus,
+                            size: 20,
+                            // color: Colors.white,
+                          ),
+                        ),
+                      );
+                    } else {
+                      return TimelineTile(
+                        alignment: TimelineAlign.manual,
+                        lineXY: 0.3,
+                        endChild: Container(
+                          margin: EdgeInsets.all(20),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
+                          constraints: const BoxConstraints(
+                            minHeight: 120,
+                          ),
+                          // color: Colors.amber,
+                          child: ListTile(
+                            title: Text("data1"),
+                            subtitle: Text("data"),
+                          ),
+                          // color: Colors.lightGreenAccent,
+                        ),
+                        startChild: Container(
+                          // color: Colors.amberAccent,
+                          child: Icon(
+                            CupertinoIcons.cart,
+                            size: 20,
+                            // color: Colors.white,
+                          ),
+                        ),
+                      );
+                    }
+                  }),
             ),
           ],
         ),
