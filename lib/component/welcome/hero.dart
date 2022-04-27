@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class Hero1 extends StatelessWidget {
   const Hero1({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class Hero1 extends StatelessWidget {
       child: Stack(
         children: [
           FadeInDown(
-            delay: const Duration(milliseconds: 100),
+            delay: const Duration(milliseconds: 200),
             child: Container(
               decoration: new BoxDecoration(
                 borderRadius: new BorderRadius.only(
@@ -24,20 +25,34 @@ class Hero1 extends StatelessWidget {
                 ),
                 color: Color.fromARGB(255, 244, 233, 179),
               ),
-              child: FadeInRight(
-                delay: const Duration(milliseconds: 1600),
-                child: SpinPerfect(
-                  delay: const Duration(milliseconds: 2000),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0), //or 15.0
-                    child: Container(
-                      height: height / 2,
+              child: Container(
+                margin: EdgeInsets.all(height * 0.03),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    // Image.asset("assets/image/final.png"), // Back image
+                    Lottie.asset(
+                      'assets/image/hero.json',
+                      height: height * 0.5,
                       width: width,
-                      child: Image.asset("assets/image/final.png"),
-                    ),
-                  ),
+                    ), // Front image
+                  ],
                 ),
               ),
+              // child: FadeInRight(
+              //   delay: const Duration(milliseconds: 1600),
+              //   child: SpinPerfect(
+              //     delay: const Duration(milliseconds: 2000),
+              //     child: ClipRRect(
+              //       borderRadius: BorderRadius.circular(20.0), //or 15.0
+              //       child: Container(
+              //         height: height / 2,
+              //         width: width,
+              //         child: Image.asset("assets/image/final.png"),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ),
           ),
         ],
