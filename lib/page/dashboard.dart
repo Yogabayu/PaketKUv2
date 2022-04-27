@@ -1,21 +1,12 @@
-import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tracking/component/welcome/button.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+// ignore: unnecessary_import
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tracking/page/tracking%20_detail.dart';
 import 'package:tracking/page/welcome.dart';
-// import 'package:tracking/controller/theme_controller.dart';
-// import 'package:tracking/constants/theme.dart';
-// import 'package:cupertino_icons/cupertino_icons.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key, required this.displayName, required this.photo})
