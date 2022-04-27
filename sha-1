@@ -1,0 +1,8 @@
+Variant: profileUnitTest
+Config: debug
+Store: C:\Users\yogab\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 7E:51:85:91:BA:8D:4A:96:73:CE:4B:FF:11:C3:70:88
+SHA1: 13:79:C9:96:3B:CC:0D:CD:5B:4B:CC:43:9F:50:64:E1:87:D7:4B:54
+SHA-256: 75:6D:35:C1:2C:FA:10:7C:FE:97:F7:10:6A:C0:39:6D:77:E1:55:D6:18:B5:D7:CB:B7:3F:F8:22:A4:F5:54:31
+Valid until: Friday, November 10, 2051

@@ -2,7 +2,10 @@ import 'package:animate_do/animate_do.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tracking/page/dashboard.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Button1 extends StatelessWidget {
   const Button1({Key? key}) : super(key: key);
@@ -63,9 +66,10 @@ class Button1 extends StatelessWidget {
                       ],
                     ))),
                 onTap: () => {
+                  GoogleSignIn().signIn(),
                   // Get.snackbar("button", "button google clicked"),
-                  Get.offAll(() => Dashboard(),
-                      transition: Transition.cupertino),
+                  // Get.offAll(() => Dashboard(),
+                  //     transition: Transition.cupertino),
                 },
               ),
             ),
@@ -73,5 +77,21 @@ class Button1 extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+Future<void> googleLogin() async {
+  try {
+    final googleUser = await GoogleSignIn().signIn();
+
+    if (googleUser == null) return;
+
+    final googleAuth = await googleUser.authentication;
+    final authCredential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+
+    await FirebaseAuth.instance.signInWithCredential(authCredential);
+  } on FirebaseAuthException catch (e) {
+    // handle the error
   }
 }

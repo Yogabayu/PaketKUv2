@@ -4,19 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tracking/page/tracking%20_detail.dart';
+import 'package:tracking/page/welcome.dart';
 // import 'package:tracking/controller/theme_controller.dart';
 // import 'package:tracking/constants/theme.dart';
 // import 'package:cupertino_icons/cupertino_icons.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+  const Dashboard({Key? key, required this.user}) : super(key: key);
 
+  final String user;
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
+  GoogleSignIn _googleSignIn = GoogleSignIn();
 // Initial Selected Value
   String dropdownvalue = 'JNE';
   TextEditingController receipt = TextEditingController();
@@ -72,7 +76,9 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   GestureDetector(
                     onTap: () => {
-                      print("notif clicked"),
+                      _googleSignIn.signOut().then((value) => Get.offAll(
+                          () => Welcome(),
+                          transition: Transition.cupertino))
                     },
                     child: CircleAvatar(
                       // backgroundColor: Color.fromARGB(225, 181, 180, 180),
@@ -91,7 +97,8 @@ class _DashboardState extends State<Dashboard> {
             Container(
               margin: EdgeInsets.only(left: width * 0.1),
               child: Text(
-                "Hello, John",
+                "Hello, ${widget.user}",
+                maxLines: 2,
                 style: TextStyle(
                   fontSize: width * 0.07,
                   fontWeight: FontWeight.bold,
