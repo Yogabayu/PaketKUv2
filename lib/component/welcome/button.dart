@@ -73,23 +73,38 @@ class _ButtonState extends State<Button1> {
                         // ),
                       ],
                     ))),
-                onTap: () => {
-                  _googleSignIn.signIn().then((userData) {
-                    setState(() {
-                      _isLoggedIn = true;
-                      _userObj = userData;
-                      print(_userObj!.displayName);
-                      final String? user = _userObj!.displayName;
+                onTap: () async {
+                  // _googleSignIn.signIn().then((userData) {
+                  //   setState(() {
+                  //     _isLoggedIn = true;
+                  //     _userObj = userData;
+                  //     print(_userObj!.displayName);
+                  //     final String? user = _userObj!.displayName;
 
-                      Get.offAll(() => Dashboard(user: user!),
-                          transition: Transition.cupertino);
-                    });
-                  }).catchError((e) {
-                    print(e);
-                  })
-                  // Get.snackbar("button", "button google clicked"),
-                  // Get.offAll(() => Dashboard(),
-                  //     transition: Transition.cupertino),
+                  //     Get.offAll(() => Dashboard(user: user!),
+                  //         transition: Transition.cupertino);
+                  //   });
+                  // }).catchError((e) {
+                  //   print(e);
+                  // })
+                  FirebaseService service = new FirebaseService();
+                  try {
+                    await service.signInwithGoogle();
+                    User? user = FirebaseAuth.instance.currentUser;
+                    final userName = user!.displayName;
+                    final photo = user.photoURL;
+                    Get.offAll(
+                        () => Dashboard(
+                              displayName: userName!,
+                              photo: photo!,
+                            ),
+                        transition: Transition.cupertino);
+                    print(FirebaseAuth.instance.currentUser);
+                  } catch (e) {
+                    if (e is FirebaseAuthException) {
+                      print(e.message!);
+                    }
+                  }
                 },
               ),
             ),
@@ -97,5 +112,32 @@ class _ButtonState extends State<Button1> {
         ),
       ),
     );
+  }
+}
+
+class FirebaseService {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  Future<String?> signInwithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+      await _auth.signInWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      throw e;
+    }
+  }
+
+  Future<void> signOutFromGoogle() async {
+    await _googleSignIn.signOut();
+    await _auth.signOut();
   }
 }

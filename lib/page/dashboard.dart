@@ -1,3 +1,9 @@
+import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tracking/component/welcome/button.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +18,16 @@ import 'package:tracking/page/welcome.dart';
 // import 'package:cupertino_icons/cupertino_icons.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key, required this.user}) : super(key: key);
+  const Dashboard({Key? key, required this.displayName, required this.photo})
+      : super(key: key);
 
-  final String user;
+  final String displayName;
+  final String photo;
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
-  GoogleSignIn _googleSignIn = GoogleSignIn();
 // Initial Selected Value
   String dropdownvalue = 'JNE';
   TextEditingController receipt = TextEditingController();
@@ -70,15 +77,16 @@ class _DashboardState extends State<Dashboard> {
                       print("user"),
                     },
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/image/user.jpg'),
+                      backgroundImage: NetworkImage("${widget.photo}"),
                       radius: 30, //Text
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => {
-                      _googleSignIn.signOut().then((value) => Get.offAll(
-                          () => Welcome(),
-                          transition: Transition.cupertino))
+                    onTap: () async {
+                      FirebaseService service = new FirebaseService();
+                      service.signOutFromGoogle();
+                      Get.offAll(() => Welcome(),
+                          transition: Transition.cupertino);
                     },
                     child: CircleAvatar(
                       // backgroundColor: Color.fromARGB(225, 181, 180, 180),
@@ -97,7 +105,7 @@ class _DashboardState extends State<Dashboard> {
             Container(
               margin: EdgeInsets.only(left: width * 0.1),
               child: Text(
-                "Hello, ${widget.user}",
+                "Hello, ${widget.displayName}",
                 maxLines: 2,
                 style: TextStyle(
                   fontSize: width * 0.07,
@@ -574,3 +582,5 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
+
+class $ {}
