@@ -7,11 +7,19 @@ import 'package:tracking/page/dashboard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class Button1 extends StatelessWidget {
+class Button1 extends StatefulWidget {
   const Button1({Key? key}) : super(key: key);
 
   @override
+  _ButtonState createState() => _ButtonState();
+}
+
+class _ButtonState extends State<Button1> {
+  @override
   Widget build(BuildContext context) {
+    bool _isLoggedIn = false;
+    GoogleSignInAccount? _userObj;
+    GoogleSignIn _googleSignIn = GoogleSignIn();
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Container(
@@ -66,7 +74,19 @@ class Button1 extends StatelessWidget {
                       ],
                     ))),
                 onTap: () => {
-                  GoogleSignIn().signIn(),
+                  _googleSignIn.signIn().then((userData) {
+                    setState(() {
+                      _isLoggedIn = true;
+                      _userObj = userData;
+                      print(_userObj!.displayName);
+                      final String? user = _userObj!.displayName;
+
+                      Get.offAll(() => Dashboard(user: user!),
+                          transition: Transition.cupertino);
+                    });
+                  }).catchError((e) {
+                    print(e);
+                  })
                   // Get.snackbar("button", "button google clicked"),
                   // Get.offAll(() => Dashboard(),
                   //     transition: Transition.cupertino),
@@ -77,21 +97,5 @@ class Button1 extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-Future<void> googleLogin() async {
-  try {
-    final googleUser = await GoogleSignIn().signIn();
-
-    if (googleUser == null) return;
-
-    final googleAuth = await googleUser.authentication;
-    final authCredential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-
-    await FirebaseAuth.instance.signInWithCredential(authCredential);
-  } on FirebaseAuthException catch (e) {
-    // handle the error
   }
 }
