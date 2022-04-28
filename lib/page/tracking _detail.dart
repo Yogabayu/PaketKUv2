@@ -120,10 +120,12 @@ class _TrackingDetailState extends State<TrackingDetail> {
             ),
             isRight
                 ? Container(
+                    // color: Colors.blue,
                     margin: EdgeInsets.only(
                       top: width * 0.03,
+                      // bottom: width * 0.1,
                     ),
-                    height: height,
+                    height: height * 0.7,
                     width: width,
                     child: ListView.builder(
                         shrinkWrap: true,
@@ -150,7 +152,7 @@ class _TrackingDetailState extends State<TrackingDetail> {
                               startChild: Container(
                                 // color: Colors.amberAccent,
                                 child: Icon(
-                                  CupertinoIcons.cart_badge_plus,
+                                  CupertinoIcons.cart_fill,
                                   size: 20,
                                   // color: Colors.white,
                                 ),
