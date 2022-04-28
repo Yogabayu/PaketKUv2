@@ -1,4 +1,4 @@
-import 'package:tracking/component/welcome/button.dart';
+// import 'package:tracking/component/welcome/button.dart';
 // ignore: unnecessary_import
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +7,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tracking/page/tracking%20_detail.dart';
 import 'package:tracking/page/welcome.dart';
+
+import 'package:tracking/model/data_tracking.dart';
+import 'package:tracking/model/api.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key, required this.displayName, required this.photo})
@@ -26,10 +29,14 @@ class _DashboardState extends State<Dashboard> {
   // List of items in our dropdown menu
   var items = [
     'JNE',
-    'JNT',
-    'Ninja',
-    'SiCepat Halu',
     'POS',
+    'JNT',
+    'sicepat',
+    'TIKI',
+    'Anteraja',
+    'NINJA',
+    'LION',
+    'JET',
   ];
   @override
   void initState() {
@@ -74,18 +81,25 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   GestureDetector(
                     onTap: () async {
+                      isLoading = true;
+                      print(isLoading);
                       FirebaseService service = new FirebaseService();
                       service.signOutFromGoogle();
                       Get.offAll(() => Welcome(),
                           transition: Transition.cupertino);
                     },
-                    child: CircleAvatar(
-                      // backgroundColor: Color.fromARGB(225, 181, 180, 180),
-                      backgroundColor: Colors.transparent,
-                      backgroundImage:
-                          AssetImage('assets/image/notification.png'),
-                      radius: 15, //Text
+                    child: Icon(
+                      CupertinoIcons.square_arrow_right,
+                      size: 40,
+                      // color: Colors.white,
                     ),
+                    // child: CircleAvatar(
+                    //   // backgroundColor: Color.fromARGB(225, 181, 180, 180),
+                    //   backgroundColor: Colors.transparent,
+                    //   backgroundImage:
+                    //       AssetImage('assets/image/notification.png'),
+                    //   radius: 15, //Text
+                    // ),
                   ),
                 ],
               ),
@@ -260,6 +274,7 @@ class _DashboardState extends State<Dashboard> {
                                 () => TrackingDetail(
                                       receipt: receipt.text,
                                       jk: dropdownvalue,
+                                      apiKey: apiKey,
                                     ),
                                 transition: Transition.cupertino),
                           }

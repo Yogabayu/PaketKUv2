@@ -4,20 +4,58 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class TrackingDetail extends StatefulWidget {
   const TrackingDetail({
     Key? key,
     required this.receipt,
     required this.jk,
+    required this.apiKey,
   }) : super(key: key);
 
   final String receipt;
   final String jk;
+  final String apiKey;
   @override
   _TrackingDetailState createState() => _TrackingDetailState();
 }
 
 class _TrackingDetailState extends State<TrackingDetail> {
+  bool isRight = false;
+  List<dynamic> data = []; //edited line
+  Map<String, dynamic> map = {};
+  Future<String> getSWData() async {
+    await http
+        .get(
+      Uri.parse(
+          "https://api.binderbyte.com/v1/track?api_key=${widget.apiKey}&courier=${widget.jk}&awb=${widget.receipt}"),
+    )
+        .then((response) {
+      if (response.statusCode == 200) {
+        isRight = true;
+        setState(() {
+          map = new Map<String, dynamic>.from(json.decode(response.body));
+          // print(map['data']['history']);
+          data = map['data']['history'];
+          print(data);
+        });
+      } else {
+        isRight = false;
+      }
+    });
+    return "sukses";
+    // print(response);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getSWData();
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = Get.height;
@@ -80,72 +118,84 @@ class _TrackingDetailState extends State<TrackingDetail> {
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(
-                top: width * 0.03,
-              ),
-              height: height,
-              width: width,
-              child: ListView.builder(
-                  itemCount: 7,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index % 2 == 0) {
-                      return TimelineTile(
-                        alignment: TimelineAlign.manual,
-                        lineXY: 0.3,
-                        endChild: Container(
-                          margin: EdgeInsets.all(20),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          constraints: const BoxConstraints(
-                            minHeight: 120,
-                          ),
-                          // color: Colors.amber,
-                          child: ListTile(
-                            title: Text("data"),
-                            subtitle: Text("data"),
-                          ),
-                          // color: Colors.lightGreenAccent,
-                        ),
-                        startChild: Container(
-                          // color: Colors.amberAccent,
-                          child: Icon(
-                            CupertinoIcons.cart_badge_plus,
-                            size: 20,
-                            // color: Colors.white,
-                          ),
-                        ),
-                      );
-                    } else {
-                      return TimelineTile(
-                        alignment: TimelineAlign.manual,
-                        lineXY: 0.3,
-                        endChild: Container(
-                          margin: EdgeInsets.all(20),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          constraints: const BoxConstraints(
-                            minHeight: 120,
-                          ),
-                          // color: Colors.amber,
-                          child: ListTile(
-                            title: Text("data1"),
-                            subtitle: Text("data"),
-                          ),
-                          // color: Colors.lightGreenAccent,
-                        ),
-                        startChild: Container(
-                          // color: Colors.amberAccent,
-                          child: Icon(
-                            CupertinoIcons.cart,
-                            size: 20,
-                            // color: Colors.white,
-                          ),
-                        ),
-                      );
-                    }
-                  }),
-            ),
+            isRight
+                ? Container(
+                    margin: EdgeInsets.only(
+                      top: width * 0.03,
+                    ),
+                    height: height,
+                    width: width,
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index % 2 == 0) {
+                            return TimelineTile(
+                              alignment: TimelineAlign.manual,
+                              lineXY: 0.3,
+                              endChild: Container(
+                                margin: EdgeInsets.all(20),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 20),
+                                constraints: const BoxConstraints(
+                                  minHeight: 120,
+                                ),
+                                // color: Colors.amber,
+                                child: ListTile(
+                                  title: Text(data[index]['desc']),
+                                  subtitle: Text(data[index]['date']),
+                                ),
+                                // color: Colors.lightGreenAccent,
+                              ),
+                              startChild: Container(
+                                // color: Colors.amberAccent,
+                                child: Icon(
+                                  CupertinoIcons.cart_badge_plus,
+                                  size: 20,
+                                  // color: Colors.white,
+                                ),
+                              ),
+                            );
+                          } else {
+                            return TimelineTile(
+                              alignment: TimelineAlign.manual,
+                              lineXY: 0.3,
+                              endChild: Container(
+                                margin: EdgeInsets.all(20),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 20),
+                                constraints: const BoxConstraints(
+                                  minHeight: 120,
+                                ),
+                                // color: Colors.amber,
+                                child: ListTile(
+                                  title: Text(data[index]['desc']),
+                                  subtitle: Text(data[index]['date']),
+                                ),
+                                // color: Colors.lightGreenAccent,
+                              ),
+                              startChild: Container(
+                                // color: Colors.amberAccent,
+                                child: Icon(
+                                  CupertinoIcons.cart,
+                                  size: 20,
+                                  // color: Colors.white,
+                                ),
+                              ),
+                            );
+                          }
+                        }),
+                  )
+                : Container(
+                    margin: EdgeInsets.only(
+                      top: width * 0.03,
+                    ),
+                    height: height * 0.05,
+                    width: width * 0.03,
+                    child: Text(
+                      "Mengambil data .....",
+                      textAlign: TextAlign.center,
+                    )),
           ],
         ),
       ),
