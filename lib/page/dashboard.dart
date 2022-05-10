@@ -1,27 +1,17 @@
-// import 'package:tracking/component/welcome/button.dart';
-// ignore: unnecessary_import
-import 'package:flutter/widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:tracking/component/dashboard.dart/button1.dart';
-import 'package:tracking/component/dashboard.dart/display_name.dart';
-import 'package:tracking/component/dashboard.dart/track_button.dart';
-import 'package:tracking/page/tracking%20_detail.dart';
-import 'package:tracking/page/welcome.dart';
+import 'package:tracking/component/dashboard/display_name.dart';
+import 'package:tracking/component/dashboard/head.dart';
+import 'package:tracking/component/dashboard/track_button.dart';
+import 'package:tracking/constants/constant.dart';
 
-import 'package:tracking/model/data_tracking.dart';
-import 'package:tracking/model/api.dart';
-
-import '../component/dashboard.dart/button2.dart';
+import '../component/dashboard/estimasi_button.dart';
 
 class Dashboard extends StatefulWidget {
+  final String displayName;
+  final String photo;
   const Dashboard({Key? key, required this.displayName, required this.photo})
       : super(key: key);
 
-  final String displayName;
-  final String photo;
   @override
   _DashboardState createState() => _DashboardState();
 }
@@ -34,8 +24,6 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       // backgroundColor: Color.fromARGB(226, 255, 255, 255),
       body: Container(
@@ -54,47 +42,7 @@ class _DashboardState extends State<Dashboard> {
         ),
         child: ListView(
           children: [
-            Container(
-              margin: EdgeInsets.only(
-                  left: width * 0.1, right: width * 0.1, top: height * 0.07),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () => {
-                      print("user"),
-                    },
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage("${widget.photo}"),
-                      radius: 30, //Text
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () async {
-                      isLoading = true;
-                      print(isLoading);
-                      FirebaseService service = new FirebaseService();
-                      service.signOutFromGoogle();
-                      Get.offAll(() => Welcome(),
-                          transition: Transition.cupertino);
-                    },
-                    child: Icon(
-                      CupertinoIcons.square_arrow_right,
-                      size: 40,
-                      // color: Colors.white,
-                    ),
-                    // child: CircleAvatar(
-                    //   // backgroundColor: Color.fromARGB(225, 181, 180, 180),
-                    //   backgroundColor: Colors.transparent,
-                    //   backgroundImage:
-                    //       AssetImage('assets/image/notification.png'),
-                    //   radius: 15, //Text
-                    // ),
-                  ),
-                ],
-              ),
-            ),
-
+            Head(photo: "${widget.photo}", name: "${widget.displayName}"),
             SizedBox(
               height: height * 0.03,
             ),
@@ -102,15 +50,21 @@ class _DashboardState extends State<Dashboard> {
             SizedBox(
               height: height * 0.03,
             ),
-            Button1(),
+            // Button1(),
             SizedBox(
               height: height * 0.03,
             ),
-            TrackButton(),
+            TrackButton(
+              photo: '${widget.photo}',
+              name: '${widget.displayName}',
+            ),
             SizedBox(
               height: height * 0.03,
             ),
-            Button2(),
+            Button2(
+              foto: '${widget.photo}',
+              name: "${widget.displayName}",
+            ),
             // Container(
             //   margin: EdgeInsets.only(left: width * 0.1),
             //   child: Text(

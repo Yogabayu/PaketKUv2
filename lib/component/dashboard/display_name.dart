@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:tracking/page/dashboard.dart';
+import 'package:tracking/constants/constant.dart';
 
 class DisplayName extends StatelessWidget {
   final String displayName;
@@ -8,8 +7,6 @@ class DisplayName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = Get.height;
-    final double width = Get.width;
     return Container(
       margin: EdgeInsets.only(left: width * 0.1),
       child: Text(

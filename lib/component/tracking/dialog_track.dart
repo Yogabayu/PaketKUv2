@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 import 'package:tracking/model/api.dart';
 import 'package:tracking/page/tracking%20_detail.dart';
 
-class Button1 extends StatefulWidget {
-  const Button1({Key? key}) : super(key: key);
+class Dialog_track extends StatefulWidget {
+  const Dialog_track({Key? key}) : super(key: key);
 
   @override
   _Button1State createState() => _Button1State();
 }
 
-class _Button1State extends State<Button1> {
+class _Button1State extends State<Dialog_track> {
   // Initial Selected Value
   String dropdownvalue = 'JNE';
   TextEditingController receipt = TextEditingController();
@@ -36,17 +36,26 @@ class _Button1State extends State<Button1> {
     return Container(
         height: height * 0.4,
         margin: EdgeInsets.only(
+          top: width * 0.1,
           left: width * 0.1,
           right: width * 0.1,
         ),
         decoration: new BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
           borderRadius: new BorderRadius.only(
             bottomLeft: Radius.circular(50),
             bottomRight: Radius.circular(50),
             topLeft: Radius.circular(50),
             topRight: Radius.circular(50),
           ),
-          color: Color.fromARGB(255, 247, 211, 30),
+          color: Color.fromARGB(168, 247, 171, 30),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,7 +186,20 @@ class _Button1State extends State<Button1> {
                 // print(dropdownvalue),
                 if (receipt.text.isEmpty)
                   {
-                    Get.snackbar("Sorry", "Silahkan Isi receipt numbernya"),
+                    Get.snackbar(
+                      "Maaf",
+                      "Silahkan isi semua kolom",
+                      icon: Icon(Icons.block_outlined, color: Colors.red),
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.white38,
+                      borderRadius: 20,
+                      margin: EdgeInsets.all(15),
+                      colorText: Colors.black,
+                      duration: Duration(seconds: 4),
+                      isDismissible: true,
+                      dismissDirection: DismissDirection.horizontal,
+                      forwardAnimationCurve: Curves.easeOutBack,
+                    ),
                   }
                 else
                   {

@@ -1,15 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tracking/page/ongkir.dart';
 
-class TrackButton extends StatefulWidget {
-  const TrackButton({Key? key}) : super(key: key);
+class Button2 extends StatefulWidget {
+  final String foto;
+  final String name;
+  const Button2({Key? key, required this.foto, required this.name})
+      : super(key: key);
 
   @override
-  _TrackButtonState createState() => _TrackButtonState();
+  State<Button2> createState() => _Button2State();
 }
 
-class _TrackButtonState extends State<TrackButton> {
+class _Button2State extends State<Button2> {
   @override
   Widget build(BuildContext context) {
     final double height = Get.height;
@@ -21,13 +25,21 @@ class _TrackButtonState extends State<TrackButton> {
           right: width * 0.1,
         ),
         decoration: new BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
           borderRadius: new BorderRadius.only(
             bottomLeft: Radius.circular(50),
             bottomRight: Radius.circular(50),
             topLeft: Radius.circular(50),
             topRight: Radius.circular(50),
           ),
-          color: Color.fromARGB(255, 247, 211, 30),
+          color: Color.fromARGB(168, 247, 171, 30),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +52,7 @@ class _TrackButtonState extends State<TrackButton> {
                 right: width * 0.1,
               ),
               child: Text(
-                "Tracking Paket",
+                "Cek Estimasi Harga",
                 style: TextStyle(
                   fontSize: width * 0.05,
                   fontWeight: FontWeight.bold,
@@ -54,7 +66,7 @@ class _TrackButtonState extends State<TrackButton> {
                 right: width * 0.1,
               ),
               child: Text(
-                "Cek riwayat perjalanan dari paket anda",
+                "Cek harga Ongkos kirim dari paket anda",
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.4),
                   fontSize: width * 0.035,
@@ -92,7 +104,14 @@ class _TrackButtonState extends State<TrackButton> {
                       )
                     ],
                   ))),
-              onTap: () => {},
+              onTap: () => {
+                Get.to(
+                    () => Ongkir(
+                          foto: '${widget.foto}',
+                          name: "${widget.name}",
+                        ),
+                    transition: Transition.cupertino),
+              },
             ),
           ],
         ));

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tracking/component/welcome/button.dart';
-import 'package:tracking/component/dashboard.dart/button2.dart';
+import 'package:tracking/component/dashboard/estimasi_button.dart';
 import 'package:tracking/component/welcome/signup.dart';
 import 'package:tracking/controller/theme_controller.dart';
 import 'package:tracking/component/welcome/hero.dart';

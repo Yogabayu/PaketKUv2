@@ -123,9 +123,7 @@ class _ButtonState extends State<Button1> {
                           final photo = user.photoURL;
                           Get.offAll(
                               () => Dashboard(
-                                    displayName: userName!,
-                                    photo: photo!,
-                                  ),
+                                  displayName: userName!, photo: photo!),
                               transition: Transition.cupertino);
                           print(FirebaseAuth.instance.currentUser);
                         } catch (e) {

@@ -1,10 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tracking/page/tracking.dart';
 
-class Button2 extends StatelessWidget {
-  const Button2({Key? key}) : super(key: key);
+class TrackButton extends StatefulWidget {
+  final String photo;
+  final String name;
+  const TrackButton({Key? key, required this.name, required this.photo})
+      : super(key: key);
 
+  @override
+  _TrackButtonState createState() => _TrackButtonState();
+}
+
+class _TrackButtonState extends State<TrackButton> {
   @override
   Widget build(BuildContext context) {
     final double height = Get.height;
@@ -16,13 +25,21 @@ class Button2 extends StatelessWidget {
           right: width * 0.1,
         ),
         decoration: new BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
           borderRadius: new BorderRadius.only(
             bottomLeft: Radius.circular(50),
             bottomRight: Radius.circular(50),
             topLeft: Radius.circular(50),
             topRight: Radius.circular(50),
           ),
-          color: Color.fromARGB(255, 247, 211, 30),
+          color: Color.fromARGB(168, 247, 171, 30),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +52,7 @@ class Button2 extends StatelessWidget {
                 right: width * 0.1,
               ),
               child: Text(
-                "Cek Estimasi Harga",
+                "Tracking Paket",
                 style: TextStyle(
                   fontSize: width * 0.05,
                   fontWeight: FontWeight.bold,
@@ -49,7 +66,7 @@ class Button2 extends StatelessWidget {
                 right: width * 0.1,
               ),
               child: Text(
-                "Cek harga Ongkos kirim dari paket anda",
+                "Cek riwayat perjalanan dari paket anda",
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.4),
                   fontSize: width * 0.035,
@@ -87,7 +104,12 @@ class Button2 extends StatelessWidget {
                       )
                     ],
                   ))),
-              onTap: () => {},
+              onTap: () => {
+                Get.to(
+                    () => Tracking(
+                        photo: '${widget.photo}', name: '${widget.name}'),
+                    transition: Transition.cupertino)
+              },
             ),
           ],
         ));
