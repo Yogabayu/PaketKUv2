@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 import 'package:tracking/page/ongkir.dart';
 
 class Button2 extends StatefulWidget {
-  final String foto;
-  final String name;
-  const Button2({Key? key, required this.foto, required this.name})
-      : super(key: key);
+  const Button2({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Button2> createState() => _Button2State();
@@ -105,12 +104,7 @@ class _Button2State extends State<Button2> {
                     ],
                   ))),
               onTap: () => {
-                Get.to(
-                    () => Ongkir(
-                          foto: '${widget.foto}',
-                          name: "${widget.name}",
-                        ),
-                    transition: Transition.cupertino),
+                Get.to(() => Ongkir(), transition: Transition.cupertino),
               },
             ),
           ],

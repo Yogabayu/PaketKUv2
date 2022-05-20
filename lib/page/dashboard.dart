@@ -7,10 +7,9 @@ import 'package:tracking/constants/constant.dart';
 import '../component/dashboard/estimasi_button.dart';
 
 class Dashboard extends StatefulWidget {
-  final String displayName;
-  final String photo;
-  const Dashboard({Key? key, required this.displayName, required this.photo})
-      : super(key: key);
+  const Dashboard({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _DashboardState createState() => _DashboardState();
@@ -42,11 +41,11 @@ class _DashboardState extends State<Dashboard> {
         ),
         child: ListView(
           children: [
-            Head(photo: "${widget.photo}", name: "${widget.displayName}"),
+            Head(),
             SizedBox(
               height: height * 0.03,
             ),
-            DisplayName(displayName: "${widget.displayName}"),
+            DisplayName(),
             SizedBox(
               height: height * 0.03,
             ),
@@ -54,17 +53,11 @@ class _DashboardState extends State<Dashboard> {
             SizedBox(
               height: height * 0.03,
             ),
-            TrackButton(
-              photo: '${widget.photo}',
-              name: '${widget.displayName}',
-            ),
+            TrackButton(),
             SizedBox(
               height: height * 0.03,
             ),
-            Button2(
-              foto: '${widget.photo}',
-              name: "${widget.displayName}",
-            ),
+            Button2(),
             // Container(
             //   margin: EdgeInsets.only(left: width * 0.1),
             //   child: Text(

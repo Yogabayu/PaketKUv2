@@ -6,11 +6,9 @@ import 'package:tracking/page/dashboard.dart';
 import 'package:tracking/page/welcome.dart';
 
 class Head extends StatefulWidget {
-  const Head({Key? key, required this.photo, required this.name})
-      : super(key: key);
-
-  final String photo;
-  final String name;
+  const Head({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Head> createState() => _HeadState();
@@ -28,14 +26,10 @@ class _HeadState extends State<Head> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: () => {
-              Get.to(
-                  () => Dashboard(
-                      displayName: "${widget.name}", photo: "${widget.photo}"),
-                  transition: Transition.cupertino)
-            },
+            onTap: () =>
+                {Get.to(() => Dashboard(), transition: Transition.cupertino)},
             child: CircleAvatar(
-              backgroundImage: NetworkImage("${widget.photo}"),
+              // backgroundImage: NetworkImage("${widget.photo}"),
               radius: 30, //Text
             ),
           ),

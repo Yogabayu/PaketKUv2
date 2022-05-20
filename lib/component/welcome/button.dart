@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tracking/page/dashboard.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:tracking/model/data_tracking.dart';
 
@@ -62,24 +62,26 @@ class _ButtonState extends State<Button1> {
                       onTap: () async {
                         isLoading = false;
                         print(isLoading);
-                        FirebaseService service = new FirebaseService();
-                        try {
-                          await service.signInwithGoogle();
-                          User? user = FirebaseAuth.instance.currentUser;
-                          final userName = user!.displayName;
-                          final photo = user.photoURL;
-                          Get.offAll(
-                              () => Dashboard(
-                                    displayName: userName!,
-                                    photo: photo!,
-                                  ),
-                              transition: Transition.cupertino);
-                          // print(FirebaseAuth.instance.currentUser);
-                        } catch (e) {
-                          if (e is FirebaseAuthException) {
-                            print(e.message!);
-                          }
-                        }
+                        Get.offAll(() => Dashboard(),
+                            transition: Transition.cupertino);
+                        // FirebaseService service = new FirebaseService();
+                        // try {
+                        //   await service.signInwithGoogle();
+                        //   User? user = FirebaseAuth.instance.currentUser;
+                        //   final userName = user!.displayName;
+                        //   final photo = user.photoURL;
+                        //   Get.offAll(
+                        //       () => Dashboard(
+                        //             displayName: userName!,
+                        //             photo: photo!,
+                        //           ),
+                        //       transition: Transition.cupertino);
+                        //   // print(FirebaseAuth.instance.currentUser);
+                        // } catch (e) {
+                        //   if (e is FirebaseAuthException) {
+                        //     print(e.message!);
+                        //   }
+                        // }
                       },
                     )
                   : InkWell(
@@ -116,21 +118,23 @@ class _ButtonState extends State<Button1> {
                             ],
                           ))),
                       onTap: () async {
+                        Get.offAll(() => Dashboard(),
+                            transition: Transition.cupertino);
                         // FirebaseService service = new FirebaseService();
-                        try {
-                          User? user = FirebaseAuth.instance.currentUser;
-                          final userName = user!.displayName;
-                          final photo = user.photoURL;
-                          Get.offAll(
-                              () => Dashboard(
-                                  displayName: userName!, photo: photo!),
-                              transition: Transition.cupertino);
-                          print(FirebaseAuth.instance.currentUser);
-                        } catch (e) {
-                          if (e is FirebaseAuthException) {
-                            print(e.message!);
-                          }
-                        }
+                        // try {
+                        //   User? user = FirebaseAuth.instance.currentUser;
+                        //   final userName = user!.displayName;
+                        //   final photo = user.photoURL;
+                        //   Get.offAll(
+                        //       () => Dashboard(
+                        //           displayName: userName!, photo: photo!),
+                        //       transition: Transition.cupertino);
+                        //   print(FirebaseAuth.instance.currentUser);
+                        // } catch (e) {
+                        //   if (e is FirebaseAuthException) {
+                        //     print(e.message!);
+                        //   }
+                        // }
                       },
                     ),
             ),

@@ -4,10 +4,9 @@ import 'package:tracking/component/tracking/dialog_track.dart';
 import 'package:tracking/component/tracking/history.dart';
 
 class Tracking extends StatefulWidget {
-  final String photo;
-  final String name;
-  const Tracking({Key? key, required this.photo, required this.name})
-      : super(key: key);
+  const Tracking({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _TrackingState createState() => _TrackingState();
@@ -35,10 +34,7 @@ class _TrackingState extends State<Tracking> {
         ),
         child: ListView(
           children: [
-            Head(
-              photo: "${widget.photo}",
-              name: "${widget.name}",
-            ),
+            Head(),
             Dialog_track(),
             History(),
           ],

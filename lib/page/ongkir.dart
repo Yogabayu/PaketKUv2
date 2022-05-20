@@ -12,10 +12,9 @@ import 'package:http/http.dart' as http;
 import 'package:tracking/page/ongkir_detail.dart';
 
 class Ongkir extends StatefulWidget {
-  final String foto;
-  final String name;
-  const Ongkir({Key? key, required this.foto, required this.name})
-      : super(key: key);
+  const Ongkir({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _OngkirState createState() => _OngkirState();
@@ -50,10 +49,7 @@ class _OngkirState extends State<Ongkir> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Head(
-                  photo: '${widget.foto}',
-                  name: "${widget.name}",
-                ),
+                Head(),
                 SizedBox(
                   height: height * 0.03,
                 ),

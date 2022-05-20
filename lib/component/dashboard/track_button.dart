@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 import 'package:tracking/page/tracking.dart';
 
 class TrackButton extends StatefulWidget {
-  final String photo;
-  final String name;
-  const TrackButton({Key? key, required this.name, required this.photo})
-      : super(key: key);
+  const TrackButton({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _TrackButtonState createState() => _TrackButtonState();
@@ -104,12 +103,8 @@ class _TrackButtonState extends State<TrackButton> {
                       )
                     ],
                   ))),
-              onTap: () => {
-                Get.to(
-                    () => Tracking(
-                        photo: '${widget.photo}', name: '${widget.name}'),
-                    transition: Transition.cupertino)
-              },
+              onTap: () =>
+                  {Get.to(() => Tracking(), transition: Transition.cupertino)},
             ),
           ],
         ));
