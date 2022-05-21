@@ -3,7 +3,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tracking/component/welcome/button.dart';
 import 'package:tracking/component/dashboard/estimasi_button.dart';
 import 'package:tracking/component/welcome/signup.dart';

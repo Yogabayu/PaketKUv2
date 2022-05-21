@@ -26,33 +26,22 @@ class _HeadState extends State<Head> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: () =>
-                {Get.to(() => Dashboard(), transition: Transition.cupertino)},
-            child: CircleAvatar(
-              // backgroundImage: NetworkImage("${widget.photo}"),
-              radius: 30, //Text
-            ),
-          ),
+              onTap: () =>
+                  {Get.to(() => Dashboard(), transition: Transition.cupertino)},
+              child: Icon(
+                Icons.home,
+                size: 40,
+              )),
           GestureDetector(
             onTap: () async {
               isLoading = true;
               print(isLoading);
-              FirebaseService service = new FirebaseService();
-              service.signOutFromGoogle();
               Get.offAll(() => Welcome(), transition: Transition.cupertino);
             },
             child: Icon(
               CupertinoIcons.square_arrow_right,
               size: 40,
-              // color: Colors.white,
             ),
-            // child: CircleAvatar(
-            //   // backgroundColor: Color.fromARGB(225, 181, 180, 180),
-            //   backgroundColor: Colors.transparent,
-            //   backgroundImage:
-            //       AssetImage('assets/image/notification.png'),
-            //   radius: 15, //Text
-            // ),
           ),
         ],
       ),

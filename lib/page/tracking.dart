@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tracking/component/dashboard/head.dart';
 import 'package:tracking/component/tracking/dialog_track.dart';
-import 'package:tracking/component/tracking/history.dart';
+// import 'package:tracking/component/tracking/history.dart';
 
 class Tracking extends StatefulWidget {
   const Tracking({
@@ -36,7 +36,7 @@ class _TrackingState extends State<Tracking> {
           children: [
             Head(),
             Dialog_track(),
-            History(),
+            // History(),
           ],
         ),
       ),

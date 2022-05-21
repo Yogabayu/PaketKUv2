@@ -45,13 +45,13 @@ class _ButtonState extends State<Button1> {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
-                                          'assets/image/google_logo.png'),
+                                          'assets/image/right-arrow.png'),
                                       fit: BoxFit.cover),
                                   shape: BoxShape.circle,
                                 ),
                               ),
                               Text(
-                                'Login with Google',
+                                'Let\s Begin',
                                 style: TextStyle(
                                     fontSize: height * 0.02,
                                     fontWeight: FontWeight.bold,
@@ -64,24 +64,6 @@ class _ButtonState extends State<Button1> {
                         print(isLoading);
                         Get.offAll(() => Dashboard(),
                             transition: Transition.cupertino);
-                        // FirebaseService service = new FirebaseService();
-                        // try {
-                        //   await service.signInwithGoogle();
-                        //   User? user = FirebaseAuth.instance.currentUser;
-                        //   final userName = user!.displayName;
-                        //   final photo = user.photoURL;
-                        //   Get.offAll(
-                        //       () => Dashboard(
-                        //             displayName: userName!,
-                        //             photo: photo!,
-                        //           ),
-                        //       transition: Transition.cupertino);
-                        //   // print(FirebaseAuth.instance.currentUser);
-                        // } catch (e) {
-                        //   if (e is FirebaseAuthException) {
-                        //     print(e.message!);
-                        //   }
-                        // }
                       },
                     )
                   : InkWell(
@@ -97,17 +79,6 @@ class _ButtonState extends State<Button1> {
                               child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              // Container(
-                              //   height: height * 0.04,
-                              //   width: height * 0.04,
-                              //   decoration: BoxDecoration(
-                              //     image: DecorationImage(
-                              //         image:
-                              //             AssetImage('assets/image/google_logo.png'),
-                              //         fit: BoxFit.cover),
-                              //     shape: BoxShape.circle,
-                              //   ),
-                              // ),
                               Text(
                                 'Masuk',
                                 style: TextStyle(
@@ -120,21 +91,6 @@ class _ButtonState extends State<Button1> {
                       onTap: () async {
                         Get.offAll(() => Dashboard(),
                             transition: Transition.cupertino);
-                        // FirebaseService service = new FirebaseService();
-                        // try {
-                        //   User? user = FirebaseAuth.instance.currentUser;
-                        //   final userName = user!.displayName;
-                        //   final photo = user.photoURL;
-                        //   Get.offAll(
-                        //       () => Dashboard(
-                        //           displayName: userName!, photo: photo!),
-                        //       transition: Transition.cupertino);
-                        //   print(FirebaseAuth.instance.currentUser);
-                        // } catch (e) {
-                        //   if (e is FirebaseAuthException) {
-                        //     print(e.message!);
-                        //   }
-                        // }
                       },
                     ),
             ),
