@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,10 +7,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tracking/helper/sql_helper.dart';
 
 import 'package:tracking/model/api.dart';
+import 'package:tracking/page/historyAll.dart';
 import 'package:tracking/page/tracking%20_detail.dart';
+import 'package:tracking/page/welcome.dart';
 
 List<Map<String, dynamic>> _journals = [];
 bool _isLoading = true;
+String jsKirim = "";
 
 class Dialog_track extends StatefulWidget {
   const Dialog_track({Key? key}) : super(key: key);
@@ -26,13 +31,48 @@ class _Button1State extends State<Dialog_track> {
 
   void _refreshJournals() async {
     final data = await SQLHelper.getItems();
+    // if (data.isEmpty) {
+    //   // _isLoading = true;
+    // } else {
     setState(() {
-      _journals = data;
       _isLoading = false;
+      _journals = data.reversed.toList();
     });
+    // }
   }
 
   Future<void> _addItem() async {
+    // var cekData = await SQLHelper.getItem(receipt.text);
+    // var cekJk = await SQLHelper.getItem(dropdownvalue);
+    // if (cekData.isEmpty || cekJk.isEmpty) {
+    //   await SQLHelper.createItem(
+    //     receipt.text,
+    //     dropdownvalue,
+    //   );
+    //   Get.to(
+    //       () => TrackingDetail(
+    //             receipt: receipt.text,
+    //             jk: dropdownvalue,
+    //             apiKey: apiKey,
+    //           ),
+    //       transition: Transition.cupertino);
+    //   _refreshJournals();
+    // } else {
+    //   Get.snackbar(
+    //     "Maaf",
+    //     "Data sudah pernah masuk sebelumnya",
+    //     icon: Icon(Icons.block_outlined, color: Colors.red),
+    //     snackPosition: SnackPosition.BOTTOM,
+    //     backgroundColor: Colors.white38,
+    //     borderRadius: 20,
+    //     margin: EdgeInsets.all(15),
+    //     colorText: Colors.black,
+    //     duration: Duration(seconds: 2),
+    //     isDismissible: true,
+    //     dismissDirection: DismissDirection.horizontal,
+    //     forwardAnimationCurve: Curves.easeOutBack,
+    //   );
+    // }
     await SQLHelper.createItem(
       receipt.text,
       dropdownvalue,
@@ -83,6 +123,7 @@ class _Button1State extends State<Dialog_track> {
             top: width * 0.1,
             left: width * 0.1,
             right: width * 0.1,
+            bottom: width * 0.1,
           ),
           decoration: new BoxDecoration(
             boxShadow: [
@@ -248,13 +289,13 @@ class _Button1State extends State<Dialog_track> {
                   else
                     {
                       _addItem(),
-                      Get.to(
-                          () => TrackingDetail(
-                                receipt: receipt.text,
-                                jk: dropdownvalue,
-                                apiKey: apiKey,
-                              ),
-                          transition: Transition.cupertino),
+                      // Get.to(
+                      //     () => TrackingDetail(
+                      //           receipt: receipt.text,
+                      //           jk: dropdownvalue,
+                      //           apiKey: apiKey,
+                      //         ),
+                      //     transition: Transition.cupertino),
                     }
                 },
               ),
@@ -265,17 +306,40 @@ class _Button1State extends State<Dialog_track> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(left: width * 0.1, top: height * 0.03),
-              child: Text(
-                "Tracking History",
-                style: TextStyle(
-                  fontSize: width * 0.05,
-                  fontWeight: FontWeight.bold,
-                ),
+              margin: EdgeInsets.only(
+                  left: width * 0.1, top: height * 0.03, right: width * 0.1),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Tracking History",
+                    style: TextStyle(
+                      fontSize: width * 0.05,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  InkWell(
+                    child: Container(
+                      width: width * 0.15,
+                      child: Text(
+                        "View All",
+                        style: TextStyle(
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
+                    onTap: () => {
+                      Get.to(
+                        () => HistoryAll(),
+                        transition: Transition.cupertino,
+                      ),
+                    },
+                  )
+                ],
               ),
             ),
             Container(
-              height: height * 0.22,
+              height: height * 0.4,
               margin: EdgeInsets.only(
                   left: width * 0.1, right: width * 0.1, top: height * 0.02),
               child: ListView(
@@ -286,171 +350,90 @@ class _Button1State extends State<Dialog_track> {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: _journals.length,
-                    itemBuilder: (context, index) => Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () => {
-                              print("user"),
-                              Get.to(
-                                () => TrackingDetail(
-                                  receipt: _journals[index]['receipt'],
-                                  jk: _journals[index]['jkirim'],
-                                  apiKey: apiKey,
-                                ),
-                                transition: Transition.cupertino,
-                              ),
-                            },
-                            child: CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('assets/image/user.jpg'),
-                              radius: 25, //Text
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () => {
-                              print("user"),
-                              Get.to(
-                                () => TrackingDetail(
-                                  receipt: _journals[index]['receipt'],
-                                  jk: _journals[index]['jkirim'],
-                                  apiKey: apiKey,
-                                ),
-                                transition: Transition.cupertino,
-                              ),
-                            },
-                            child: Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    _journals[index]['receipt'],
-                                    style: GoogleFonts.lato(
-                                        fontSize: height * 0.02,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.009,
-                                  ),
-                                  Text(
-                                    _journals[index]['jkirim'],
-                                    style: GoogleFonts.lato(
-                                      fontSize: height * 0.017,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black.withOpacity(0.7),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: EdgeInsets.all(5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
                               onTap: () => {
-                                    print("notif clicked"),
-                                    Get.to(
-                                      () => TrackingDetail(
-                                        receipt: _journals[index]['receipt'],
-                                        jk: _journals[index]['jkirim'],
-                                        apiKey: apiKey,
-                                      ),
-                                      transition: Transition.cupertino,
+                                Get.to(
+                                  () => TrackingDetail(
+                                    receipt: _journals[index]['receipt'],
+                                    jk: _journals[index]['jkirim'],
+                                    apiKey: apiKey,
+                                  ),
+                                  transition: Transition.cupertino,
+                                ),
+                              },
+                              child: Icon(
+                                CupertinoIcons.cart_fill,
+                                size: 20,
+                                // color: Colors.white,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => {
+                                Get.to(
+                                  () => TrackingDetail(
+                                    receipt: _journals[index]['receipt'],
+                                    jk: _journals[index]['jkirim'],
+                                    apiKey: apiKey,
+                                  ),
+                                  transition: Transition.cupertino,
+                                ),
+                              },
+                              child: Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      _journals[index]['receipt'],
+                                      style: GoogleFonts.lato(
+                                          fontSize: height * 0.02,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  },
+                                    SizedBox(
+                                      height: height * 0.009,
+                                    ),
+                                    Text(
+                                      _journals[index]['jkirim'],
+                                      style: GoogleFonts.lato(
+                                        fontSize: height * 0.017,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black.withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => {
+                                Get.to(
+                                  () => TrackingDetail(
+                                    receipt: _journals[index]['receipt'],
+                                    jk: _journals[index]['jkirim'],
+                                    apiKey: apiKey,
+                                  ),
+                                  transition: Transition.cupertino,
+                                ),
+                              },
                               child: Icon(
                                 CupertinoIcons.arrow_right,
                                 size: 20,
-                              )),
-                        ],
-                      ),
-                    ),
-                    // itemBuilder: (context, index) => Card(
-                    //   margin: const EdgeInsets.all(15),
-                    //   child: Container(
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //       children: [
-                    //         GestureDetector(
-                    //           onTap: () => {
-                    //             print("user"),
-                    //             Get.to(
-                    //               () => TrackingDetail(
-                    //                 receipt:  _journals[index]['receipt'],
-                    //                 jk: _journals[index]['jkirim'],
-                    //                 apiKey: apiKey,
-                    //               ),
-                    //               transition: Transition.cupertino,
-                    //             ),
-                    //           },
-                    //           child: CircleAvatar(
-                    //             backgroundImage:
-                    //                 AssetImage('assets/image/user.jpg'),
-                    //             radius: 25, //Text
-                    //           ),
-                    //         ),
-                    //         GestureDetector(
-                    //           onTap: () => {
-                    //             // print("user"),
-                    //             Get.to(
-                    //               () => TrackingDetail(
-                    //                 receipt: _journals[index]['receipt'],
-                    //                 jk: _journals[index]['jkirim'],
-                    //                 apiKey: apiKey,
-                    //               ),
-                    //               transition: Transition.cupertino,
-                    //             ),
-                    //           },
-                    //           child: Container(
-                    //             child: Column(
-                    //               crossAxisAlignment: CrossAxisAlignment.start,
-                    //               mainAxisAlignment: MainAxisAlignment.start,
-                    //               children: [
-                    //                 Text(
-                    //                   _journals[index]['receipt'],
-                    //                   style: GoogleFonts.lato(
-                    //                       fontSize: height * 0.02,
-                    //                       fontWeight: FontWeight.bold),
-                    //                 ),
-                    //                 SizedBox(
-                    //                   height: height * 0.009,
-                    //                 ),
-                    //                 Text(
-                    //                   _journals[index]['jkirim'],
-                    //                   style: GoogleFonts.lato(
-                    //                     fontSize: height * 0.017,
-                    //                     fontWeight: FontWeight.bold,
-                    //                     color: Colors.black.withOpacity(0.4),
-                    //                   ),
-                    //                 ),
-                    //               ],
-                    //             ),
-                    //           ),
-                    //         ),
-                    //         GestureDetector(
-                    //             onTap: () => {
-                    //                   print("notif clicked"),
-                    //                   Get.to(
-                    //                     () => TrackingDetail(
-                    //                       receipt: _journals[index]['receipt'],
-                    //                       jk: _journals[index]['jkirim'],
-                    //                       apiKey: apiKey,
-                    //                     ),
-                    //                     transition: Transition.cupertino,
-                    //                   ),
-                    //                 },
-                    //             child: Icon(
-                    //               CupertinoIcons.arrow_right,
-                    //               size: 20,
-                    //             )),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
-            ),
+            )
           ],
         ),
       ],
