@@ -256,13 +256,13 @@ class _Button1State extends State<Dialog_track> {
                     else
                       {
                         _addItem(),
-                        // Get.to(
-                        //     () => TrackingDetail(
-                        //           receipt: receipt.text,
-                        //           jk: dropdownvalue,
-                        //           apiKey: apiKey,
-                        //         ),
-                        //     transition: Transition.cupertino),
+                        Get.to(
+                            () => TrackingDetail(
+                                  receipt: receipt.text,
+                                  jk: dropdownvalue,
+                                  apiKey: apiKey,
+                                ),
+                            transition: Transition.cupertino),
                       }
                   },
                 ),
