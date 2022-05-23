@@ -73,8 +73,10 @@ class _Button1State extends State<Dialog_track> {
     'LION',
     'JET',
   ];
+
   final double height = Get.height;
   final double width = Get.width;
+
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
