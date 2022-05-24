@@ -67,7 +67,20 @@ class _OngkirDetailState extends State<OngkirDetail> {
       });
     } catch (e) {
       //ERROR
-      print(e);
+      Get.snackbar(
+        "Maaf",
+        "Data tidak ditemukan, kemungkinan barang terlalu berat.",
+        icon: Icon(Icons.block_outlined, color: Colors.red),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.white38,
+        borderRadius: 20,
+        margin: EdgeInsets.all(15),
+        colorText: Colors.black,
+        duration: Duration(seconds: 4),
+        isDismissible: true,
+        dismissDirection: DismissDirection.horizontal,
+        forwardAnimationCurve: Curves.easeOutBack,
+      );
     }
   }
 
