@@ -95,7 +95,7 @@ class _HistoryAllState extends State<HistoryAll> {
             Container(
               margin: EdgeInsets.only(left: width * 0.1),
               child: Text(
-                "All Your History",
+                "Riwayat Pelacakan",
                 maxLines: 2,
                 style: TextStyle(
                   fontSize: width * 0.07,

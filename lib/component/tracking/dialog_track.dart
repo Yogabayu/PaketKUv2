@@ -122,7 +122,7 @@ class _Button1State extends State<Dialog_track> {
                     right: width * 0.1,
                   ),
                   child: Text(
-                    "Track Your Package",
+                    "Lacak Paket Anda",
                     style: TextStyle(
                       fontSize: width * 0.05,
                       fontWeight: FontWeight.bold,
@@ -136,7 +136,7 @@ class _Button1State extends State<Dialog_track> {
                     right: width * 0.1,
                   ),
                   child: Text(
-                    "Enter the receipt number that has been given by the officer",
+                    "Masukkan nomor resi yang sudah diberikan petugas",
                     style: TextStyle(
                       color: Colors.black.withOpacity(0.4),
                       fontSize: width * 0.035,
@@ -157,7 +157,7 @@ class _Button1State extends State<Dialog_track> {
                       controller: receipt,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
-                          hintText: "input here",
+                          hintText: "Masukkan disini",
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
                                 color: Color.fromARGB(255, 0, 1, 2)),
@@ -222,7 +222,7 @@ class _Button1State extends State<Dialog_track> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Track Now ',
+                            'Lacak Sekarang ',
                             style: TextStyle(
                                 fontSize: height * 0.02,
                                 fontWeight: FontWeight.bold,
@@ -281,7 +281,7 @@ class _Button1State extends State<Dialog_track> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Tracking History",
+                      "Riwayat Pelacakan",
                       style: TextStyle(
                         fontSize: width * 0.05,
                         fontWeight: FontWeight.bold,
@@ -289,10 +289,11 @@ class _Button1State extends State<Dialog_track> {
                     ),
                     InkWell(
                       child: Container(
-                        width: width * 0.15,
+                        width: width * 0.20,
                         child: Text(
-                          "View All",
+                          "Lihat Semua",
                           style: TextStyle(
+                            fontSize: 12,
                             color: Colors.blue,
                           ),
                         ),

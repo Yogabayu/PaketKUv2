@@ -30,29 +30,14 @@ class Hero1 extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    // Image.asset("assets/image/final.png"), // Back image
                     Lottie.asset(
-                      'assets/image/hero.json',
+                      'assets/image/hero2.json',
                       height: height * 0.5,
                       width: width,
                     ), // Front image
                   ],
                 ),
               ),
-              // child: FadeInRight(
-              //   delay: const Duration(milliseconds: 1600),
-              //   child: SpinPerfect(
-              //     delay: const Duration(milliseconds: 2000),
-              //     child: ClipRRect(
-              //       borderRadius: BorderRadius.circular(20.0), //or 15.0
-              //       child: Container(
-              //         height: height / 2,
-              //         width: width,
-              //         child: Image.asset("assets/image/final.png"),
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ),
           ),
         ],

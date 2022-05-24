@@ -51,7 +51,7 @@ class _ButtonState extends State<Button1> {
                                 ),
                               ),
                               Text(
-                                'Let\s Begin',
+                                'Let\'s Begin',
                                 style: TextStyle(
                                     fontSize: height * 0.02,
                                     fontWeight: FontWeight.bold,

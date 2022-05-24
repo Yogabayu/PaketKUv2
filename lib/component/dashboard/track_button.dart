@@ -51,7 +51,7 @@ class _TrackButtonState extends State<TrackButton> {
                 right: width * 0.1,
               ),
               child: Text(
-                "Tracking Paket",
+                "Lacak Paket",
                 style: TextStyle(
                   fontSize: width * 0.05,
                   fontWeight: FontWeight.bold,

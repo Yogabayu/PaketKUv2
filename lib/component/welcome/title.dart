@@ -17,9 +17,12 @@ class Title1 extends StatelessWidget {
             // height: h / 10,
             child: Center(
               child: Text(
-                "Welcome To TrackPad",
+                "-- TrackPad --",
                 style: GoogleFonts.lato(
-                    fontSize: height * 0.04, fontWeight: FontWeight.bold),
+                  fontSize: height * 0.04,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(214, 14, 13, 9),
+                ),
               ),
             ),
           ),
