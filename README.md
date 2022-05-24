@@ -1,16 +1,34 @@
-# tracking
 
-A new Flutter project.
+## TrackPad
 
-## Getting Started
+Aplikasi yang bertujuan untuk mempermudah pengecekan paket perjalanan dan estimasi
+pengiriman paket. Aplikasi ini dibuat menggunakan Flutter Framework serta 
+API pihak (Raja Ongkir dan BinderByte). Dilengkapi dengan fitur:
+- Mendukung berbagai layanan pengiriman terkemuka (9 layanan pengiriman, termasuk JNE, POS, SiCepat, dll)
+- Riwayat pelacakan
+- Cek estimasi pengiriman hingga level kabupaten/kota di seluruh Indonesia dan juga mendukung berbagai jenis jasa pengiriman terkemuka.
+## Acknowledgements
 
-This project is a starting point for a Flutter application.
+ - [Flutter](https://flutter.dev/)
+ - [Awesome README](https://github.com/matiassingers/awesome-readme)
+## Authors
 
-A few resources to get you started if this is your first Flutter project:
+- [@yogabayu.ap](https://www.instagram.com/yogabayu.ap)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tech Stack
+
+**API** :: [Raja Ongkir](https://rajaongkir.com/) || [BinderByte](https://binderbyte.com/)
+
+**Android Development** :: Flutter Framework
+
+
+## Demo
+
+
+
+
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
