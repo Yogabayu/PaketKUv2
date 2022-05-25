@@ -23,6 +23,14 @@ API pihak (Raja Ongkir dan BinderByte). Dilengkapi dengan fitur:
 **Android Development** :: Flutter Framework
 
 
+## Environment Variables
+
+Untuk menjalankan project ini silahkan ganti file API.dart di dalam folder lib/model :
+
+`var key`  :: ganti dengan key dari RajaOngkir
+
+`String apiKey` :: ganti dengan key dari Binderbyte
+
 ## Demo
 [Youtube](https://youtube.com/)
 
