@@ -16,7 +16,7 @@ class Hero1 extends StatelessWidget {
       child: Stack(
         children: [
           FadeInDown(
-            delay: const Duration(milliseconds: 200),
+            delay: const Duration(milliseconds: 100),
             child: Container(
               decoration: new BoxDecoration(
                 borderRadius: new BorderRadius.only(

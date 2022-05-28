@@ -1,11 +1,13 @@
 // ignore_for_file: unused_local_variable
 
+import 'dart:io';
+
+import 'package:http/io_client.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:tracking/constants/constant.dart';
 import 'package:tracking/model/api.dart';
 
@@ -44,6 +46,10 @@ class _OngkirDetailState extends State<OngkirDetail> {
 
   Future _getData() async {
     Future.delayed(Duration(seconds: 3));
+    final ioc = new HttpClient();
+    ioc.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    final http = new IOClient(ioc);
     try {
       final response = await http.post(
         Uri.parse(
@@ -68,8 +74,8 @@ class _OngkirDetailState extends State<OngkirDetail> {
     } catch (e) {
       //ERROR
       Get.snackbar(
-        "Maaf",
-        "Data tidak ditemukan, kemungkinan barang terlalu berat.",
+        "Pencarian Anda tidak ditemukan",
+        "Max. berat 1000kg",
         icon: Icon(Icons.block_outlined, color: Colors.red),
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.white38,
