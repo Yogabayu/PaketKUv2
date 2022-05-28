@@ -4,7 +4,7 @@
 Aplikasi yang bertujuan untuk mempermudah pengecekan paket perjalanan dan estimasi
 pengiriman paket. Aplikasi ini dibuat menggunakan Flutter Framework serta 
 API pihak (Raja Ongkir dan BinderByte). Dilengkapi dengan fitur:
-- Mendukung berbagai layanan pengiriman terkemuka (9 layanan pengiriman, termasuk JNE, POS, SiCepat, dll)
+- Mendukung berbagai layanan pengiriman terkemuka (12 layanan pengiriman, termasuk JNE, POS, SiCepat, dll)
 - Riwayat pelacakan
 - Cek estimasi pengiriman hingga level kabupaten/kota di seluruh Indonesia dan juga mendukung berbagai jenis jasa pengiriman terkemuka.
 ## Acknowledgements
