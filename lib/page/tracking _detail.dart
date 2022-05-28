@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:http/io_client.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +9,6 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class TrackingDetail extends StatefulWidget {
   const TrackingDetail({
@@ -50,6 +52,10 @@ class _TrackingDetailState extends State<TrackingDetail> {
         print(jKirim);
       });
     }
+    final ioc = new HttpClient();
+    ioc.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    final http = new IOClient(ioc);
     await http
         .get(
       Uri.parse(
