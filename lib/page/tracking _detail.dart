@@ -24,14 +24,38 @@ class TrackingDetail extends StatefulWidget {
 }
 
 class _TrackingDetailState extends State<TrackingDetail> {
+  String jKirim = "";
   bool isRight = false;
   List<dynamic> data = []; //edited line
   Map<String, dynamic> map = {};
   Future<String> getSWData() async {
+    if ("${widget.jk}" == 'Shopee express') {
+      setState(() {
+        jKirim = "spx";
+        print(jKirim);
+      });
+    } else if ("${widget.jk}" == 'SAP express') {
+      setState(() {
+        jKirim = "sap";
+        print(jKirim);
+      });
+    } else if ("${widget.jk}" == 'ID express') {
+      setState(() {
+        jKirim = "ide";
+        print(jKirim);
+      });
+    } else {
+      setState(() {
+        jKirim = "${widget.jk}";
+        print(jKirim);
+      });
+    }
     await http
         .get(
       Uri.parse(
-          "https://api.binderbyte.com/v1/track?api_key=${widget.apiKey}&courier=${widget.jk}&awb=${widget.receipt}"),
+          "https://api.binderbyte.com/v1/track?api_key=${widget.apiKey}&courier=" +
+              jKirim +
+              "&awb=${widget.receipt}"),
     )
         .then((response) {
       if (response.statusCode == 200) {
@@ -46,10 +70,10 @@ class _TrackingDetailState extends State<TrackingDetail> {
         isRight = false;
         Get.snackbar(
           "Maaf",
-          "Silahkan isi semua kolom",
+          "Data tidak ditemukan",
           icon: Icon(Icons.block_outlined, color: Colors.red),
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.white38,
+          backgroundColor: Color.fromARGB(96, 254, 172, 31),
           borderRadius: 20,
           margin: EdgeInsets.all(15),
           colorText: Colors.black,
@@ -122,7 +146,7 @@ class _TrackingDetailState extends State<TrackingDetail> {
                       ),
                     ),
                     Text(
-                      "Jasa Kirim : ${widget.jk}",
+                      "Jasa Kirim : " + jKirim,
                       style: GoogleFonts.lato(
                         fontSize: height * 0.02,
                         // fontWeight: FontWeight.bold,

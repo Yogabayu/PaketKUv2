@@ -72,6 +72,9 @@ class _Button1State extends State<Dialog_track> {
     'NINJA',
     'LION',
     'JET',
+    'ID express',
+    'SAP express',
+    'Shopee express'
   ];
 
   final double height = Get.height;
@@ -241,8 +244,8 @@ class _Button1State extends State<Dialog_track> {
                     if (receipt.text.isEmpty)
                       {
                         Get.snackbar(
-                          "Maaf",
-                          "Silahkan isi semua kolom",
+                          "Pencarian Anda tidak ditemukan",
+                          "Silahkan isi semua kolom terlebih dahulu",
                           icon: Icon(Icons.block_outlined, color: Colors.red),
                           snackPosition: SnackPosition.BOTTOM,
                           backgroundColor: Colors.white38,
@@ -312,12 +315,28 @@ class _Button1State extends State<Dialog_track> {
                   ? Container(
                       height: height * 0.2,
                       child: Center(
-                          child: Text(
-                        "Data kosong",
-                        style: TextStyle(
-                          fontSize: 10,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "*** Data kosong ***",
+                              style: TextStyle(
+                                fontSize: 10,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Tarik kebawah untuk refresh",
+                              style: TextStyle(
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
                         ),
-                      )),
+                      ),
                     )
                   : Container(
                       height: height * 0.4,

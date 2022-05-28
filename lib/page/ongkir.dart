@@ -270,8 +270,8 @@ class _OngkirState extends State<Ongkir> {
                               kurir == null)
                             {
                               Get.snackbar(
-                                "Maaf",
-                                "Silahkan isi semua kolom",
+                                "Pencarian Anda tidak ditemukan",
+                                "Silahkan isi semua kolom terlebih dahulu",
                                 icon: Icon(Icons.block_outlined,
                                     color: Colors.red),
                                 snackPosition: SnackPosition.BOTTOM,

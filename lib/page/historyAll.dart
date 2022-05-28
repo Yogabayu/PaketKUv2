@@ -34,11 +34,16 @@ class _HistoryAllState extends State<HistoryAll> {
 
 // Delete an item
   void _deleteItem(int id) async {
+    final maxDuration = Duration(seconds: 2);
     await SQLHelper.deleteItem(id);
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      duration: Duration(seconds: 1),
-      content: Text('Sukses menghapus histori!'),
-    ));
+    final snackBar = SnackBar(
+      content: Text('Sukses menghapus'),
+      duration: maxDuration,
+    );
+
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(snackBar);
     _refreshJournals();
   }
 
