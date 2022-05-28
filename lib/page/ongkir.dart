@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:http/io_client.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -8,7 +10,6 @@ import 'package:tracking/component/dashboard/head.dart';
 import 'package:tracking/constants/constant.dart';
 import 'package:tracking/model/kota.dart';
 import 'package:tracking/model/api.dart';
-import 'package:http/http.dart' as http;
 import 'package:tracking/page/ongkir_detail.dart';
 
 class Ongkir extends StatefulWidget {
@@ -129,7 +130,12 @@ class _OngkirState extends State<Ongkir> {
 
                           //mencari data dari api
                           onFind: (text) async {
-                            //mengambil data dari api
+                            //mengambil data dari api dan fix bug android 6 eror handshake
+                            final ioc = new HttpClient();
+                            ioc.badCertificateCallback =
+                                (X509Certificate cert, String host, int port) =>
+                                    true;
+                            final http = new IOClient(ioc);
                             var response = await http.get(Uri.parse(
                                 "https://api.rajaongkir.com/starter/city?key=${key}"));
 
@@ -178,6 +184,11 @@ class _OngkirState extends State<Ongkir> {
                           //find data from api
                           onFind: (text) async {
                             //get data from api
+                            final ioc = new HttpClient();
+                            ioc.badCertificateCallback =
+                                (X509Certificate cert, String host, int port) =>
+                                    true;
+                            final http = new IOClient(ioc);
                             var response = await http.get(Uri.parse(
                                 "https://api.rajaongkir.com/starter/city?key=${key}"));
 

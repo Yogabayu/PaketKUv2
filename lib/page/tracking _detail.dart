@@ -174,7 +174,7 @@ class _TrackingDetailState extends State<TrackingDetail> {
                               alignment: TimelineAlign.manual,
                               lineXY: 0.3,
                               endChild: Container(
-                                margin: EdgeInsets.all(20),
+                                margin: EdgeInsets.all(10),
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 20),
                                 constraints: const BoxConstraints(
@@ -201,7 +201,7 @@ class _TrackingDetailState extends State<TrackingDetail> {
                               alignment: TimelineAlign.manual,
                               lineXY: 0.3,
                               endChild: Container(
-                                margin: EdgeInsets.all(20),
+                                margin: EdgeInsets.all(10),
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 20),
                                 constraints: const BoxConstraints(
