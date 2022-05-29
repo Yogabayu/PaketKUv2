@@ -41,7 +41,7 @@ class Title2 extends StatelessWidget {
     return Container(
       child: Center(
         child: FadeInUp(
-          delay: const Duration(milliseconds: 1600),
+          delay: const Duration(milliseconds: 500),
           child: SizedBox(
             child: Center(
               child: Text(
@@ -69,7 +69,7 @@ class Title3 extends StatelessWidget {
     return Container(
       child: Center(
         child: FadeInUp(
-          delay: const Duration(milliseconds: 1600),
+          delay: const Duration(milliseconds: 500),
           child: SizedBox(
             child: Center(
               child: Text(
