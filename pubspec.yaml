@@ -45,7 +45,7 @@ dependencies:
 
 flutter_icons:
   android: "launcher_icon"
-  image_path: "assets/image/logoBaru.png"
+  image_path: "assets/image/logo1.png"
 
 dev_dependencies:
   flutter_test:
