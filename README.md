@@ -1,3 +1,4 @@
+<p align="center"><img src="https://github.com/Yogabayu/TrackPad/blob/master/assets/image/logo1.png" width="150"></p>
 
 ## TrackPad
 
@@ -13,7 +14,8 @@ API pihak (Raja Ongkir dan BinderByte). Dilengkapi dengan fitur:
  - [Awesome README](https://github.com/matiassingers/awesome-readme)
 ## Authors
 
-- [@yogabayu.ap](https://www.instagram.com/yogabayu.ap)
+- [@yogabayu.ap](https://www.instagram.com/yogabayu.ap) - flutter Development
+- [@ronaldo_fransiscoo](https://www.instagram.com/ronaldo_fransiscoo) - App Logo Design
 
 
 ## Tech Stack
