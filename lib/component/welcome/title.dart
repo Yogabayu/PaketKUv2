@@ -1,20 +1,18 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tracking/constants/constant.dart';
 
 class Title1 extends StatelessWidget {
   const Title1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
     return Container(
       child: Center(
         child: FadeInUp(
           delay: const Duration(milliseconds: 500),
           child: SizedBox(
-            // width: w / 1.5,
-            // height: h / 10,
             child: Center(
               child: Text(
                 "-- TrackPad --",

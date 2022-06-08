@@ -148,7 +148,6 @@ class _OngkirDetailState extends State<OngkirDetail> {
                     "Jasa Kirim : ${widget.kurir.toUpperCase()} , ${widget.berat} gram",
                     style: GoogleFonts.lato(
                       fontSize: height * 0.02,
-                      // fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -159,7 +158,6 @@ class _OngkirDetailState extends State<OngkirDetail> {
               ? Container(
                   margin: EdgeInsets.only(
                     top: width * 0.03,
-                    // bottom: width * 0.1,
                   ),
                   height: height * 0.7,
                   width: width,

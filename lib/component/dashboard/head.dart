@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tracking/model/data_tracking.dart';
+import 'package:tracking/constants/constant.dart';
 import 'package:tracking/page/dashboard.dart';
 import 'package:tracking/page/welcome.dart';
 
@@ -17,8 +17,6 @@ class Head extends StatefulWidget {
 class _HeadState extends State<Head> {
   @override
   Widget build(BuildContext context) {
-    final double height = Get.height;
-    final double width = Get.width;
     return Container(
       margin: EdgeInsets.only(
           left: width * 0.05, right: width * 0.05, top: height * 0.04),

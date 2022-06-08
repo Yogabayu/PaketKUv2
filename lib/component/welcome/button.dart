@@ -1,11 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tracking/constants/constant.dart';
 import 'package:tracking/page/dashboard.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:tracking/model/data_tracking.dart';
 
 class Button1 extends StatefulWidget {
   const Button1({Key? key}) : super(key: key);
@@ -17,8 +14,6 @@ class Button1 extends StatefulWidget {
 class _ButtonState extends State<Button1> {
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
     return Container(
       child: Center(
         child: FadeInUp(

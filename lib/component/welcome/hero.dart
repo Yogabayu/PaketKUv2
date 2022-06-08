@@ -2,14 +2,13 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tracking/constants/constant.dart';
 
 class Hero1 extends StatelessWidget {
   const Hero1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double height = Get.height;
-    final double width = Get.width;
     return SizedBox(
       width: Get.width,
       height: Get.height / 2,

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tracking/constants/constant.dart';
 import 'package:tracking/page/tracking.dart';
 
 class TrackButton extends StatefulWidget {
@@ -15,8 +16,6 @@ class TrackButton extends StatefulWidget {
 class _TrackButtonState extends State<TrackButton> {
   @override
   Widget build(BuildContext context) {
-    final double height = Get.height;
-    final double width = Get.width;
     return Container(
         height: height * 0.28,
         margin: EdgeInsets.only(

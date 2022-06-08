@@ -25,8 +25,6 @@ class _TrackingState extends State<Tracking> {
             end: Alignment.topRight,
             begin: Alignment.bottomLeft,
             colors: [
-              // Color.fromARGB(156, 245, 196, 20),
-              // Color.fromRGBO(255, 237, 34, 100),
               Color.fromARGB(251, 226, 192, 0),
               Color.fromARGB(156, 255, 249, 183),
             ],
@@ -36,7 +34,6 @@ class _TrackingState extends State<Tracking> {
           children: [
             Head(),
             Dialog_track(),
-            // History(),
           ],
         ),
       ),

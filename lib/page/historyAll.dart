@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tracking/constants/constant.dart';
 import 'package:tracking/helper/sql_helper.dart';
-import 'package:tracking/model/api.dart';
 import 'package:tracking/page/tracking%20_detail.dart';
 import 'package:tracking/page/welcome.dart';
 
@@ -50,7 +49,6 @@ class _HistoryAllState extends State<HistoryAll> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color.fromARGB(226, 255, 255, 255),
       body: Container(
         padding: EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
@@ -58,8 +56,6 @@ class _HistoryAllState extends State<HistoryAll> {
             end: Alignment.topRight,
             begin: Alignment.bottomLeft,
             colors: [
-              // Color.fromARGB(156, 245, 196, 20),
-              // Color.fromRGBO(255, 237, 34, 100),
               Color.fromARGB(251, 226, 192, 0),
               Color.fromARGB(156, 255, 249, 183),
             ],
@@ -138,8 +134,6 @@ class _HistoryAllState extends State<HistoryAll> {
                           itemCount: _journals.length,
                           itemBuilder: (context, index) {
                             return Container(
-                              // margin: EdgeInsets.only(bottom: width * 0.04),
-                              // color: Colors.amber,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -150,7 +144,6 @@ class _HistoryAllState extends State<HistoryAll> {
                                         () => TrackingDetail(
                                           receipt: _journals[index]['receipt'],
                                           jk: _journals[index]['jkirim'],
-                                          apiKey: apiKey,
                                         ),
                                         transition: Transition.cupertino,
                                       ),
@@ -166,7 +159,6 @@ class _HistoryAllState extends State<HistoryAll> {
                                         () => TrackingDetail(
                                           receipt: _journals[index]['receipt'],
                                           jk: _journals[index]['jkirim'],
-                                          apiKey: apiKey,
                                         ),
                                         transition: Transition.cupertino,
                                       ),

@@ -1,47 +1,40 @@
 {
-  "project_info": {
-    "project_number": "743514055343",
-    "project_id": "trackpad-e91b0",
-    "storage_bucket": "trackpad-e91b0.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:743514055343:android:0acccce9ba24c30bb72a5a",
-        "android_client_info": {
-          "package_name": "com.example.tracking"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "743514055343-ie8j290cmllot5q8nl22bli90eekqenc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.tracking",
-            "certificate_hash": "1379c9963bcc0dcd5b4bcc439f5064e187d74b54"
-          }
-        },
-        {
-          "client_id": "743514055343-3ar9emc5h1j2bqhbpbt0pke3spssfetr.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC0lg4qD9znCCW3YW2V8nXPd0fgTkazv-w"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "743514055343-3ar9emc5h1j2bqhbpbt0pke3spssfetr.apps.googleusercontent.com",
-              "client_type": 3
+    "project_info": {
+        "project_number": "743514055343",
+        "project_id": "trackpad-e91b0",
+        "storage_bucket": "trackpad-e91b0.appspot.com"
+    },
+    "client": [{
+        "client_info": {
+            "mobilesdk_app_id": "1:743514055343:android:0acccce9ba24c30bb72a5a",
+            "android_client_info": {
+                "package_name": "com.yogadev.tracking"
             }
-          ]
+        },
+        "oauth_client": [{
+                "client_id": "743514055343-ie8j290cmllot5q8nl22bli90eekqenc.apps.googleusercontent.com",
+                "client_type": 1,
+                "android_info": {
+                    "package_name": "com.yogadev.tracking",
+                    "certificate_hash": "1379c9963bcc0dcd5b4bcc439f5064e187d74b54"
+                }
+            },
+            {
+                "client_id": "743514055343-3ar9emc5h1j2bqhbpbt0pke3spssfetr.apps.googleusercontent.com",
+                "client_type": 3
+            }
+        ],
+        "api_key": [{
+            "current_key": "AIzaSyC0lg4qD9znCCW3YW2V8nXPd0fgTkazv-w"
+        }],
+        "services": {
+            "appinvite_service": {
+                "other_platform_oauth_client": [{
+                    "client_id": "743514055343-3ar9emc5h1j2bqhbpbt0pke3spssfetr.apps.googleusercontent.com",
+                    "client_type": 3
+                }]
+            }
         }
-      }
-    }
-  ],
-  "configuration_version": "1"
+    }],
+    "configuration_version": "1"
 }

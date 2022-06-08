@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:tracking/component/welcome/button.dart';
 import 'package:tracking/component/dashboard/estimasi_button.dart';
 import 'package:tracking/component/welcome/signup.dart';
+import 'package:tracking/constants/constant.dart';
 import 'package:tracking/controller/theme_controller.dart';
 import 'package:tracking/component/welcome/hero.dart';
 import 'package:tracking/component/welcome/title.dart';
@@ -25,7 +26,6 @@ class Welcome extends StatefulWidget {
 class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
     // final double width = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Container(

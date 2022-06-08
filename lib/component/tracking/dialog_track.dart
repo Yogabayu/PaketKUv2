@@ -4,13 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tracking/controller/tracking_controller.dart';
 import 'package:tracking/helper/sql_helper.dart';
-import 'package:tracking/model/api.dart';
+// import 'package:tracking/model/receipt.dart';
 import 'package:tracking/page/historyAll.dart';
 import 'package:tracking/page/tracking%20_detail.dart';
 
+import 'package:tracking/constants/constant.dart';
+
 List<Map<String, dynamic>> _journals = [];
-bool _isLoading = true;
 String jsKirim = "";
 
 class Dialog_track extends StatefulWidget {
@@ -21,6 +23,11 @@ class Dialog_track extends StatefulWidget {
 }
 
 class _Button1State extends State<Dialog_track> {
+  final controller = Get.put(TrackingController());
+  final snackBar = SnackBar(
+    content: Text('Sukses menghapus'),
+    duration: Duration(seconds: 2),
+  );
   @override
   void initState() {
     super.initState();
@@ -30,36 +37,27 @@ class _Button1State extends State<Dialog_track> {
   void _refreshJournals() async {
     final data = await SQLHelper.getItems();
     setState(() {
-      _isLoading = false;
+      isLoading = false;
       _journals = data.reversed.toList();
     });
   }
 
-  Future<void> _addItem() async {
-    await SQLHelper.createItem(
-      receipt.text,
-      dropdownvalue,
+  void gagal() {
+    Get.snackbar(
+      "Pencarian Anda tidak ditemukan",
+      "Silahkan isi semua kolom terlebih dahulu",
+      icon: Icon(Icons.block_outlined, color: Colors.red),
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.white38,
+      borderRadius: 20,
+      margin: EdgeInsets.all(15),
+      colorText: Colors.black,
+      duration: Duration(seconds: 4),
+      isDismissible: true,
+      dismissDirection: DismissDirection.horizontal,
+      forwardAnimationCurve: Curves.easeOutBack,
     );
-    _refreshJournals();
   }
-
-  Future<void> _updateItem(int id) async {
-    await SQLHelper.updateItem(id, receipt.text, dropdownvalue);
-    _refreshJournals();
-  }
-
-  // Delete an item
-  void _deleteItem(int id) async {
-    await SQLHelper.deleteItem(id);
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Sukses menghapus Jadwal!'),
-    ));
-    _refreshJournals();
-  }
-
-  // Initial Selected Value
-  String dropdownvalue = 'JNE';
-  TextEditingController receipt = TextEditingController();
 
   // List of items in our dropdown menu
   var items = [
@@ -76,9 +74,6 @@ class _Button1State extends State<Dialog_track> {
     'SAP express',
     'Shopee express'
   ];
-
-  final double height = Get.height;
-  final double width = Get.width;
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +152,7 @@ class _Button1State extends State<Dialog_track> {
                   ),
                   child: Center(
                     child: TextField(
-                      controller: receipt,
+                      controller: controller.receipt,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                           hintText: "Masukkan disini",
@@ -186,7 +181,7 @@ class _Button1State extends State<Dialog_track> {
                   child: Center(
                     child: DropdownButton(
                       // Initial Value
-                      value: dropdownvalue,
+                      value: controller.dropdownvalue,
 
                       // Down Arrow Icon
                       icon: const Icon(Icons.keyboard_arrow_down),
@@ -202,7 +197,7 @@ class _Button1State extends State<Dialog_track> {
                       // change button value to selected value
                       onChanged: (String? newValue) {
                         setState(() {
-                          dropdownvalue = newValue!;
+                          controller.dropdownvalue = newValue!;
                         });
                       },
                     ),
@@ -239,35 +234,15 @@ class _Button1State extends State<Dialog_track> {
                         ],
                       ))),
                   onTap: () => {
-                    // print(receipt.text),
-                    // print(dropdownvalue),
-                    if (receipt.text.isEmpty)
+                    if (controller.receipt.text.isEmpty)
                       {
-                        Get.snackbar(
-                          "Pencarian Anda tidak ditemukan",
-                          "Silahkan isi semua kolom terlebih dahulu",
-                          icon: Icon(Icons.block_outlined, color: Colors.red),
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.white38,
-                          borderRadius: 20,
-                          margin: EdgeInsets.all(15),
-                          colorText: Colors.black,
-                          duration: Duration(seconds: 4),
-                          isDismissible: true,
-                          dismissDirection: DismissDirection.horizontal,
-                          forwardAnimationCurve: Curves.easeOutBack,
-                        ),
+                        gagal(),
                       }
                     else
                       {
-                        _addItem(),
-                        Get.to(
-                            () => TrackingDetail(
-                                  receipt: receipt.text,
-                                  jk: dropdownvalue,
-                                  apiKey: apiKey,
-                                ),
-                            transition: Transition.cupertino),
+                        controller.addItem(
+                            controller.receipt.text, controller.dropdownvalue),
+                        _refreshJournals(),
                       }
                   },
                 ),
@@ -366,7 +341,6 @@ class _Button1State extends State<Dialog_track> {
                                             receipt: _journals[index]
                                                 ['receipt'],
                                             jk: _journals[index]['jkirim'],
-                                            apiKey: apiKey,
                                           ),
                                           transition: Transition.cupertino,
                                         ),
@@ -384,7 +358,6 @@ class _Button1State extends State<Dialog_track> {
                                             receipt: _journals[index]
                                                 ['receipt'],
                                             jk: _journals[index]['jkirim'],
-                                            apiKey: apiKey,
                                           ),
                                           transition: Transition.cupertino,
                                         ),
@@ -425,7 +398,6 @@ class _Button1State extends State<Dialog_track> {
                                             receipt: _journals[index]
                                                 ['receipt'],
                                             jk: _journals[index]['jkirim'],
-                                            apiKey: apiKey,
                                           ),
                                           transition: Transition.cupertino,
                                         ),
