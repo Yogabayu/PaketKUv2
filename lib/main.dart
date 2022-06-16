@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tracking/constants/theme.dart';
-import 'package:tracking/controller/theme_controller.dart';
-import 'package:tracking/page/welcome.dart';
+import 'package:tracking/view/dashboard.dart';
 
-void main() async {
-  runApp(MyApp());
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-  final themeController = Get.put(ThemeController());
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: themeController.theme,
-      theme: Themes.lightTheme,
-      darkTheme: Themes.darkTheme,
-      home: const Welcome(),
+      themeMode: ThemeMode.system,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      home: const Dashboard(),
     );
   }
 }

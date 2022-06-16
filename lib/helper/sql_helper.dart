@@ -25,6 +25,22 @@ class SQLHelper {
     );
   }
 
+  // cek item
+  // static Future<bool> cekItem(String receipt, String jkirim) async {
+  //   final db = await SQLHelper.db();
+  //   bool hasilCek;
+  //   final hasil =
+  //       await db.rawQuery('SELECT COUNT(*) from items WHERE receipt=$receipt');
+  //   if (hasil.isNotEmpty) {
+  //     print(hasil);
+  //     hasilCek = true;
+  //   } else {
+  //     print(hasil);
+  //     hasilCek = false;
+  //   }
+  //   return hasilCek;
+  // }
+
   // Create new item (journal)
   static Future<int> createItem(
     String receipt,
@@ -38,6 +54,7 @@ class SQLHelper {
     };
     final id = await db.insert('items', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
+
     return id;
   }
 
@@ -49,30 +66,11 @@ class SQLHelper {
 
   // Read a single item by id
   // The app doesn't use this method but I put here in case you want to see it
-  static Future<List<Map<String, dynamic>>> getItem(String receipt) async {
-    final db = await SQLHelper.db();
-    return db.query('items',
-        where: "receipt = ?", whereArgs: [receipt], limit: 1);
-  }
-
-  // Update an item by id
-  static Future<int> updateItem(
-    int id,
-    String receipt,
-    String jkirim,
-  ) async {
-    final db = await SQLHelper.db();
-
-    final data = {
-      'receipt': receipt,
-      'jkirim': jkirim,
-      'createdAt': DateTime.now().toString()
-    };
-
-    final result =
-        await db.update('items', data, where: "id = ?", whereArgs: [id]);
-    return result;
-  }
+  // static Future<List<Map<String, dynamic>>> getItem(String receipt) async {
+  //   final db = await SQLHelper.db();
+  //   return db.query('items',
+  //       where: "receipt = ?", whereArgs: [receipt], limit: 1);
+  // }
 
   // Delete
   static Future<void> deleteItem(int id) async {
