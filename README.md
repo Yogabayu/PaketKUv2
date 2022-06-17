@@ -40,5 +40,5 @@ Untuk menjalankan project ini silahkan ganti file API.dart di dalam folder lib/m
 
 ## Screenshots
 
-<img src="https://github.com/Yogabayu/TrackPad/blob/master/project_image/welcome.jpeg" width="150"> <img src="https://github.com/Yogabayu/TrackPad/blob/master/project_image/Dashboard.jpeg" width="150"> <img src="https://github.com/Yogabayu/TrackPad/blob/master/project_image/lacak_paket.jpeg" width="150"> <img src="https://github.com/Yogabayu/TrackPad/blob/master/project_image/detail_lacak.jpeg" width="150"> <img src="https://github.com/Yogabayu/TrackPad/blob/master/project_image/cek ongkir.jpeg" width="150"> <img src="https://github.com/Yogabayu/TrackPad/blob/master/project_image/detail ongkir.jpeg" width="150"> <img src="https://github.com/Yogabayu/TrackPad/blob/master/project_image/riwayat pelacakan.jpeg" width="150"> 
+<img src="https://github.com/Yogabayu/Trackpad_v2/blob/main/flutter_06.png" width="150"> <img src="https://github.com/Yogabayu/Trackpad_v2/blob/main/flutter_03.png" width="150"> <img src="https://github.com/Yogabayu/Trackpad_v2/blob/main/flutter_02.png" width="150"> <img src="https://github.com/Yogabayu/Trackpad_v2/blob/main/flutter_04.png" width="150"> <img src="https://github.com/Yogabayu/Trackpad_v2/blob/main/flutter_05.png" width="150"> 
 
