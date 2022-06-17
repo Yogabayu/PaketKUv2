@@ -1,5 +1,9 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tracking/controller/tracking_controller.dart';
@@ -19,6 +23,8 @@ class _DashboardState extends State<Dashboard> {
   // String dropdownvalue = '--';
   DateTime? lastPressed;
   bool isLoading = true;
+  Position? _currentPosition;
+  String? _currentAddress;
 
   void gagal() {
     Get.snackbar(
@@ -35,6 +41,41 @@ class _DashboardState extends State<Dashboard> {
       dismissDirection: DismissDirection.horizontal,
       forwardAnimationCurve: Curves.easeOutBack,
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
+
+  _getCurrentLocation() async {
+    LocationPermission permission;
+    permission = await Geolocator.requestPermission();
+    Geolocator.getCurrentPosition().then((Position position) {
+      setState(() {
+        _currentPosition = position;
+        print(_currentPosition);
+        _getAddressFromLatLng();
+      });
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          _currentPosition!.latitude, _currentPosition!.longitude);
+
+      Placemark place = placemarks[0];
+
+      setState(() {
+        _currentAddress = "${place.locality}";
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -102,15 +143,17 @@ class _DashboardState extends State<Dashboard> {
                                       SizedBox(
                                         height: 5,
                                       ),
-                                      Text(
-                                        "Ponorogo",
-                                        style: GoogleFonts.raleway(
-                                          fontSize: height * 0.02,
-                                          fontWeight: FontWeight.bold,
-                                          color:
-                                              Color.fromARGB(255, 4, 120, 122),
+                                      if (_currentPosition != null &&
+                                          _currentAddress != null)
+                                        Text(
+                                          _currentAddress!,
+                                          style: GoogleFonts.raleway(
+                                            fontSize: height * 0.02,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color.fromARGB(
+                                                255, 4, 120, 122),
+                                          ),
                                         ),
-                                      ),
                                     ],
                                   ),
                                   Text(""),
