@@ -43,6 +43,7 @@ dependencies:
   dropdown_search: ^3.0.1
   flutter_launcher_icons: ^0.9.2
   geolocator: ^8.2.1
+  flutter_svg: ^1.1.1+1
   geocoding: ^2.0.4
 
 flutter_icons:
@@ -74,6 +75,7 @@ flutter:
   assets:
     - assets/
     - assets/image/
+    - assets/logo/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

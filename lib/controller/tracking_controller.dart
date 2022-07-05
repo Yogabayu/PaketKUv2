@@ -42,6 +42,12 @@ class TrackingController extends GetxController {
   //     duration: Duration(seconds: 1),
   //   );
   // }
+  RxString namaSVG = "".obs;
+
+  void gantiSvg(String namaSVG) {
+    this.namaSVG.value = namaSVG;
+    update();
+  }
 
   Future<Receipt> fetchData(receipt, jk) async {
     try {
