@@ -43,9 +43,14 @@ class TrackingController extends GetxController {
   //   );
   // }
   RxString namaSVG = "".obs;
+  RxString namajs = "".obs;
 
-  void gantiSvg(String namaSVG) {
+  void gantiSvg(
+    String namaSVG,
+    String namajs,
+  ) {
     this.namaSVG.value = namaSVG;
+    this.namajs.value = namajs;
     update();
   }
 
@@ -57,9 +62,14 @@ class TrackingController extends GetxController {
         jKirim = "sap";
       } else if (jk == 'ID express') {
         jKirim = "ide";
+      } else if (jk == 'J&T') {
+        jKirim = "jnt";
       } else {
         jKirim = jk;
       }
+      print(receipt);
+      print(jk);
+      print(apiKey);
       final ioc = new HttpClient();
       ioc.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
@@ -77,12 +87,12 @@ class TrackingController extends GetxController {
           throw 'Gagal mengambil data, mohon ulangi kembali';
         },
       );
-
+      print(response.statusCode);
       if (response.statusCode == 200) {
-        await SQLHelper.createItem(
-          receipt,
-          jKirim,
-        );
+        // await SQLHelper.createItem(
+        //   receipt,
+        //   jKirim,
+        // );
 
         return Receipt.fromJson(jsonDecode(response.body));
       } else {

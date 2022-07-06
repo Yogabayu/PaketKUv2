@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tracking/view/cekOngkir.dart';
+import 'package:tracking/view/cekOngkir2.dart';
 import 'package:tracking/view/dashboard.dart';
 import 'package:tracking/view/tracking_2.dart';
 
@@ -17,8 +19,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      // home: const Dashboard(),
-      home: Tracking2(),
+      home: const Dashboard(),
     );
   }
 }

@@ -63,3 +63,21 @@ List<Svgikon> dummySvg = [
     images: "assets/logo/tiki.svg",
   ),
 ];
+
+List<Svgikon> dummyJasa = [
+  Svgikon(
+    id: "JNE",
+    title: "JNE",
+    images: "assets/logo/JNE.svg",
+  ),
+  Svgikon(
+    id: "POS",
+    title: "POS",
+    images: "assets/logo/pos.svg",
+  ),
+  Svgikon(
+    id: "TIKI",
+    title: "Tiki",
+    images: "assets/logo/tiki.svg",
+  ),
+];

@@ -6,6 +6,15 @@ import 'package:get/get.dart';
 import 'package:tracking/model/ongkir.dart';
 
 class OngkirController extends GetxController {
+  RxString namaSVG = "".obs;
+  RxString namaJasa = "".obs;
+
+  void gantiSvg(String namaSVG, String namaJasa) {
+    this.namaSVG.value = namaSVG;
+    this.namaJasa.value = namaJasa;
+    update();
+  }
+
   Future<Ongkir> getData(key, kotaAsal, kotaTujuan, berat, kurir) async {
     try {
       Future.delayed(Duration(seconds: 3));
