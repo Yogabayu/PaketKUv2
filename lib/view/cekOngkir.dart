@@ -15,6 +15,7 @@ import 'package:tracking/model/dummy_data_ikon.dart';
 import 'package:tracking/model/kota.dart';
 import 'package:tracking/model/ongkir.dart';
 import 'package:tracking/view/dashboard.dart';
+import 'package:tracking/view/hasil_cek_ongkir.dart';
 
 class CekOngkir extends StatefulWidget {
   const CekOngkir({Key? key}) : super(key: key);
@@ -24,19 +25,18 @@ class CekOngkir extends StatefulWidget {
 }
 
 class _CekOngkirState extends State<CekOngkir> {
+  final controllerOngkir = Get.put(OngkirController());
+  late Future<Ongkir> futureOngkir;
+  var kota_asal, kota_tujuan, berat, kurir, cityName, cityTujuan;
   static double _minHeight = 0, _maxHeight = 300;
   Offset _offset = Offset(0, _minHeight);
   bool _isOpen = false;
   int selectedCard = -1;
   String _jkpilih = "";
-  final controllerOngkir = Get.put(OngkirController());
-  late Future<Ongkir> futureOngkir;
-  var kota_asal, kota_tujuan, berat, kurir, cityName, cityTujuan;
 
   @override
   void initState() {
     super.initState();
-    futureOngkir = controllerOngkir.getData("", "", "", "", "");
   }
 
   @override
@@ -54,7 +54,13 @@ class _CekOngkirState extends State<CekOngkir> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 55, 202, 236),
           child: Icon(Icons.home),
-          onPressed: () {},
+          onPressed: () {
+            Get.offAll(
+              () => Dashboard(),
+              transition: Transition.fade,
+              duration: Duration(seconds: 1),
+            );
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: Stack(
@@ -327,10 +333,10 @@ class _CekOngkirState extends State<CekOngkir> {
                                 ),
                               ),
                               SizedBox(
-                                width: width * 0.07,
+                                width: width * 0.1,
                               ),
                               Container(
-                                width: width * 0.6,
+                                width: width * 0.55,
                                 child: TextField(
                                   //input hanya angka
                                   keyboardType: TextInputType.number,
@@ -473,7 +479,8 @@ class _CekOngkirState extends State<CekOngkir> {
                               icon:
                                   Icon(Icons.block_outlined, color: Colors.red),
                               snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: Colors.white38,
+                              backgroundColor: Color.fromARGB(255, 246, 142, 37)
+                                  .withOpacity(0.5),
                               borderRadius: 20,
                               margin: EdgeInsets.all(15),
                               colorText: Colors.black,
@@ -483,10 +490,18 @@ class _CekOngkirState extends State<CekOngkir> {
                               forwardAnimationCurve: Curves.easeOutBack,
                             );
                           } else {
-                            print(kota_asal);
-                            print(kota_tujuan);
-                            print(berat);
-                            print(controllerOngkir.namaJasa.value);
+                            Get.offAll(
+                              () => HasilCekOngkir(
+                                jk: controllerOngkir.namaJasa.value
+                                    .toLowerCase(),
+                                kotaAsal: kota_asal,
+                                kotaTujuan: kota_tujuan,
+                                totalPaket: berat,
+                                namaSVG: controllerOngkir.namaSVG.value,
+                              ),
+                              transition: Transition.fade,
+                              duration: Duration(seconds: 1),
+                            );
                           }
                         },
                         child: Text(
@@ -636,10 +651,14 @@ class _CekOngkirState extends State<CekOngkir> {
                     children: <Widget>[
                       Icon(
                         Icons.price_change_outlined,
+                        color: Color.fromARGB(255, 246, 142, 37),
                       ),
                       Text(
                         'Cek Ongkir',
-                        style: TextStyle(),
+                        style: GoogleFonts.roboto(
+                          color: Color.fromARGB(255, 246, 142, 37),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),

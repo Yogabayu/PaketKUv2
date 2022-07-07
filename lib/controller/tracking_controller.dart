@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/io_client.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tracking/helper/sql_helper.dart';
 // import 'package:tracking/helper/sql_helper.dart';
 // import 'package:tracking/helper/sql_helper.dart';
 import 'package:tracking/model/api.dart';
@@ -12,21 +13,7 @@ import 'package:tracking/model/receipt.dart';
 // import 'package:tracking/page/tracking%20_detail.dart';
 
 class TrackingController extends GetxController {
-  var items = [
-    'JNE',
-    'POS',
-    'JNT',
-    'sicepat',
-    'TIKI',
-    'Anteraja',
-    'NINJA',
-    'LION',
-    'JET',
-    'ID express',
-    'SAP express',
-    'Shopee express'
-  ];
-  String dropdownvalue = 'JNE';
+  String alamat = "";
   TextEditingController receipt = TextEditingController();
   String jKirim = "";
   List<dynamic> data = []; //edited line
@@ -67,9 +54,6 @@ class TrackingController extends GetxController {
       } else {
         jKirim = jk;
       }
-      print(receipt);
-      print(jk);
-      print(apiKey);
       final ioc = new HttpClient();
       ioc.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
@@ -87,16 +71,17 @@ class TrackingController extends GetxController {
           throw 'Gagal mengambil data, mohon ulangi kembali';
         },
       );
-      print(response.statusCode);
       if (response.statusCode == 200) {
-        // await SQLHelper.createItem(
-        //   receipt,
-        //   jKirim,
-        // );
+        alamat = jsonDecode(response.body)['data']['detail']['destination'];
+        await SQLHelper.createItem(
+          receipt,
+          alamat,
+          namaSVG.toString(),
+        );
 
         return Receipt.fromJson(jsonDecode(response.body));
       } else {
-        throw 'Gagal mengambil data. Cek kembali inputan anda';
+        throw jsonDecode(response.body)['message'] + ". \nSilahkan ulangi lagi";
       }
     } on SocketException {
       throw 'Mohon Cek internet anda';

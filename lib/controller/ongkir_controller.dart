@@ -17,6 +17,11 @@ class OngkirController extends GetxController {
 
   Future<Ongkir> getData(key, kotaAsal, kotaTujuan, berat, kurir) async {
     try {
+      print(key);
+      print(kotaAsal);
+      print(kotaTujuan);
+      print(berat);
+      print(kurir);
       Future.delayed(Duration(seconds: 3));
       final ioc = new HttpClient();
       ioc.badCertificateCallback =

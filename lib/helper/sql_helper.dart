@@ -6,7 +6,8 @@ class SQLHelper {
     await database.execute("""CREATE TABLE items(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         receipt TEXT,
-        jkirim VARCHAR,
+        alamat VARCHAR,
+        namaSVG VARCHAR,
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
       """);
@@ -17,7 +18,7 @@ class SQLHelper {
 
   static Future<sql.Database> db() async {
     return sql.openDatabase(
-      'trackpad.db',
+      'paketKU.db',
       version: 1,
       onCreate: (sql.Database database, int version) async {
         await createTables(database);
@@ -44,13 +45,15 @@ class SQLHelper {
   // Create new item (journal)
   static Future<int> createItem(
     String receipt,
-    String jkirim,
+    String namaSVG,
+    String alamat,
   ) async {
     final db = await SQLHelper.db();
 
     final data = {
       'receipt': receipt,
-      'jkirim': jkirim,
+      'alamat': alamat,
+      'namaSVG': namaSVG,
     };
     final id = await db.insert('items', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);

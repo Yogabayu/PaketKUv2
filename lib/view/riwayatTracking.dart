@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tracking/constant/constantVariabel.dart';
 import 'package:tracking/helper/sql_helper.dart';
 import 'package:tracking/view/dashboard.dart';
-import 'package:tracking/view/tracking.dart';
 
 List<Map<String, dynamic>> _journals = [];
 String jsKirim = "";
@@ -117,14 +116,14 @@ class _RiwayatTrackingState extends State<RiwayatTracking> {
                         itemBuilder: (_, index) {
                           return GestureDetector(
                             onTap: () {
-                              Get.to(
-                                () => Tracking(
-                                  receipt: _journals[index]['receipt'],
-                                  jk: _journals[index]['jkirim'],
-                                ),
-                                transition: Transition.fade,
-                                duration: Duration(seconds: 1),
-                              );
+                              // Get.to(
+                              //   () => Tracking(
+                              //     receipt: _journals[index]['receipt'],
+                              //     jk: _journals[index]['jkirim'],
+                              //   ),
+                              //   transition: Transition.fade,
+                              //   duration: Duration(seconds: 1),
+                              // );
                             },
                             child: Row(
                               children: [
