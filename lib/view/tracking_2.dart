@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -258,30 +260,13 @@ class _Tracking2State extends State<Tracking2> {
                       ),
                     );
                   } else if (snapshot.hasError) {
-                    return Center(
-                      child: Container(
-                        margin: EdgeInsets.only(top: 20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              child: Text(
-                                '${snapshot.error}',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.black),
-                              ),
-                              margin: EdgeInsets.all(20),
-                            ),
-                          ],
-                        ),
-                      ),
+                    return Container(
+                      margin: EdgeInsets.all(width * 0.03),
+                      child: Text("${snapshot.error}"),
                     );
                   } else {
                     return Container(
                       width: width,
-                      height: width * 0.5,
                       child: Center(
                         child: CircularProgressIndicator(),
                       ),
@@ -312,124 +297,149 @@ class _Tracking2State extends State<Tracking2> {
               Container(
                 width: width,
                 height: width * 0.8,
-                child: ListView.builder(
-                  reverse: true,
-                  shrinkWrap: true,
-                  itemCount: 4,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index == 4 - 1) {
-                      return Container(
-                        child: TimelineTile(
-                          indicatorStyle: IndicatorStyle(
-                            indicator: Icon(
-                              CupertinoIcons.checkmark_alt_circle,
-                              color: Color.fromARGB(255, 246, 142, 37),
-                            ),
-                            drawGap: true,
-                          ),
-                          afterLineStyle: LineStyle(
-                            color: Color.fromARGB(255, 5, 78, 94),
-                          ),
-                          beforeLineStyle: LineStyle(
-                            color: Color.fromARGB(255, 5, 78, 94),
-                          ),
-                          alignment: TimelineAlign.manual,
-                          lineXY: 0.2,
-                          endChild: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(width * 0.05),
-                              border: Border.all(
-                                color: Color.fromARGB(255, 246, 142, 37),
-                              ),
-                            ),
-                            margin: EdgeInsets.all(width * 0.03),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 5),
-                            child: ListTile(
-                              title: Container(
-                                width: width * 0.01,
-                                child: Text(
-                                  'Telah Berangkat : Gudang Transit Jakarta',
-                                  overflow: TextOverflow.fade,
-                                  style: GoogleFonts.roboto(
-                                    fontSize: height * 0.017,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 246, 142, 37),
+                child: FutureBuilder<Receipt>(
+                    future: futureReceipt,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          itemCount: snapshot.data!.data!.history!.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            if (index == 0) {
+                              return Container(
+                                child: TimelineTile(
+                                  indicatorStyle: IndicatorStyle(
+                                    indicator: Icon(
+                                      CupertinoIcons.checkmark_alt_circle,
+                                      color: Color.fromARGB(255, 246, 142, 37),
+                                    ),
+                                    drawGap: true,
                                   ),
-                                ),
-                              ),
-                              subtitle: Container(
-                                margin: EdgeInsets.only(top: width * 0.014),
-                                child: Text(
-                                  '2022-12-12 12:12:12',
-                                  style: GoogleFonts.roboto(
-                                    fontSize: height * 0.015,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    } else {
-                      return Container(
-                        child: TimelineTile(
-                          indicatorStyle: IndicatorStyle(
-                            indicator: Icon(
-                              CupertinoIcons.circle,
-                              color: Color.fromARGB(255, 5, 78, 94),
-                            ),
-                            drawGap: true,
-                          ),
-                          afterLineStyle: LineStyle(
-                            color: Color.fromARGB(255, 5, 78, 94),
-                          ),
-                          beforeLineStyle: LineStyle(
-                            color: Color.fromARGB(255, 5, 78, 94),
-                          ),
-                          alignment: TimelineAlign.manual,
-                          lineXY: 0.2,
-                          endChild: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(width * 0.05),
-                              border: Border.all(
-                                color: Color.fromARGB(255, 5, 78, 94),
-                              ),
-                            ),
-                            margin: EdgeInsets.all(width * 0.03),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 5),
-                            child: ListTile(
-                              title: Container(
-                                width: width * 0.01,
-                                child: Text(
-                                  'Telah Berangkat : Gudang Transit Jakarta',
-                                  overflow: TextOverflow.fade,
-                                  style: GoogleFonts.roboto(
-                                    fontSize: height * 0.017,
-                                    fontWeight: FontWeight.bold,
+                                  afterLineStyle: LineStyle(
                                     color: Color.fromARGB(255, 5, 78, 94),
                                   ),
-                                ),
-                              ),
-                              subtitle: Container(
-                                margin: EdgeInsets.only(top: width * 0.014),
-                                child: Text(
-                                  '2022-12-12 12:12:12',
-                                  style: GoogleFonts.roboto(
-                                    fontSize: height * 0.015,
-                                    color: Colors.black,
+                                  beforeLineStyle: LineStyle(
+                                    color: Color.fromARGB(255, 5, 78, 94),
+                                  ),
+                                  alignment: TimelineAlign.manual,
+                                  lineXY: 0.2,
+                                  endChild: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(width * 0.05),
+                                      border: Border.all(
+                                        color:
+                                            Color.fromARGB(255, 246, 142, 37),
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(width * 0.03),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 5),
+                                    child: ListTile(
+                                      title: Container(
+                                        width: width * 0.01,
+                                        child: Text(
+                                          '${snapshot.data!.data!.history![index].desc}',
+                                          overflow: TextOverflow.fade,
+                                          style: GoogleFonts.roboto(
+                                            fontSize: height * 0.017,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color.fromARGB(
+                                                255, 246, 142, 37),
+                                          ),
+                                        ),
+                                      ),
+                                      subtitle: Container(
+                                        margin:
+                                            EdgeInsets.only(top: width * 0.014),
+                                        child: Text(
+                                          '${snapshot.data!.data!.history![index].date}',
+                                          style: GoogleFonts.roboto(
+                                            fontSize: height * 0.015,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
+                              );
+                            } else {
+                              return Container(
+                                child: TimelineTile(
+                                  indicatorStyle: IndicatorStyle(
+                                    indicator: Icon(
+                                      CupertinoIcons.circle,
+                                      color: Color.fromARGB(255, 5, 78, 94),
+                                    ),
+                                    drawGap: true,
+                                  ),
+                                  afterLineStyle: LineStyle(
+                                    color: Color.fromARGB(255, 5, 78, 94),
+                                  ),
+                                  beforeLineStyle: LineStyle(
+                                    color: Color.fromARGB(255, 5, 78, 94),
+                                  ),
+                                  alignment: TimelineAlign.manual,
+                                  lineXY: 0.2,
+                                  endChild: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(width * 0.05),
+                                      border: Border.all(
+                                        color: Color.fromARGB(255, 5, 78, 94),
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(width * 0.03),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 5),
+                                    child: ListTile(
+                                      title: Container(
+                                        width: width * 0.01,
+                                        child: Text(
+                                          '${snapshot.data!.data!.history![index].desc}',
+                                          overflow: TextOverflow.fade,
+                                          style: GoogleFonts.roboto(
+                                            fontSize: height * 0.017,
+                                            fontWeight: FontWeight.bold,
+                                            color:
+                                                Color.fromARGB(255, 5, 78, 94),
+                                          ),
+                                        ),
+                                      ),
+                                      subtitle: Container(
+                                        margin:
+                                            EdgeInsets.only(top: width * 0.014),
+                                        child: Text(
+                                          '${snapshot.data!.data!.history![index].date}',
+                                          style: GoogleFonts.roboto(
+                                            fontSize: height * 0.015,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Container(
+                          margin: EdgeInsets.all(width * 0.03),
+                          child: Text("${snapshot.error}"),
+                        );
+                      } else {
+                        return Container(
+                          width: width,
+                          child: Center(
+                            child: CircularProgressIndicator(),
                           ),
-                        ),
-                      );
-                    }
-                  },
-                ),
+                        );
+                      }
+                    }),
               ),
             ],
           ),

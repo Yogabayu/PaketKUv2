@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tracking/view/cekOngkir.dart';
-import 'package:tracking/view/cekOngkir2.dart';
 import 'package:tracking/view/dashboard.dart';
-import 'package:tracking/view/tracking_2.dart';
 
 void main() {
   runApp(const MyApp());
