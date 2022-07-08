@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tracking/view/cekOngkir.dart';
 import 'package:tracking/view/dashboard.dart';
 
 void main() {

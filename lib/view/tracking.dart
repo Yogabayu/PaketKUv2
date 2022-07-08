@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, unused_local_variable
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,10 +6,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-import 'package:tracking/constant/constantVariabel.dart';
 import 'package:tracking/controller/tracking_controller.dart';
 import 'package:tracking/model/receipt.dart';
+import 'package:tracking/view/cekOngkir.dart';
 import 'package:tracking/view/dashboard.dart';
+import 'package:tracking/view/lainnya.dart';
 
 class Tracking2 extends StatefulWidget {
   String receipt;
@@ -54,7 +55,13 @@ class _Tracking2State extends State<Tracking2> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 55, 202, 236),
           child: Icon(Icons.home),
-          onPressed: () {},
+          onPressed: () {
+            Get.offAll(
+              () => Dashboard(),
+              transition: Transition.fadeIn,
+              duration: Duration(seconds: 1),
+            );
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         appBar: AppBar(
@@ -507,34 +514,52 @@ class _Tracking2State extends State<Tracking2> {
               children: <Widget>[
                 MaterialButton(
                   minWidth: 40,
-                  onPressed: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.price_change_outlined,
-                      ),
-                      Text(
-                        'Cek Ongkir',
-                        style: TextStyle(),
-                      ),
-                    ],
+                  onPressed: () {
+                    Get.offAll(
+                      () => CekOngkir(),
+                      transition: Transition.fadeIn,
+                      duration: Duration(seconds: 1),
+                    );
+                  },
+                  child: Container(
+                    width: width * 0.2,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.price_change_outlined,
+                        ),
+                        Text(
+                          'Cek Ongkir',
+                          style: GoogleFonts.roboto(),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 MaterialButton(
                   minWidth: 40,
-                  onPressed: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.dehaze_sharp,
-                      ),
-                      Text(
-                        'Lainnya',
-                        style: TextStyle(),
-                      ),
-                    ],
+                  onPressed: () {
+                    Get.offAll(
+                      () => Lainnya(),
+                      transition: Transition.fadeIn,
+                      duration: Duration(seconds: 1),
+                    );
+                  },
+                  child: Container(
+                    width: width * 0.2,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.dehaze_sharp,
+                        ),
+                        Text(
+                          'Lainnya',
+                          style: GoogleFonts.roboto(),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],

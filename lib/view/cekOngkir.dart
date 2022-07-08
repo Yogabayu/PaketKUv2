@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -16,6 +18,7 @@ import 'package:tracking/model/kota.dart';
 import 'package:tracking/model/ongkir.dart';
 import 'package:tracking/view/dashboard.dart';
 import 'package:tracking/view/hasil_cek_ongkir.dart';
+import 'package:tracking/view/lainnya.dart';
 
 class CekOngkir extends StatefulWidget {
   const CekOngkir({Key? key}) : super(key: key);
@@ -646,37 +649,57 @@ class _CekOngkirState extends State<CekOngkir> {
                 MaterialButton(
                   minWidth: 40,
                   onPressed: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.price_change_outlined,
-                        color: Color.fromARGB(255, 246, 142, 37),
-                      ),
-                      Text(
-                        'Cek Ongkir',
-                        style: GoogleFonts.roboto(
+                  child: Container(
+                    width: width * 0.2,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
                           color: Color.fromARGB(255, 246, 142, 37),
-                          fontWeight: FontWeight.bold,
+                          width: 3,
                         ),
                       ),
-                    ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.price_change_outlined,
+                          color: Color.fromARGB(255, 246, 142, 37),
+                        ),
+                        Text(
+                          'Cek Ongkir',
+                          style: GoogleFonts.roboto(
+                            color: Color.fromARGB(255, 246, 142, 37),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 MaterialButton(
                   minWidth: 40,
-                  onPressed: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.dehaze_sharp,
-                      ),
-                      Text(
-                        'Lainnya',
-                        style: TextStyle(),
-                      ),
-                    ],
+                  onPressed: () {
+                    Get.offAll(
+                      () => Lainnya(),
+                      transition: Transition.fadeIn,
+                      duration: Duration(seconds: 1),
+                    );
+                  },
+                  child: Container(
+                    width: width * 0.2,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.dehaze_sharp,
+                        ),
+                        Text(
+                          'Lainnya',
+                          style: TextStyle(),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],

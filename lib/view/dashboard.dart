@@ -11,6 +11,7 @@ import 'package:tracking/controller/tracking_controller.dart';
 import 'package:tracking/helper/sql_helper.dart';
 import 'package:tracking/model/dummy_data_ikon.dart';
 import 'package:tracking/view/cekOngkir.dart';
+import 'package:tracking/view/lainnya.dart';
 import 'package:tracking/view/tracking.dart';
 
 class Dashboard extends StatefulWidget {
@@ -118,7 +119,7 @@ class _DashboardState extends State<Dashboard> {
         onPressed: () {
           Get.offAll(
             () => Dashboard(),
-            transition: Transition.fade,
+            transition: Transition.fadeIn,
             duration: Duration(seconds: 1),
           );
         },
@@ -723,37 +724,49 @@ class _DashboardState extends State<Dashboard> {
                 onPressed: () {
                   Get.offAll(
                     () => CekOngkir(),
-                    transition: Transition.fade,
+                    transition: Transition.fadeIn,
                     duration: Duration(seconds: 1),
                   );
                 },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.price_change_outlined,
-                    ),
-                    Text(
-                      'Cek Ongkir',
-                      style: TextStyle(),
-                    ),
-                  ],
+                child: Container(
+                  width: width * 0.2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.price_change_outlined,
+                      ),
+                      Text(
+                        'Cek Ongkir',
+                        style: GoogleFonts.roboto(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               MaterialButton(
                 minWidth: 40,
-                onPressed: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.dehaze_sharp,
-                    ),
-                    Text(
-                      'Lainnya',
-                      style: TextStyle(),
-                    ),
-                  ],
+                onPressed: () {
+                  Get.offAll(
+                    () => Lainnya(),
+                    transition: Transition.fadeIn,
+                    duration: Duration(seconds: 1),
+                  );
+                },
+                child: Container(
+                  width: width * 0.2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.dehaze_sharp,
+                      ),
+                      Text(
+                        'Lainnya',
+                        style: GoogleFonts.roboto(),
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],

@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -35,7 +35,6 @@ class _HasilCekOngkirState extends State<HasilCekOngkir> {
   late Future<Ongkir> futureOngkir;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     futureOngkir = controllerOngkir.getData(
         key, widget.kotaAsal, widget.kotaTujuan, widget.totalPaket, widget.jk);
@@ -71,7 +70,7 @@ class _HasilCekOngkirState extends State<HasilCekOngkir> {
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 55, 202, 236),
           title: Text(
-            "Lacak Paket",
+            "Cek Ongkir Paket",
             style: GoogleFonts.roboto(
               fontSize: height * 0.03,
               fontWeight: FontWeight.bold,
