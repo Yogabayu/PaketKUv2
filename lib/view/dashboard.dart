@@ -339,9 +339,6 @@ class _DashboardState extends State<Dashboard> {
                           if (trackController.receipt.text.isEmpty) {
                             gagal();
                           } else {
-                            // print(trackController.receipt.text);
-                            // print(trackController.namajs.value);
-                            // print(trackController.namaSVG.value);
                             Get.to(
                               () => Tracking2(
                                 receipt: trackController.receipt.text,
@@ -399,14 +396,14 @@ class _DashboardState extends State<Dashboard> {
                                 ),
                               ),
                             ),
-                            Text(
-                              "Lihat Semua >",
-                              style: GoogleFonts.roboto(
-                                color: Color.fromARGB(255, 246, 142, 37),
-                                fontSize: height * 0.015,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            // Text(
+                            //   "Lihat Semua >",
+                            //   style: GoogleFonts.roboto(
+                            //     color: Color.fromARGB(255, 246, 142, 37),
+                            //     fontSize: height * 0.015,
+                            //     fontWeight: FontWeight.bold,
+                            //   ),
+                            // ),
                           ],
                         ),
                         SizedBox(
@@ -776,25 +773,21 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  // first it opens the sheet and when called again it closes.
   void _handleClick() {
     _isOpen = !_isOpen;
     Timer.periodic(Duration(milliseconds: 1), (timer) {
       if (_isOpen) {
-        double value = _offset.dy +
-            100; // we increment the height of the Container by 10 every 5ms
+        double value = _offset.dy + 100;
         _offset = Offset(0, value);
         if (_offset.dy > _maxHeight) {
-          _offset =
-              Offset(0, _maxHeight); // makes sure it does't go above maxHeight
+          _offset = Offset(0, _maxHeight);
           timer.cancel();
         }
       } else {
-        double value = _offset.dy - 100; // we decrement the height by 10 here
+        double value = _offset.dy - 100;
         _offset = Offset(0, value);
         if (_offset.dy < _minHeight) {
-          _offset = Offset(
-              0, _minHeight); // makes sure it doesn't go beyond minHeight
+          _offset = Offset(0, _minHeight);
           timer.cancel();
         }
       }

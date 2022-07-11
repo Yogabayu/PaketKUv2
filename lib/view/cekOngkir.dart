@@ -48,7 +48,7 @@ class _CekOngkirState extends State<CekOngkir> {
       onWillPop: () async {
         Get.offAll(
           () => Dashboard(),
-          transition: Transition.fade,
+          transition: Transition.fadeIn,
           duration: Duration(seconds: 1),
         );
         return false;

@@ -1,9 +1,15 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tracking/constant/constantVariabel.dart';
 import 'package:tracking/view/cekOngkir.dart';
 import 'package:tracking/view/dashboard.dart';
+import 'package:tracking/widget/lainnya/bagikan_widget.dart';
+import 'package:tracking/widget/lainnya/delete_widget.dart';
+import 'package:tracking/widget/lainnya/email_to_widget.dart';
+import 'package:tracking/widget/lainnya/rating_widget.dart';
 
 class Lainnya extends StatefulWidget {
   const Lainnya({Key? key}) : super(key: key);
@@ -98,176 +104,23 @@ class _LainnyaState extends State<Lainnya> {
               ),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(
-                        Icons.delete_forever_outlined,
-                        color: Colors.blue,
-                        size: width * 0.07,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Colors.grey.withOpacity(0.3),
-                                width: 2.5),
-                          ),
-                        ),
-                        width: width * 0.6,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Bersihkan History",
-                              style: GoogleFonts.roboto(
-                                fontSize: height * 0.024,
-                                color: Color.fromARGB(255, 4, 120, 122),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              width: width * 0.1,
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Color.fromARGB(255, 246, 142, 37),
-                              ),
-                              iconSize: width * 0.05,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+                  DeleteAllWidget(
+                    namaIcon: Icons.delete_forever_outlined,
+                    isiText: "Bersihkan History",
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(
-                        Icons.share,
-                        color: Color.fromARGB(255, 246, 142, 37),
-                        size: width * 0.07,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Colors.grey.withOpacity(0.3),
-                                width: 2.5),
-                          ),
-                        ),
-                        width: width * 0.6,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Bagikan History",
-                              style: GoogleFonts.roboto(
-                                fontSize: height * 0.024,
-                                color: Color.fromARGB(255, 4, 120, 122),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Color.fromARGB(255, 246, 142, 37),
-                              ),
-                              iconSize: width * 0.05,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+                  BagikanWidget(
+                    namaIcon: Icons.share,
+                    isiText: "Bagikan Aplikasi",
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(
-                        Icons.star,
-                        color: Color.fromARGB(255, 246, 142, 37),
-                        size: width * 0.07,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Colors.grey.withOpacity(0.3),
-                                width: 2.5),
-                          ),
-                        ),
-                        width: width * 0.6,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Beri Rating",
-                              style: GoogleFonts.roboto(
-                                fontSize: height * 0.024,
-                                color: Color.fromARGB(255, 4, 120, 122),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Color.fromARGB(255, 246, 142, 37),
-                              ),
-                              iconSize: width * 0.05,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+                  RatingWidget(
+                    namaIcon: Icons.star,
+                    isiText: "Beri Rating",
+                    url:
+                        'https://play.google.com/store/apps/details?id=com.yogadev.tracking',
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(
-                        Icons.mail,
-                        color: Color.fromARGB(255, 246, 142, 37),
-                        size: width * 0.07,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: Colors.grey.withOpacity(0.3),
-                                width: 2.5),
-                          ),
-                        ),
-                        width: width * 0.6,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Kontak Kami",
-                              style: GoogleFonts.roboto(
-                                fontSize: height * 0.024,
-                                color: Color.fromARGB(255, 4, 120, 122),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Color.fromARGB(255, 246, 142, 37),
-                              ),
-                              iconSize: width * 0.05,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+                  EmailtoWidget(
+                    namaIcon: Icons.mail,
+                    isiText: "Kontak Kami",
                   ),
                 ],
               ),

@@ -213,7 +213,7 @@ class _Tracking2State extends State<Tracking2> {
                                     : "${snapshot.data!.data!.detail!.origin}",
                                 style: GoogleFonts.roboto(
                                   color: Color.fromARGB(255, 246, 142, 37),
-                                  fontSize: height * 0.02,
+                                  fontSize: height * 0.015,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -235,7 +235,7 @@ class _Tracking2State extends State<Tracking2> {
                                     : "${snapshot.data!.data!.summary!.status}",
                                 style: GoogleFonts.roboto(
                                   color: Color.fromARGB(255, 246, 142, 37),
-                                  fontSize: height * 0.02,
+                                  fontSize: height * 0.015,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -257,7 +257,7 @@ class _Tracking2State extends State<Tracking2> {
                                     : "${snapshot.data!.data!.detail!.destination}",
                                 style: GoogleFonts.roboto(
                                   color: Color.fromARGB(255, 246, 142, 37),
-                                  fontSize: height * 0.02,
+                                  fontSize: height * 0.015,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
