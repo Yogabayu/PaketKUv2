@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
-        // home: const Dashboard(),
         home: SplashScreen(
           loadingText: new Text(
             'Developed by Yoga Dev.',
