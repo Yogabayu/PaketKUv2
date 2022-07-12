@@ -16,37 +16,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.system,
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
-        // home: const Dashboard(),
-        home: SplashScreen(
-          loadingText: new Text(
-            'Developed by Yoga Dev.',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.roboto(
-              fontWeight: FontWeight.bold,
-              fontSize: 12.0,
-              color: Color.fromARGB(255, 5, 78, 94),
-            ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
+      // home: const Dashboard(),
+      home: SplashScreen(
+        loadingText: new Text(
+          'Developed by Yoga Dev.',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.roboto(
+            fontWeight: FontWeight.bold,
+            fontSize: 12.0,
+            color: Color.fromARGB(255, 5, 78, 94),
           ),
-          seconds: 4,
-          navigateAfterSeconds: Dashboard(),
-          title: new Text(
-            'PaketKU',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.roboto(
-              fontWeight: FontWeight.bold,
-              fontSize: 30.0,
-              color: Color.fromARGB(255, 246, 142, 37),
-            ),
+        ),
+        seconds: 4,
+        navigateAfterSeconds: Dashboard(),
+        title: new Text(
+          'PaketKU',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.roboto(
+            fontWeight: FontWeight.bold,
+            fontSize: 30.0,
+            color: Color.fromARGB(255, 246, 142, 37),
           ),
-          image: new Image.asset('assets/image/logo1.png'),
-          photoSize: 100.0,
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
-          styleTextUnderTheLoader: new TextStyle(),
-          loaderColor: Color.fromARGB(255, 246, 142, 37),
-        ));
+        ),
+        image: new Image.asset('assets/image/logo1.png'),
+        photoSize: 100.0,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        styleTextUnderTheLoader: new TextStyle(),
+        loaderColor: Color.fromARGB(255, 246, 142, 37),
+      ),
+    );
   }
 }

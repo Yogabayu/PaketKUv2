@@ -41,6 +41,8 @@ class _Tracking2State extends State<Tracking2> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+
+    bool keyboardIsOpen = MediaQuery.of(context).viewInsets.bottom != 0;
     bool _isSukses = true;
     return WillPopScope(
       onWillPop: () async {
@@ -52,16 +54,20 @@ class _Tracking2State extends State<Tracking2> {
         return false;
       },
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 55, 202, 236),
-          child: Icon(Icons.home),
-          onPressed: () {
-            Get.offAll(
-              () => Dashboard(),
-              transition: Transition.fadeIn,
-              duration: Duration(seconds: 1),
-            );
-          },
+        resizeToAvoidBottomInset: true,
+        floatingActionButton: Visibility(
+          visible: !keyboardIsOpen,
+          child: FloatingActionButton(
+            backgroundColor: Color.fromARGB(255, 55, 202, 236),
+            child: Icon(Icons.home),
+            onPressed: () {
+              Get.offAll(
+                () => Dashboard(),
+                transition: Transition.fadeIn,
+                duration: Duration(seconds: 1),
+              );
+            },
+          ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         appBar: AppBar(
