@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/Yogabayu/TrackPad/blob/master/assets/image/logo1.png" width="150"></p>
+<p align="center"><img src="https://github.com/Yogabayu/PaketKUv2/blob/main/assets/image/logo1.png" width="150"></p>
 
 ## TrackPad
 
