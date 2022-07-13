@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/Yogabayu/PaketKUv2/blob/main/assets/image/logo1.png" width="150"></p>
 
-## TrackPad
+## PaketKU
 
 Aplikasi yang bertujuan untuk mempermudah pengecekan paket perjalanan dan estimasi
 pengiriman paket. Aplikasi ini dibuat menggunakan Flutter Framework serta 
@@ -33,12 +33,9 @@ Untuk menjalankan project ini silahkan ganti file API.dart di dalam folder lib/m
 
 `String apiKey` :: ganti dengan key dari Binderbyte
 
-## Demo
-[Youtube](https://youtube.com/)
-
 
 
 ## Screenshots
 
-<img src="https://github.com/Yogabayu/Trackpad_v2/blob/main/flutter_06.png" width="150"> <img src="https://github.com/Yogabayu/Trackpad_v2/blob/main/flutter_03.png" width="150"> <img src="https://github.com/Yogabayu/Trackpad_v2/blob/main/flutter_02.png" width="150"> <img src="https://github.com/Yogabayu/Trackpad_v2/blob/main/flutter_04.png" width="150"> <img src="https://github.com/Yogabayu/Trackpad_v2/blob/main/flutter_05.png" width="150"> 
+<img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_05.png" width="150"> <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_07.png" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_08.png" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_06.png" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_04.png" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_02.png" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_03.png" width="150"> 
 
