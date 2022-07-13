@@ -12,6 +12,7 @@ import 'package:tracking/helper/sql_helper.dart';
 import 'package:tracking/model/dummy_data_ikon.dart';
 import 'package:tracking/view/cekOngkir.dart';
 import 'package:tracking/view/lainnya.dart';
+import 'package:tracking/view/riwayatTracking.dart';
 import 'package:tracking/view/tracking.dart';
 
 class Dashboard extends StatefulWidget {
@@ -111,18 +112,23 @@ class _DashboardState extends State<Dashboard> {
     String? _iconjk;
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+    bool keyboardIsOpen = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 55, 202, 236),
-        child: Icon(Icons.home),
-        onPressed: () {
-          Get.offAll(
-            () => Dashboard(),
-            transition: Transition.fadeIn,
-            duration: Duration(seconds: 1),
-          );
-        },
+      resizeToAvoidBottomInset: false,
+      floatingActionButton: Visibility(
+        visible: !keyboardIsOpen,
+        child: FloatingActionButton(
+          backgroundColor: Color.fromARGB(255, 55, 202, 236),
+          child: Icon(Icons.home),
+          onPressed: () {
+            Get.offAll(
+              () => Dashboard(),
+              transition: Transition.fadeIn,
+              duration: Duration(seconds: 1),
+            );
+          },
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Stack(
@@ -396,21 +402,26 @@ class _DashboardState extends State<Dashboard> {
                                 ),
                               ),
                             ),
-                            // Text(
-                            //   "Lihat Semua >",
-                            //   style: GoogleFonts.roboto(
-                            //     color: Color.fromARGB(255, 246, 142, 37),
-                            //     fontSize: height * 0.015,
-                            //     fontWeight: FontWeight.bold,
-                            //   ),
-                            // ),
+                            TextButton(
+                              onPressed: () {
+                                Get.to(() => RiwayatTracking());
+                              },
+                              child: Text(
+                                "Lihat Semua >",
+                                style: GoogleFonts.roboto(
+                                  color: Color.fromARGB(255, 246, 142, 37),
+                                  fontSize: height * 0.015,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         SizedBox(
                           height: width * 0.05,
                         ),
                         Container(
-                          height: width * 0.55,
+                          height: width * 0.5,
                           width: width,
                           child: _journals.isEmpty
                               ? Container(
@@ -426,158 +437,176 @@ class _DashboardState extends State<Dashboard> {
                               : ListView.builder(
                                   itemCount: _journals.length,
                                   itemBuilder: (_, index) {
-                                    return Container(
-                                      margin:
-                                          EdgeInsets.only(bottom: width * 0.03),
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            width: width * 0.7,
-                                            height: width * 0.15,
-                                            decoration: BoxDecoration(
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.5),
-                                                  spreadRadius: 2,
-                                                  blurRadius: 3,
-                                                  offset: Offset(2,
-                                                      4), // changes position of shadow
-                                                ),
-                                              ],
-                                              borderRadius:
-                                                  new BorderRadius.only(
-                                                topLeft: Radius.circular(
-                                                    width * 0.04),
-                                                bottomLeft: Radius.circular(
-                                                    width * 0.04),
-                                              ),
-                                              border: Border.all(
-                                                  color: Color.fromARGB(
-                                                      255, 255, 255, 255)),
-                                              color: Colors.white,
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                SizedBox(
-                                                  width: width * 0.03,
-                                                ),
-                                                Text(
-                                                  "${index + 1}",
-                                                  style: GoogleFonts.roboto(
-                                                    color: Color.fromARGB(
-                                                        255, 5, 78, 94),
-                                                    fontSize: height * 0.018,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: SvgPicture.asset(
-                                                    _journals[index]['alamat'],
-                                                    width: width * 0.02,
-                                                    height: width * 0.05,
-                                                  ),
-                                                ),
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons.copy,
-                                                          size: width * 0.03,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                        ),
-                                                        SizedBox(
-                                                          width: width * 0.008,
-                                                        ),
-                                                        SizedBox(
-                                                          width: width * 0.2,
-                                                          child: Text(
-                                                            _journals[index]
-                                                                ['receipt'],
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            style: GoogleFonts
-                                                                .roboto(
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      246,
-                                                                      142,
-                                                                      37),
-                                                              fontSize: height *
-                                                                  0.018,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.2,
-                                                      child: Text(
-                                                        _journals[index]
-                                                            ['namaSVG'],
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontSize:
-                                                              height * 0.018,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  width: width * 0.03,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              width: width * 0.1,
+                                    return GestureDetector(
+                                      onTap: () => Get.to(
+                                        () => Tracking2(
+                                          receipt: _journals[index]['receipt'],
+                                          jk: _journals[index]['jk'],
+                                          svg: _journals[index]['alamat'],
+                                        ),
+                                      ),
+                                      child: Container(
+                                        margin: EdgeInsets.only(
+                                            bottom: width * 0.03),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              width: width * 0.7,
                                               height: width * 0.15,
                                               decoration: BoxDecoration(
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 2,
+                                                    blurRadius: 3,
+                                                    offset: Offset(2,
+                                                        4), // changes position of shadow
+                                                  ),
+                                                ],
                                                 borderRadius:
                                                     new BorderRadius.only(
-                                                  topRight: Radius.circular(
+                                                  topLeft: Radius.circular(
                                                       width * 0.04),
-                                                  bottomRight: Radius.circular(
+                                                  bottomLeft: Radius.circular(
                                                       width * 0.04),
                                                 ),
-                                                color: Color.fromARGB(
-                                                    255, 246, 142, 37),
+                                                border: Border.all(
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255)),
+                                                color: Colors.white,
                                               ),
-                                              child: IconButton(
-                                                onPressed: () {
-                                                  _deleteItem(
-                                                      _journals[index]['id']);
-                                                },
-                                                icon: Icon(
-                                                  Icons.delete,
-                                                  color: Colors.white,
-                                                ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  SizedBox(
+                                                    width: width * 0.03,
+                                                  ),
+                                                  Text(
+                                                    "${index + 1}",
+                                                    style: GoogleFonts.roboto(
+                                                      color: Color.fromARGB(
+                                                          255, 5, 78, 94),
+                                                      fontSize: height * 0.018,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: SvgPicture.asset(
+                                                      _journals[index]
+                                                          ['alamat'],
+                                                      width: width * 0.02,
+                                                      height: width * 0.05,
+                                                    ),
+                                                  ),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons.copy,
+                                                            size: width * 0.03,
+                                                            color: Colors.black
+                                                                .withOpacity(
+                                                                    0.5),
+                                                          ),
+                                                          SizedBox(
+                                                            width:
+                                                                width * 0.008,
+                                                          ),
+                                                          SizedBox(
+                                                            width: width * 0.2,
+                                                            child: Text(
+                                                              _journals[index]
+                                                                  ['receipt'],
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              style: GoogleFonts
+                                                                  .roboto(
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        246,
+                                                                        142,
+                                                                        37),
+                                                                fontSize:
+                                                                    height *
+                                                                        0.018,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        width: width * 0.2,
+                                                        child: Text(
+                                                          _journals[index]
+                                                              ['namaSVG'],
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                            color: Colors.black
+                                                                .withOpacity(
+                                                                    0.5),
+                                                            fontSize:
+                                                                height * 0.018,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    width: width * 0.03,
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          )
-                                        ],
+                                            Expanded(
+                                              child: Container(
+                                                width: width * 0.1,
+                                                height: width * 0.15,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      new BorderRadius.only(
+                                                    topRight: Radius.circular(
+                                                        width * 0.04),
+                                                    bottomRight:
+                                                        Radius.circular(
+                                                            width * 0.04),
+                                                  ),
+                                                  color: Color.fromARGB(
+                                                      255, 246, 142, 37),
+                                                ),
+                                                child: IconButton(
+                                                  onPressed: () {
+                                                    _deleteItem(
+                                                        _journals[index]['id']);
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.delete,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     );
                                   },

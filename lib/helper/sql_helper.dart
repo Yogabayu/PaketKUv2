@@ -8,6 +8,7 @@ class SQLHelper {
         receipt TEXT,
         alamat VARCHAR,
         namaSVG VARCHAR,
+        jk VARCHAR,
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
       """);
@@ -47,6 +48,7 @@ class SQLHelper {
     String receipt,
     String namaSVG,
     String alamat,
+    String jk,
   ) async {
     final db = await SQLHelper.db();
 
@@ -54,6 +56,7 @@ class SQLHelper {
       'receipt': receipt,
       'alamat': alamat,
       'namaSVG': namaSVG,
+      'jk': jk,
     };
     final id = await db.insert('items', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);

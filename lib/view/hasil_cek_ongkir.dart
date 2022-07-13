@@ -9,6 +9,7 @@ import 'package:tracking/model/api.dart';
 import 'package:tracking/model/ongkir.dart';
 import 'package:tracking/view/cekOngkir.dart';
 import 'package:tracking/view/dashboard.dart';
+import 'package:tracking/view/lainnya.dart';
 
 class HasilCekOngkir extends StatefulWidget {
   String kotaAsal;
@@ -408,7 +409,13 @@ class _HasilCekOngkirState extends State<HasilCekOngkir> {
                 ),
                 MaterialButton(
                   minWidth: 40,
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.offAll(
+                      () => Lainnya(),
+                      transition: Transition.fadeIn,
+                      duration: Duration(seconds: 1),
+                    );
+                  },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

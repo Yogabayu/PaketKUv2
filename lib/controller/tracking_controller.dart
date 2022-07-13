@@ -77,6 +77,7 @@ class TrackingController extends GetxController {
           receipt,
           alamat,
           namaSVG.toString(),
+          jKirim,
         );
 
         return Receipt.fromJson(jsonDecode(response.body));

@@ -21,18 +21,23 @@ class Lainnya extends StatefulWidget {
 class _LainnyaState extends State<Lainnya> {
   @override
   Widget build(BuildContext context) {
+    bool keyboardIsOpen = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 223, 223, 223),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 55, 202, 236),
-        child: Icon(Icons.home),
-        onPressed: () {
-          Get.offAll(
-            () => Dashboard(),
-            transition: Transition.fadeIn,
-            duration: Duration(seconds: 1),
-          );
-        },
+      resizeToAvoidBottomInset: true,
+      floatingActionButton: Visibility(
+        visible: !keyboardIsOpen,
+        child: FloatingActionButton(
+          backgroundColor: Color.fromARGB(255, 55, 202, 236),
+          child: Icon(Icons.home),
+          onPressed: () {
+            Get.offAll(
+              () => Dashboard(),
+              transition: Transition.fadeIn,
+              duration: Duration(seconds: 1),
+            );
+          },
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: AppBar(
@@ -60,8 +65,14 @@ class _LainnyaState extends State<Lainnya> {
                     height: width * 0.25,
                     child: Image.asset('assets/image/logo1.png'),
                   ),
-                  SizedBox(
-                    height: 20,
+                  Text(
+                    'PaketKU',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      fontSize: width * 0.06,
+                      color: Color.fromARGB(255, 246, 142, 37),
+                    ),
                   ),
                   Text(
                     "Developer: Yoga Dev.",
@@ -69,16 +80,6 @@ class _LainnyaState extends State<Lainnya> {
                       fontSize: height * 0.025,
                       color: Color.fromARGB(255, 4, 120, 122),
                       fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "Yoga Bayu Anggana Pratama",
-                      style: GoogleFonts.roboto(
-                        fontSize: height * 0.025,
-                        color: Color.fromARGB(255, 4, 120, 122),
-                        fontWeight: FontWeight.bold,
-                      ),
                     ),
                   ),
                 ],
