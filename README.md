@@ -15,7 +15,7 @@ API pihak (Raja Ongkir dan BinderByte). Dilengkapi dengan fitur:
 ## Authors
 
 - [@yogabayu.ap](https://www.instagram.com/yogabayu.ap) - flutter Development
-- [@ronaldo_fransiscoo](https://www.instagram.com/ronaldo_fransiscoo) - App Logo Design
+- [@ronaldo_fransiscoo](https://www.instagram.com/ronaldo_fransiscoo) - App Logo Design dan UI & UI Design
 
 
 ## Tech Stack
