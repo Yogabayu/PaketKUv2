@@ -43,9 +43,9 @@ class TrackingController extends GetxController {
 
   Future<Receipt> fetchData(receipt, jk) async {
     try {
-      if (jk == 'Shopee express') {
+      if (jk == 'Shopee') {
         jKirim = "spx";
-      } else if (jk == 'SAP express') {
+      } else if (jk == 'SAP') {
         jKirim = "sap";
       } else if (jk == 'ID express') {
         jKirim = "ide";
