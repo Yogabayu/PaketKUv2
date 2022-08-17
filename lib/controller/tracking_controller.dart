@@ -5,12 +5,8 @@ import 'package:http/io_client.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tracking/helper/sql_helper.dart';
-// import 'package:tracking/helper/sql_helper.dart';
-// import 'package:tracking/helper/sql_helper.dart';
 import 'package:tracking/model/api.dart';
 import 'package:tracking/model/receipt.dart';
-// import 'package:tracking/view/tracking.dart';
-// import 'package:tracking/page/tracking%20_detail.dart';
 
 class TrackingController extends GetxController {
   String alamat = "";
@@ -18,17 +14,6 @@ class TrackingController extends GetxController {
   String jKirim = "";
   List<dynamic> data = []; //edited line
   Map<String, dynamic> map = {};
-
-  // Future<void> showData(dataReceipt, dataDropdowwn) async {
-  //   Get.to(
-  //     () => Tracking(
-  //       receipt: dataReceipt,
-  //       jk: dataDropdowwn,
-  //     ),
-  //     transition: Transition.fade,
-  //     duration: Duration(seconds: 1),
-  //   );
-  // }
   RxString namaSVG = "".obs;
   RxString namajs = "".obs;
 

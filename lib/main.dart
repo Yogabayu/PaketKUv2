@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      // home: Dashboard(),
       home: SplashScreen(
         loadingText: new Text(
           'Developed by Yoga Dev.',

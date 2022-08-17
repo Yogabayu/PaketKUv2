@@ -9,13 +9,11 @@ class SQLHelper {
         alamat VARCHAR,
         namaSVG VARCHAR,
         jk VARCHAR,
-        createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        unique(receipt,alamat,namaSVG,jk)
       )
       """);
   }
-// id: the id of a item
-// title, description: name and description of your activity
-// created_at: the time that the item was created. It will be automatically handled by SQLite
 
   static Future<sql.Database> db() async {
     return sql.openDatabase(
@@ -27,23 +25,6 @@ class SQLHelper {
     );
   }
 
-  // cek item
-  // static Future<bool> cekItem(String receipt, String jkirim) async {
-  //   final db = await SQLHelper.db();
-  //   bool hasilCek;
-  //   final hasil =
-  //       await db.rawQuery('SELECT COUNT(*) from items WHERE receipt=$receipt');
-  //   if (hasil.isNotEmpty) {
-  //     print(hasil);
-  //     hasilCek = true;
-  //   } else {
-  //     print(hasil);
-  //     hasilCek = false;
-  //   }
-  //   return hasilCek;
-  // }
-
-  // Create new item (journal)
   static Future<int> createItem(
     String receipt,
     String namaSVG,
@@ -64,21 +45,11 @@ class SQLHelper {
     return id;
   }
 
-  // Read all items (journals)
   static Future<List<Map<String, dynamic>>> getItems() async {
     final db = await SQLHelper.db();
     return db.query('items', orderBy: "id");
   }
 
-  // Read a single item by id
-  // The app doesn't use this method but I put here in case you want to see it
-  // static Future<List<Map<String, dynamic>>> getItem(String receipt) async {
-  //   final db = await SQLHelper.db();
-  //   return db.query('items',
-  //       where: "receipt = ?", whereArgs: [receipt], limit: 1);
-  // }
-
-  // Delete
   static Future<void> deleteItem(int id) async {
     final db = await SQLHelper.db();
     try {
