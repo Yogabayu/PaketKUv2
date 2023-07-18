@@ -34,7 +34,7 @@ class _Tracking2State extends State<Tracking2> {
   @override
   void initState() {
     super.initState();
-    print(widget.jk);
+    // print(widget.jk);
     futureReceipt = controller.fetchData("${widget.receipt}", "${widget.jk}");
   }
 

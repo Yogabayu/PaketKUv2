@@ -39,8 +39,30 @@ class SQLHelper {
       'namaSVG': namaSVG,
       'jk': jk,
     };
-    final id = await db.insert('items', data,
-        conflictAlgorithm: sql.ConflictAlgorithm.replace);
+    // final id = await db.insert('items', data,
+    //     conflictAlgorithm: sql.ConflictAlgorithm.replace);
+    final id = await db.transaction<int>((txn) async {
+      final existingData = await txn.rawQuery(
+        'SELECT * FROM items WHERE receipt = ?',
+        [data['receipt']],
+      );
+
+      if (existingData.isNotEmpty) {
+        return -1; // Jika data dengan receipt yang sama sudah ada, kembalikan nilai -1
+      }
+
+      final rawQuery = '''
+    INSERT INTO items(receipt, alamat, namaSVG, jk)
+    VALUES(?, ?, ?, ?)
+  ''';
+      final values = [
+        data['receipt'],
+        data['alamat'],
+        data['namaSVG'],
+        data['jk'],
+      ];
+      return await txn.rawInsert(rawQuery, values);
+    });
 
     return id;
   }

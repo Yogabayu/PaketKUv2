@@ -55,6 +55,8 @@ class _DashboardState extends State<Dashboard> {
     setState(() {
       _journals = data;
     });
+
+    print(_journals);
   }
 
   void _deleteItem(int id) async {

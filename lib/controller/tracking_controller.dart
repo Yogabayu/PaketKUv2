@@ -57,6 +57,9 @@ class TrackingController extends GetxController {
         },
       );
       if (response.statusCode == 200) {
+        // print(response.body);
+        // print(namaSVG);
+        // print(jKirim);
         alamat = jsonDecode(response.body)['data']['detail']['destination'];
         await SQLHelper.createItem(
           receipt,
