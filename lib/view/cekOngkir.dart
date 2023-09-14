@@ -158,29 +158,29 @@ class _CekOngkirState extends State<CekOngkir> {
                                 width: width * 0.6,
                                 height: height * 0.16,
                                 child: DropdownSearch<Kota>(
-                                  dropdownSearchDecoration: InputDecoration(
-                                    prefixIconColor:
-                                        Color.fromARGB(255, 246, 142, 37),
-                                    suffixIconColor:
-                                        Color.fromARGB(255, 246, 142, 37),
-                                    // helperText: "  Kota Asal",
-                                    border: InputBorder.none,
+                                  dropdownDecoratorProps:
+                                      DropDownDecoratorProps(
+                                    dropdownSearchDecoration: InputDecoration(
+                                      prefixIconColor:
+                                          Color.fromARGB(255, 246, 142, 37),
+                                      suffixIconColor:
+                                          Color.fromARGB(255, 246, 142, 37),
+                                      // helperText: "  Kota Asal",
+                                      border: InputBorder.none,
+                                    ),
                                   ),
-                                  dropdownSearchBaseStyle: GoogleFonts.roboto(
-                                    fontSize: height * 0.02,
-                                    color: Color.fromARGB(255, 246, 142, 37),
+                                  popupProps: PopupProps.menu(
+                                    showSearchBox: true,
                                   ),
-                                  mode: Mode.MENU,
-                                  showSearchBox: true,
+                                  itemAsString: (item) =>
+                                      "${item.type} ${item.cityName}",
                                   onChanged: (value) {
                                     setState(() {
                                       kota_asal = value?.cityId;
                                       cityName = value?.cityName;
                                     });
                                   },
-                                  itemAsString: (item) =>
-                                      "${item!.type} ${item.cityName}",
-                                  onFind: (text) async {
+                                  asyncItems: (text) async {
                                     final ioc = new HttpClient();
                                     ioc.badCertificateCallback =
                                         (X509Certificate cert, String host,
@@ -337,23 +337,29 @@ class _CekOngkirState extends State<CekOngkir> {
                                 width: width * 0.6,
                                 height: height * 0.16,
                                 child: DropdownSearch<Kota>(
-                                  dropdownSearchDecoration:
-                                      InputDecoration(border: InputBorder.none),
-                                  dropdownSearchBaseStyle: GoogleFonts.roboto(
-                                    fontSize: height * 0.02,
-                                    color: Color.fromARGB(255, 2, 84, 86),
+                                  dropdownDecoratorProps:
+                                      DropDownDecoratorProps(
+                                    dropdownSearchDecoration: InputDecoration(
+                                      prefixIconColor:
+                                          Color.fromARGB(255, 246, 142, 37),
+                                      suffixIconColor:
+                                          Color.fromARGB(255, 246, 142, 37),
+                                      // helperText: "  Kota Asal",
+                                      border: InputBorder.none,
+                                    ),
                                   ),
-                                  mode: Mode.MENU,
-                                  showSearchBox: true,
+                                  popupProps: PopupProps.menu(
+                                    showSearchBox: true,
+                                  ),
+                                  itemAsString: (item) =>
+                                      "${item.type} ${item.cityName}",
                                   onChanged: (value) {
                                     setState(() {
                                       kota_tujuan = value?.cityId;
                                       cityTujuan = value?.cityName;
                                     });
                                   },
-                                  itemAsString: (item) =>
-                                      "${item!.type} ${item.cityName}",
-                                  onFind: (text) async {
+                                  asyncItems: (text) async {
                                     final ioc = new HttpClient();
                                     ioc.badCertificateCallback =
                                         (X509Certificate cert, String host,
