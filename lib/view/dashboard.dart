@@ -805,6 +805,7 @@ class _DashboardState extends State<Dashboard> {
   }
 
   void _handleClick() {
+    FocusScope.of(context).unfocus();
     _isOpen = !_isOpen;
     Timer.periodic(Duration(milliseconds: 1), (timer) {
       if (_isOpen) {

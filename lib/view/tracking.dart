@@ -315,7 +315,7 @@ class _Tracking2State extends State<Tracking2> {
               ),
               Container(
                 width: width,
-                height: width * 0.8,
+                height: width * 0.9,
                 child: FutureBuilder<Receipt>(
                     future: futureReceipt,
                     builder: (context, snapshot) {

@@ -114,12 +114,12 @@ class _RiwayatTrackingState extends State<RiwayatTracking> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(
+                padding: EdgeInsets.only(
                   right: width * 0.1,
                   left: width * 0.1,
                   top: width * 0.05,
                 ),
-                height: width * 0.55,
+                height: height * 0.8,
                 width: width,
                 child: _journals.isEmpty
                     ? Container(
