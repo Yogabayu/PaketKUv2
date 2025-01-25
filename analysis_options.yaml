@@ -12,6 +12,7 @@ analyzer:
     depend_on_referenced_packages: ignore
     file_names: ignore
     library_private_types_in_public_api: ignore
+    no_leading_underscores_for_local_identifiers: ignore
     non_constant_identifier_names: ignore
     prefer_final_fields: ignore
     prefer_interpolation_to_compose_strings: ignore

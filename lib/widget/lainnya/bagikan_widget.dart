@@ -9,10 +9,10 @@ class BagikanWidget extends StatelessWidget {
   IconData namaIcon;
   String isiText;
   BagikanWidget({
-    Key? key,
+    super.key,
     required this.namaIcon,
     required this.isiText,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,8 +27,7 @@ class BagikanWidget extends StatelessWidget {
           padding: EdgeInsets.all(4),
           decoration: BoxDecoration(
             border: Border(
-              bottom:
-                  BorderSide(color: Colors.grey.withOpacity(0.3), width: 2.5),
+              bottom: BorderSide(color: Colors.grey.withAlpha(76), width: 2.5),
             ),
           ),
           width: width * 0.6,

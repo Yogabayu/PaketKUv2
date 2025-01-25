@@ -10,11 +10,11 @@ class RatingWidget extends StatelessWidget {
   String isiText;
   String url;
   RatingWidget({
-    Key? key,
+    super.key,
     required this.namaIcon,
     required this.isiText,
     required this.url,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     final Uri _url = Uri.parse(url);
@@ -31,8 +31,7 @@ class RatingWidget extends StatelessWidget {
           padding: EdgeInsets.all(4),
           decoration: BoxDecoration(
             border: Border(
-              bottom:
-                  BorderSide(color: Colors.grey.withOpacity(0.3), width: 2.5),
+              bottom: BorderSide(color: Colors.grey.withAlpha(76), width: 2.5),
             ),
           ),
           width: width * 0.6,

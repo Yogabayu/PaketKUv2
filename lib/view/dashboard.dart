@@ -7,6 +7,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:paketku/controller/tracking_controller.dart';
 import 'package:paketku/helper/sql_helper.dart';
 import 'package:paketku/model/dummy_data_ikon.dart';
@@ -16,7 +17,7 @@ import 'package:paketku/view/riwayatTracking.dart';
 import 'package:paketku/view/tracking.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+  const Dashboard({super.key});
 
   @override
   _DashboardState createState() => _DashboardState();
@@ -39,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
       "Silahkan isi semua kolom terlebih dahulu",
       icon: Icon(Icons.block_outlined, color: Colors.red),
       snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Color.fromARGB(255, 246, 142, 37).withOpacity(0.5),
+      backgroundColor: Color.fromARGB(255, 246, 142, 37).withAlpha(128),
       borderRadius: 20,
       margin: EdgeInsets.all(15),
       colorText: Colors.black,
@@ -55,8 +56,6 @@ class _DashboardState extends State<Dashboard> {
     setState(() {
       _journals = data;
     });
-
-    print(_journals);
   }
 
   void _deleteItem(int id) async {
@@ -67,9 +66,11 @@ class _DashboardState extends State<Dashboard> {
       duration: maxDuration,
     );
 
-    ScaffoldMessenger.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(snackBar);
+    if (mounted) {
+      ScaffoldMessenger.of(context)
+        ..removeCurrentSnackBar()
+        ..showSnackBar(snackBar);
+    }
     _refreshJournals();
   }
 
@@ -86,11 +87,10 @@ class _DashboardState extends State<Dashboard> {
     Geolocator.getCurrentPosition().then((Position position) {
       setState(() {
         _currentPosition = position;
-        print(_currentPosition);
         _getAddressFromLatLng();
       });
     }).catchError((e) {
-      print(e);
+      Logger().e(e);
     });
   }
 
@@ -105,7 +105,7 @@ class _DashboardState extends State<Dashboard> {
         _currentAddress = "${place.locality}";
       });
     } catch (e) {
-      print(e);
+      Logger().e(e);
     }
   }
 
@@ -147,7 +147,7 @@ class _DashboardState extends State<Dashboard> {
               padding: EdgeInsets.only(
                   top: width * 0.05, right: width * 0.05, left: width * 0.05),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 198, 197, 197).withOpacity(0.8),
+                color: Color.fromARGB(255, 198, 197, 197).withAlpha(204),
               ),
               child: ListView(
                 children: [
@@ -227,7 +227,7 @@ class _DashboardState extends State<Dashboard> {
                             Icons.search,
                             color: Color.fromARGB(255, 246, 142, 37),
                           ),
-                          Container(
+                          SizedBox(
                             width: width * 0.6,
                             height: height * 0.05,
                             child: TextField(
@@ -241,14 +241,14 @@ class _DashboardState extends State<Dashboard> {
                                 hintText: "Masukkan nomor resi disini",
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(0.5),
+                                    color: Colors.white.withAlpha(128),
                                   ),
                                   borderRadius:
                                       BorderRadius.circular(width * 0.1),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(0.5),
+                                    color: Colors.white.withAlpha(128),
                                   ),
                                   borderRadius:
                                       BorderRadius.circular(width * 0.1),
@@ -301,7 +301,7 @@ class _DashboardState extends State<Dashboard> {
                               Icons.search,
                               color: Color.fromARGB(255, 246, 142, 37),
                             ),
-                            Container(
+                            SizedBox(
                               width: width * 0.35,
                               child: Center(
                                 child: Obx(
@@ -328,15 +328,15 @@ class _DashboardState extends State<Dashboard> {
                     height: height * 0.025,
                   ),
                   Center(
-                    child: Container(
+                    child: SizedBox(
                       width: width * 0.3,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
+                          backgroundColor: WidgetStateProperty.all(
                             Color.fromARGB(255, 246, 142, 37),
                           ),
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                               side: BorderSide(color: Colors.white),
@@ -378,7 +378,7 @@ class _DashboardState extends State<Dashboard> {
                       borderRadius: new BorderRadius.all(
                         Radius.circular(width * 0.05),
                       ),
-                      color: Colors.white.withOpacity(0.7),
+                      color: Colors.white.withAlpha(179),
                     ),
                     width: width,
                     height: width * 0.8,
@@ -422,11 +422,11 @@ class _DashboardState extends State<Dashboard> {
                         SizedBox(
                           height: width * 0.05,
                         ),
-                        Container(
+                        SizedBox(
                           height: width * 0.5,
                           width: width,
                           child: _journals.isEmpty
-                              ? Container(
+                              ? SizedBox(
                                   height: height * 0.2,
                                   child: Center(
                                       child: Text(
@@ -459,7 +459,7 @@ class _DashboardState extends State<Dashboard> {
                                                 boxShadow: [
                                                   BoxShadow(
                                                     color: Colors.grey
-                                                        .withOpacity(0.5),
+                                                        .withAlpha(128),
                                                     spreadRadius: 2,
                                                     blurRadius: 3,
                                                     offset: Offset(2,
@@ -518,8 +518,7 @@ class _DashboardState extends State<Dashboard> {
                                                             Icons.copy,
                                                             size: width * 0.03,
                                                             color: Colors.black
-                                                                .withOpacity(
-                                                                    0.5),
+                                                                .withAlpha(128),
                                                           ),
                                                           SizedBox(
                                                             width:
@@ -562,8 +561,7 @@ class _DashboardState extends State<Dashboard> {
                                                           style: GoogleFonts
                                                               .roboto(
                                                             color: Colors.black
-                                                                .withOpacity(
-                                                                    0.5),
+                                                                .withAlpha(128),
                                                             fontSize:
                                                                 height * 0.018,
                                                             fontWeight:
@@ -648,7 +646,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
+                      color: Colors.grey.withAlpha(128),
                       spreadRadius: 5,
                       blurRadius: 10)
                 ],
@@ -742,7 +740,7 @@ class _DashboardState extends State<Dashboard> {
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 5,
-        child: Container(
+        child: SizedBox(
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -756,7 +754,7 @@ class _DashboardState extends State<Dashboard> {
                     duration: Duration(seconds: 1),
                   );
                 },
-                child: Container(
+                child: SizedBox(
                   width: width * 0.2,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -781,7 +779,7 @@ class _DashboardState extends State<Dashboard> {
                     duration: Duration(seconds: 1),
                   );
                 },
-                child: Container(
+                child: SizedBox(
                   width: width * 0.2,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

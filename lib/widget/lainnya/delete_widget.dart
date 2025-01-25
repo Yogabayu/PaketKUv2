@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:paketku/constant/constantVariabel.dart';
 import 'package:paketku/helper/sql_helper.dart';
 
@@ -9,10 +10,10 @@ class DeleteAllWidget extends StatelessWidget {
   IconData namaIcon;
   String isiText;
   DeleteAllWidget({
-    Key? key,
+    super.key,
     required this.namaIcon,
     required this.isiText,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,8 +28,7 @@ class DeleteAllWidget extends StatelessWidget {
           padding: EdgeInsets.all(4),
           decoration: BoxDecoration(
             border: Border(
-              bottom:
-                  BorderSide(color: Colors.grey.withOpacity(0.3), width: 2.5),
+              bottom: BorderSide(color: Colors.grey.withAlpha(77), width: 2.5),
             ),
           ),
           width: width * 0.6,
@@ -52,11 +52,13 @@ class DeleteAllWidget extends StatelessWidget {
                       duration: Duration(seconds: 2),
                     );
 
-                    ScaffoldMessenger.of(context)
-                      ..removeCurrentSnackBar()
-                      ..showSnackBar(snackBar);
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context)
+                        ..removeCurrentSnackBar()
+                        ..showSnackBar(snackBar);
+                    }
                   } catch (e) {
-                    print("Eror");
+                    Logger().e("Error deleting data: $e");
                   }
                 },
                 icon: Icon(

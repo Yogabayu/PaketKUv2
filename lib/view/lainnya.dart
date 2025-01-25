@@ -9,7 +9,7 @@ import 'package:paketku/view/dashboard.dart';
 import 'package:paketku/widget/lainnya/bagikan_widget.dart';
 import 'package:paketku/widget/lainnya/delete_widget.dart';
 import 'package:paketku/widget/lainnya/email_to_widget.dart';
-import 'package:paketku/widget/lainnya/rating_widget.dart';
+// import 'package:paketku/widget/lainnya/rating_widget.dart';
 
 class Lainnya extends StatefulWidget {
   const Lainnya({super.key});
@@ -112,12 +112,12 @@ class _LainnyaState extends State<Lainnya> {
                   namaIcon: Icons.share,
                   isiText: "Bagikan Aplikasi",
                 ),
-                RatingWidget(
-                  namaIcon: Icons.star,
-                  isiText: "Beri Rating",
-                  url:
-                      'https://play.google.com/store/apps/details?id=com.yogadev.tracking',
-                ),
+                // RatingWidget(
+                //   namaIcon: Icons.star,
+                //   isiText: "Beri Rating",
+                //   url:
+                //       'https://play.google.com/store/apps/details?id=com.yogadev.tracking',
+                // ),
                 EmailtoWidget(
                   namaIcon: Icons.mail,
                   isiText: "Kontak Kami",
@@ -130,7 +130,7 @@ class _LainnyaState extends State<Lainnya> {
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 5,
-        child: Container(
+        child: SizedBox(
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -144,7 +144,7 @@ class _LainnyaState extends State<Lainnya> {
                     duration: Duration(seconds: 1),
                   );
                 },
-                child: Container(
+                child: SizedBox(
                   width: width * 0.2,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

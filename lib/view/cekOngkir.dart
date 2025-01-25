@@ -44,14 +44,16 @@ class _CekOngkirState extends State<CekOngkir> {
   @override
   Widget build(BuildContext context) {
     bool keyboardIsOpen = MediaQuery.of(context).viewInsets.bottom != 0;
-    return WillPopScope(
-      onWillPop: () async {
-        Get.offAll(
-          () => Dashboard(),
-          transition: Transition.fadeIn,
-          duration: Duration(seconds: 1),
-        );
-        return false;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (!didPop) {
+          await Get.offAll(
+            () => Dashboard(),
+            transition: Transition.fade,
+            duration: Duration(seconds: 1),
+          );
+        }
       },
       child: Scaffold(
         resizeToAvoidBottomInset: true,
@@ -73,74 +75,348 @@ class _CekOngkirState extends State<CekOngkir> {
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            Container(
-              child: ListView(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.vertical(
-                        bottom: Radius.circular(30.0),
+            ListView(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(30.0),
+                    ),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 2.0,
                       ),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          offset: Offset(0.0, 1.0), //(x,y)
-                          blurRadius: 2.0,
-                        ),
-                      ],
-                    ),
-                    margin: EdgeInsets.only(
-                      left: width * 0.2,
-                      right: width * 0.2,
-                    ),
-                    height: width * 0.2,
-                    width: width,
-                    child: Center(
-                      child: Text(
-                        "CEK ONGKIR",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.roboto(
-                          fontSize: height * 0.04,
-                          color: Color.fromARGB(255, 246, 142, 37),
-                          fontWeight: FontWeight.bold,
-                        ),
+                    ],
+                  ),
+                  margin: EdgeInsets.only(
+                    left: width * 0.2,
+                    right: width * 0.2,
+                  ),
+                  height: width * 0.2,
+                  width: width,
+                  child: Center(
+                    child: Text(
+                      "CEK ONGKIR",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.roboto(
+                        fontSize: height * 0.04,
+                        color: Color.fromARGB(255, 246, 142, 37),
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: width * 0.05,
-                      right: width * 0.05,
-                      top: width * 0.07,
-                    ),
-                    width: width,
-                    height: width * 0.27,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Kota Asal",
-                          style: GoogleFonts.roboto(
-                            fontSize: height * 0.02,
-                            color: Color.fromARGB(255, 4, 120, 122),
-                            fontWeight: FontWeight.bold,
-                          ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    left: width * 0.05,
+                    right: width * 0.05,
+                    top: width * 0.07,
+                  ),
+                  width: width,
+                  height: width * 0.27,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Kota Asal",
+                        style: GoogleFonts.roboto(
+                          fontSize: height * 0.02,
+                          color: Color.fromARGB(255, 4, 120, 122),
+                          fontWeight: FontWeight.bold,
                         ),
-                        Container(
-                          height: width * 0.14,
-                          margin: EdgeInsets.all(width * 0.03),
-                          padding: EdgeInsets.all(width * 0.01),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color.fromARGB(255, 246, 142, 37),
-                              width: 3,
-                            ),
-                            borderRadius: new BorderRadius.all(
-                              Radius.circular(width * 0.09),
-                            ),
-                            color: Colors.white,
+                      ),
+                      Container(
+                        height: width * 0.14,
+                        margin: EdgeInsets.all(width * 0.03),
+                        padding: EdgeInsets.all(width * 0.01),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromARGB(255, 246, 142, 37),
+                            width: 3,
                           ),
+                          borderRadius: new BorderRadius.all(
+                            Radius.circular(width * 0.09),
+                          ),
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: width * 0.05,
+                            ),
+                            Icon(
+                              Icons.search,
+                              color: Color.fromARGB(255, 246, 142, 37),
+                            ),
+                            SizedBox(
+                              width: width * 0.02,
+                            ),
+                            SizedBox(
+                              width: width * 0.6,
+                              height: height * 0.14,
+                              child: DropdownSearch<Kota>(
+                                dropdownDecoratorProps: DropDownDecoratorProps(
+                                  dropdownSearchDecoration: InputDecoration(
+                                    prefixIconColor:
+                                        Color.fromARGB(255, 246, 142, 37),
+                                    suffixIconColor:
+                                        Color.fromARGB(255, 246, 142, 37),
+                                    // helperText: "  Kota Asal",
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                                popupProps: PopupProps.menu(
+                                  showSearchBox: true,
+                                ),
+                                itemAsString: (item) =>
+                                    "${item.type} ${item.cityName}",
+                                onChanged: (value) {
+                                  setState(() {
+                                    kota_asal = value?.cityId;
+                                    cityName = value?.cityName;
+                                  });
+                                },
+                                asyncItems: (text) async {
+                                  final ioc = new HttpClient();
+                                  ioc.badCertificateCallback =
+                                      (X509Certificate cert, String host,
+                                              int port) =>
+                                          true;
+                                  final http = new IOClient(ioc);
+                                  var response = await http.get(Uri.parse(
+                                      "https://api.rajaongkir.com/starter/city?key=$key"));
+
+                                  List allKota = (jsonDecode(response.body)
+                                          as Map<String, dynamic>)['rajaongkir']
+                                      ['results'];
+
+                                  var dataKota = Kota.fromJsonList(allKota);
+
+                                  return dataKota;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    left: width * 0.05,
+                    right: width * 0.05,
+                  ),
+                  width: width,
+                  height: width * 0.27,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Total Berat Paket",
+                        style: GoogleFonts.roboto(
+                          fontSize: height * 0.018,
+                          color: Color.fromARGB(255, 4, 120, 122),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Container(
+                        height: width * 0.14,
+                        margin: EdgeInsets.all(width * 0.03),
+                        padding: EdgeInsets.all(width * 0.01),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromARGB(255, 246, 142, 37),
+                            width: 3,
+                          ),
+                          borderRadius: new BorderRadius.all(
+                            Radius.circular(width * 0.09),
+                          ),
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: width * 0.02,
+                            ),
+                            SizedBox(
+                              width: width * 0.01,
+                              child: Icon(
+                                Icons.monitor_weight_outlined,
+                                color: Color.fromARGB(255, 246, 142, 37),
+                              ),
+                            ),
+                            SizedBox(
+                              width: width * 0.1,
+                            ),
+                            SizedBox(
+                              width: width * 0.55,
+                              child: GestureDetector(
+                                onTap: () => FocusManager.instance.primaryFocus
+                                    ?.unfocus(),
+                                onVerticalDragEnd: (DragEndDetails details) =>
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus(),
+                                child: TextField(
+                                  //input hanya angka
+                                  keyboardType: TextInputType.number,
+
+                                  onChanged: (text) {
+                                    berat = text;
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: width * 0.09,
+                              child: Text(
+                                "gr",
+                                style: GoogleFonts.roboto(
+                                  fontSize: height * 0.018,
+                                  color: Color.fromARGB(255, 246, 142, 37),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    left: width * 0.05,
+                    right: width * 0.05,
+                  ),
+                  width: width,
+                  height: width * 0.27,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Kota Tujuan",
+                        style: GoogleFonts.roboto(
+                          fontSize: height * 0.018,
+                          color: Color.fromARGB(255, 4, 120, 122),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Container(
+                        height: width * 0.14,
+                        margin: EdgeInsets.all(width * 0.03),
+                        padding: EdgeInsets.all(width * 0.01),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromARGB(255, 246, 142, 37),
+                            width: 3,
+                          ),
+                          borderRadius: new BorderRadius.all(
+                            Radius.circular(width * 0.09),
+                          ),
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: width * 0.05,
+                            ),
+                            Icon(
+                              Icons.search,
+                              color: Color.fromARGB(255, 246, 142, 37),
+                            ),
+                            SizedBox(
+                              width: width * 0.02,
+                            ),
+                            SizedBox(
+                              width: width * 0.6,
+                              height: height * 0.16,
+                              child: DropdownSearch<Kota>(
+                                dropdownDecoratorProps: DropDownDecoratorProps(
+                                  dropdownSearchDecoration: InputDecoration(
+                                    prefixIconColor:
+                                        Color.fromARGB(255, 246, 142, 37),
+                                    suffixIconColor:
+                                        Color.fromARGB(255, 246, 142, 37),
+                                    // helperText: "  Kota Asal",
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                                popupProps: PopupProps.menu(
+                                  showSearchBox: true,
+                                ),
+                                itemAsString: (item) =>
+                                    "${item.type} ${item.cityName}",
+                                onChanged: (value) {
+                                  setState(() {
+                                    kota_tujuan = value?.cityId;
+                                    cityTujuan = value?.cityName;
+                                  });
+                                },
+                                asyncItems: (text) async {
+                                  final ioc = new HttpClient();
+                                  ioc.badCertificateCallback =
+                                      (X509Certificate cert, String host,
+                                              int port) =>
+                                          true;
+                                  final http = new IOClient(ioc);
+                                  var response = await http.get(Uri.parse(
+                                      "https://api.rajaongkir.com/starter/city?key=$key"));
+
+                                  List allKota = (jsonDecode(response.body)
+                                          as Map<String, dynamic>)['rajaongkir']
+                                      ['results'];
+
+                                  var dataKota = Kota.fromJsonList(allKota);
+
+                                  return dataKota;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    left: width * 0.05,
+                    right: width * 0.05,
+                  ),
+                  width: width,
+                  height: width * 0.27,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Jasa Kirim",
+                        style: GoogleFonts.roboto(
+                          fontSize: height * 0.018,
+                          color: Color.fromARGB(255, 4, 120, 122),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Container(
+                        height: width * 0.14,
+                        margin: EdgeInsets.all(width * 0.03),
+                        padding: EdgeInsets.all(width * 0.01),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromARGB(255, 246, 142, 37),
+                            width: 3,
+                          ),
+                          borderRadius: new BorderRadius.all(
+                            Radius.circular(width * 0.09),
+                          ),
+                          color: Colors.white,
+                        ),
+                        child: GestureDetector(
+                          onTap: _handleClick,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -152,391 +428,107 @@ class _CekOngkirState extends State<CekOngkir> {
                                 color: Color.fromARGB(255, 246, 142, 37),
                               ),
                               SizedBox(
-                                width: width * 0.02,
-                              ),
-                              Container(
-                                width: width * 0.6,
-                                height: height * 0.14,
-                                child: DropdownSearch<Kota>(
-                                  dropdownDecoratorProps:
-                                      DropDownDecoratorProps(
-                                    dropdownSearchDecoration: InputDecoration(
-                                      prefixIconColor:
-                                          Color.fromARGB(255, 246, 142, 37),
-                                      suffixIconColor:
-                                          Color.fromARGB(255, 246, 142, 37),
-                                      // helperText: "  Kota Asal",
-                                      border: InputBorder.none,
+                                width: width * 0.35,
+                                child: Center(
+                                  child: Obx(
+                                    () => SvgPicture.asset(
+                                      controllerOngkir.namaSVG.value == ''
+                                          ? ''
+                                          : controllerOngkir.namaSVG.value,
+                                      width: width * 0.02,
+                                      height: width * 0.05,
                                     ),
                                   ),
-                                  popupProps: PopupProps.menu(
-                                    showSearchBox: true,
-                                  ),
-                                  itemAsString: (item) =>
-                                      "${item.type} ${item.cityName}",
-                                  onChanged: (value) {
-                                    setState(() {
-                                      kota_asal = value?.cityId;
-                                      cityName = value?.cityName;
-                                    });
-                                  },
-                                  asyncItems: (text) async {
-                                    final ioc = new HttpClient();
-                                    ioc.badCertificateCallback =
-                                        (X509Certificate cert, String host,
-                                                int port) =>
-                                            true;
-                                    final http = new IOClient(ioc);
-                                    var response = await http.get(Uri.parse(
-                                        "https://api.rajaongkir.com/starter/city?key=$key"));
-
-                                    List allKota = (jsonDecode(response.body)
-                                            as Map<String, dynamic>)[
-                                        'rajaongkir']['results'];
-
-                                    var dataKota = Kota.fromJsonList(allKota);
-
-                                    return dataKota;
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: width * 0.05,
-                      right: width * 0.05,
-                    ),
-                    width: width,
-                    height: width * 0.27,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Total Berat Paket",
-                          style: GoogleFonts.roboto(
-                            fontSize: height * 0.018,
-                            color: Color.fromARGB(255, 4, 120, 122),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Container(
-                          height: width * 0.14,
-                          margin: EdgeInsets.all(width * 0.03),
-                          padding: EdgeInsets.all(width * 0.01),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color.fromARGB(255, 246, 142, 37),
-                              width: 3,
-                            ),
-                            borderRadius: new BorderRadius.all(
-                              Radius.circular(width * 0.09),
-                            ),
-                            color: Colors.white,
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: width * 0.02,
-                              ),
-                              Container(
-                                width: width * 0.01,
-                                child: Icon(
-                                  Icons.monitor_weight_outlined,
-                                  color: Color.fromARGB(255, 246, 142, 37),
                                 ),
                               ),
                               SizedBox(
-                                width: width * 0.1,
-                              ),
-                              Container(
-                                width: width * 0.55,
-                                child: GestureDetector(
-                                  onTap: () => FocusManager
-                                      .instance.primaryFocus
-                                      ?.unfocus(),
-                                  onVerticalDragEnd: (DragEndDetails details) =>
-                                      FocusManager.instance.primaryFocus
-                                          ?.unfocus(),
-                                  child: TextField(
-                                    //input hanya angka
-                                    keyboardType: TextInputType.number,
-
-                                    onChanged: (text) {
-                                      berat = text;
-                                    },
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: width * 0.09,
-                                child: Text(
-                                  "gr",
-                                  style: GoogleFonts.roboto(
-                                    fontSize: height * 0.018,
-                                    color: Color.fromARGB(255, 246, 142, 37),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: width * 0.05,
-                      right: width * 0.05,
-                    ),
-                    width: width,
-                    height: width * 0.27,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Kota Tujuan",
-                          style: GoogleFonts.roboto(
-                            fontSize: height * 0.018,
-                            color: Color.fromARGB(255, 4, 120, 122),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Container(
-                          height: width * 0.14,
-                          margin: EdgeInsets.all(width * 0.03),
-                          padding: EdgeInsets.all(width * 0.01),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color.fromARGB(255, 246, 142, 37),
-                              width: 3,
-                            ),
-                            borderRadius: new BorderRadius.all(
-                              Radius.circular(width * 0.09),
-                            ),
-                            color: Colors.white,
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: width * 0.05,
-                              ),
+                                  width: width * 0.25,
+                                  child: Obx(
+                                    () => Text(
+                                      controllerOngkir.namaJasa.value == ''
+                                          ? ''
+                                          : controllerOngkir.namaJasa.value,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.roboto(
+                                        fontSize: height * 0.018,
+                                        color: Color.fromARGB(255, 4, 120, 122),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )),
                               Icon(
-                                Icons.search,
+                                Icons.arrow_drop_down,
                                 color: Color.fromARGB(255, 246, 142, 37),
                               ),
-                              SizedBox(
-                                width: width * 0.02,
-                              ),
-                              Container(
-                                width: width * 0.6,
-                                height: height * 0.16,
-                                child: DropdownSearch<Kota>(
-                                  dropdownDecoratorProps:
-                                      DropDownDecoratorProps(
-                                    dropdownSearchDecoration: InputDecoration(
-                                      prefixIconColor:
-                                          Color.fromARGB(255, 246, 142, 37),
-                                      suffixIconColor:
-                                          Color.fromARGB(255, 246, 142, 37),
-                                      // helperText: "  Kota Asal",
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                  popupProps: PopupProps.menu(
-                                    showSearchBox: true,
-                                  ),
-                                  itemAsString: (item) =>
-                                      "${item.type} ${item.cityName}",
-                                  onChanged: (value) {
-                                    setState(() {
-                                      kota_tujuan = value?.cityId;
-                                      cityTujuan = value?.cityName;
-                                    });
-                                  },
-                                  asyncItems: (text) async {
-                                    final ioc = new HttpClient();
-                                    ioc.badCertificateCallback =
-                                        (X509Certificate cert, String host,
-                                                int port) =>
-                                            true;
-                                    final http = new IOClient(ioc);
-                                    var response = await http.get(Uri.parse(
-                                        "https://api.rajaongkir.com/starter/city?key=${key}"));
-
-                                    List allKota = (jsonDecode(response.body)
-                                            as Map<String, dynamic>)[
-                                        'rajaongkir']['results'];
-
-                                    var dataKota = Kota.fromJsonList(allKota);
-
-                                    return dataKota;
-                                  },
-                                ),
-                              ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Container(
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Container(
                     margin: EdgeInsets.only(
-                      left: width * 0.05,
-                      right: width * 0.05,
+                      right: width * 0.09,
                     ),
-                    width: width,
-                    height: width * 0.27,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Jasa Kirim",
-                          style: GoogleFonts.roboto(
-                            fontSize: height * 0.018,
-                            color: Color.fromARGB(255, 4, 120, 122),
-                            fontWeight: FontWeight.bold,
+                    width: width * 0.35,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(
+                          Color.fromARGB(255, 246, 142, 37),
+                        ),
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.white),
                           ),
                         ),
-                        Container(
-                          height: width * 0.14,
-                          margin: EdgeInsets.all(width * 0.03),
-                          padding: EdgeInsets.all(width * 0.01),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Color.fromARGB(255, 246, 142, 37),
-                              width: 3,
-                            ),
-                            borderRadius: new BorderRadius.all(
-                              Radius.circular(width * 0.09),
-                            ),
-                            color: Colors.white,
-                          ),
-                          child: GestureDetector(
-                            onTap: _handleClick,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: width * 0.05,
-                                ),
-                                Icon(
-                                  Icons.search,
-                                  color: Color.fromARGB(255, 246, 142, 37),
-                                ),
-                                Container(
-                                  width: width * 0.35,
-                                  child: Center(
-                                    child: Obx(
-                                      () => SvgPicture.asset(
-                                        controllerOngkir.namaSVG.value == ''
-                                            ? ''
-                                            : controllerOngkir.namaSVG.value,
-                                        width: width * 0.02,
-                                        height: width * 0.05,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                    width: width * 0.25,
-                                    child: Obx(
-                                      () => Text(
-                                        controllerOngkir.namaJasa.value == ''
-                                            ? ''
-                                            : controllerOngkir.namaJasa.value,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.roboto(
-                                          fontSize: height * 0.018,
-                                          color:
-                                              Color.fromARGB(255, 4, 120, 122),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    )),
-                                Icon(
-                                  Icons.arrow_drop_down,
-                                  color: Color.fromARGB(255, 246, 142, 37),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        right: width * 0.09,
                       ),
-                      width: width * 0.35,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            Color.fromARGB(255, 246, 142, 37),
-                          ),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Colors.white),
+                      onPressed: () {
+                        if (kota_asal == null ||
+                            kota_tujuan == null ||
+                            berat == "" ||
+                            controllerOngkir.namaJasa.value == "") {
+                          Get.snackbar(
+                            "Pencarian Anda tidak ditemukan",
+                            "Silahkan isi semua kolom terlebih dahulu",
+                            icon: Icon(Icons.block_outlined, color: Colors.red),
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Color.fromARGB(128, 246, 142, 37),
+                            borderRadius: 20,
+                            margin: EdgeInsets.all(15),
+                            colorText: Colors.black,
+                            duration: Duration(seconds: 4),
+                            isDismissible: true,
+                            dismissDirection: DismissDirection.horizontal,
+                            forwardAnimationCurve: Curves.easeOutBack,
+                          );
+                        } else {
+                          Get.offAll(
+                            () => HasilCekOngkir(
+                              jk: controllerOngkir.namaJasa.value.toLowerCase(),
+                              kotaAsal: kota_asal,
+                              kotaTujuan: kota_tujuan,
+                              totalPaket: berat,
+                              namaSVG: controllerOngkir.namaSVG.value,
                             ),
-                          ),
-                        ),
-                        onPressed: () {
-                          if (kota_asal == null ||
-                              kota_tujuan == null ||
-                              berat == "" ||
-                              controllerOngkir.namaJasa.value == "") {
-                            Get.snackbar(
-                              "Pencarian Anda tidak ditemukan",
-                              "Silahkan isi semua kolom terlebih dahulu",
-                              icon:
-                                  Icon(Icons.block_outlined, color: Colors.red),
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: Color.fromARGB(255, 246, 142, 37)
-                                  .withOpacity(0.5),
-                              borderRadius: 20,
-                              margin: EdgeInsets.all(15),
-                              colorText: Colors.black,
-                              duration: Duration(seconds: 4),
-                              isDismissible: true,
-                              dismissDirection: DismissDirection.horizontal,
-                              forwardAnimationCurve: Curves.easeOutBack,
-                            );
-                          } else {
-                            Get.offAll(
-                              () => HasilCekOngkir(
-                                jk: controllerOngkir.namaJasa.value
-                                    .toLowerCase(),
-                                kotaAsal: kota_asal,
-                                kotaTujuan: kota_tujuan,
-                                totalPaket: berat,
-                                namaSVG: controllerOngkir.namaSVG.value,
-                              ),
-                              transition: Transition.fade,
-                              duration: Duration(seconds: 1),
-                            );
-                          }
-                        },
-                        child: Text(
-                          "Cari",
-                          style: GoogleFonts.roboto(
-                            fontWeight: FontWeight.bold,
-                          ),
+                            transition: Transition.fade,
+                            duration: Duration(seconds: 1),
+                          );
+                        }
+                      },
+                      child: Text(
+                        "Cari",
+                        style: GoogleFonts.roboto(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             GestureDetector(
               onPanUpdate: (details) {
@@ -565,7 +557,7 @@ class _CekOngkirState extends State<CekOngkir> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
+                        color: Colors.grey.withAlpha(128),
                         spreadRadius: 5,
                         blurRadius: 10)
                   ],
@@ -660,7 +652,7 @@ class _CekOngkirState extends State<CekOngkir> {
         bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
           notchMargin: 5,
-          child: Container(
+          child: SizedBox(
             height: 60,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -705,7 +697,7 @@ class _CekOngkirState extends State<CekOngkir> {
                       duration: Duration(seconds: 1),
                     );
                   },
-                  child: Container(
+                  child: SizedBox(
                     width: width * 0.2,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

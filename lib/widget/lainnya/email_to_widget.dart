@@ -9,10 +9,10 @@ class EmailtoWidget extends StatelessWidget {
   IconData namaIcon;
   String isiText;
   EmailtoWidget({
-    Key? key,
+    super.key,
     required this.namaIcon,
     required this.isiText,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,8 +27,7 @@ class EmailtoWidget extends StatelessWidget {
           padding: EdgeInsets.all(4),
           decoration: BoxDecoration(
             border: Border(
-              bottom:
-                  BorderSide(color: Colors.grey.withOpacity(0.3), width: 2.5),
+              bottom: BorderSide(color: Colors.grey.withAlpha(76), width: 2.5),
             ),
           ),
           width: width * 0.6,
@@ -45,18 +44,13 @@ class EmailtoWidget extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () async {
-                  final Uri params = Uri(
-                    scheme: 'mailto',
-                    path: 'yogabayusbi@gmail.com',
-                    query:
-                        'subject=App Feedback&body=hi, can we cooperate?', //add subject and body here
-                  );
-
-                  Uri url = Uri.parse(params.toString());
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url);
-                  } else {
-                    throw 'Could not launch $url';
+                  try {
+                    Uri email = Uri(
+                        scheme: 'https',
+                        path: "www.linkedin.com/in/yoga-bayu-anggana-pratama/");
+                    await launchUrl(email);
+                  } catch (e) {
+                    debugPrint(e.toString());
                   }
                 },
                 icon: Icon(
