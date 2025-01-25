@@ -1,16 +1,41 @@
-# paketku
+<p align="center"><img src="https://github.com/Yogabayu/PaketKUv2/blob/main/assets/icon/icon.png" width="150"></p>
 
-A new Flutter project.
+## PaketKU
 
-## Getting Started
+Aplikasi yang bertujuan untuk mempermudah pengecekan paket perjalanan dan estimasi
+pengiriman paket. Aplikasi ini dibuat menggunakan Flutter Framework serta 
+API pihak (Raja Ongkir dan BinderByte). Dilengkapi dengan fitur:
+- Mendukung berbagai layanan pengiriman terkemuka (12 layanan pengiriman, termasuk JNE, POS, SiCepat, dll)
+- Riwayat pelacakan
+- Cek estimasi pengiriman hingga level kabupaten/kota di seluruh Indonesia dan juga mendukung berbagai jenis jasa pengiriman terkemuka.
+## Acknowledgements
 
-This project is a starting point for a Flutter application.
+ - [Flutter](https://flutter.dev/)
+ - [Awesome README](https://github.com/matiassingers/awesome-readme)
+## Authors
 
-A few resources to get you started if this is your first Flutter project:
+- [@yogabayu.ap](https://www.instagram.com/yogabayu.ap) - flutter Development
+- [@ronaldo_fransiscoo](https://www.instagram.com/ronaldo_fransiscoo) - App Logo Design
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tech Stack
+
+**API** :: [Raja Ongkir](https://rajaongkir.com/) || [BinderByte](https://binderbyte.com/)
+
+**Android Development** :: Flutter Framework
+
+
+## Environment Variables
+
+Untuk menjalankan project ini silahkan ganti file API.dart di dalam folder lib/model :
+
+`var key`  :: ganti dengan key dari RajaOngkir
+
+`String apiKey` :: ganti dengan key dari Binderbyte
+
+
+
+## Screenshots
+
+<img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_01.jpg" width="150"> <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_02.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_03.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_04.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_05.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_06.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_07.jpg" width="150"> 
+
