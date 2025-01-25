@@ -37,5 +37,5 @@ Untuk menjalankan project ini silahkan ganti file API.dart di dalam folder lib/m
 
 ## Screenshots
 
-<img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_01.jpg" width="150"> <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_02.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_03.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_04.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_05.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_06.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_07.jpg" width="150"> 
+<img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_1.jpg" width="150"> <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_2.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_3.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_4.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_5.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_6.jpg" width="150">  <img src="https://github.com/Yogabayu/PaketKUv2/blob/main/flutter_7.jpg" width="150"> 
 
